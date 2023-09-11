@@ -2,6 +2,12 @@
   <h1>Sisse logimine</h1>
   <div class="container text-center">
     <div class="row justify-content-center">
+      <div class="col" >
+        <AlertDanger :alert-message="errorResponse.message"/>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
       <div class="col col-3 form-floating mb-4">
         <div class="form-floating mb-3">
           <input v-model="username" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
@@ -13,6 +19,7 @@
         </div>
       </div>
     </div>
+
     <div class="row justify-content-center">
       <div class="col col-3 form-floating mb-3">
         <div class="mb-4">
@@ -23,19 +30,16 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col">
-        <h3>Siia alla tuleb kontantinfo</h3>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 import router from "@/router";
+import AlertDanger from "@/components/AlertDanger.vue";
 
 export default {
   name: 'LoginView',
+  components: {AlertDanger},
   data() {
     return {
       username: '',
