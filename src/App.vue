@@ -2,7 +2,9 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/harbours">Sadamad</router-link> |
-    <router-link to="/login">Login</router-link>
+    <router-link to="/search">Täpsem otsing</router-link> |
+    <router-link to="/about">Meist</router-link> |
+    <router-link to="/login">Sisse</router-link>
   </nav>
   <router-view/>
 </template>
