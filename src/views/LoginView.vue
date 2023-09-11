@@ -55,7 +55,22 @@ export default {
     }
   },
   methods: {
+
     login() {
+      this.resetErrorMessage();
+      if (this.username.length > 0 && this.password.length > 0) {
+        this.sendLoginRequest();
+      } else {
+        this.errorResponse.message = 'Täida kõik väljad'
+      }
+
+    },
+
+    resetErrorMessage() {
+      this.errorResponse.message = ''
+    },
+
+    sendLoginRequest() {
       this.$http.get('/login', {
             params: {
               username: this.username,
