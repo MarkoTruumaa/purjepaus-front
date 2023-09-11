@@ -38,7 +38,6 @@ const routes = [
         component: AboutView
     },
 
-
 ]
 
 const router = createRouter({
