@@ -1,4 +1,5 @@
 <template>
+  <h1>Kõik sadamad</h1>
   <table class="table table-success table-hover table-striped">
     <thead>
     <tr>

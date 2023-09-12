@@ -1,12 +1,16 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/harbours">Sadamad</router-link> |
-    <router-link to="/search">Täpsem otsing</router-link> |
-    <router-link to="/about">Meist</router-link> |
-    <router-link to="/login">Sisse</router-link>
+  <nav class="navbar navbar-dark bg-black">
+    <div class="container">
+      <router-link to="/" class="navbar-brand p-0">
+        <img src="./assets/purjepaus-black.png" style="height: 30px;" alt="logo">
+      </router-link>
+      <router-link class="text-white fw-bold" to="/harbours">Sadamad</router-link>
+      <router-link class="text-white fw-bold" to="/search">Täpsem otsing</router-link>
+      <router-link class="text-white fw-bold" to="/about">Meist</router-link>
+      <router-link class="text-white fw-bold" to="/login">Sisse</router-link>
+    </div>
   </nav>
-  <router-view/>
+  <router-view class="p-4"/>
 </template>
 
 <style>
@@ -17,17 +21,9 @@
   text-align: center;
   color: #2c3e50;
 }
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+a.router-link-exact-active {
+  color: #42b983 !important;
 }
 </style>
+<script setup>
+</script>
