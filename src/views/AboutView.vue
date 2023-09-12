@@ -1,5 +1,5 @@
 <template>
-<h1>About</h1>
+  <h1>About</h1>
 </template>
 
 
@@ -7,5 +7,6 @@
 export default {
   name: 'AboutView'
 }
+
 
 </script>
