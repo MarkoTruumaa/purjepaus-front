@@ -8,9 +8,13 @@
 
     <div class="row">
       <div class="col">
-        <HarboursTable :harbours-main-info="harboursMainInfo"/>
-
-
+        <HarboursTable
+            v-if="!showHarbourView"
+            @event-open-harbour-details="openSelectedHarbourDetails"
+            :harbours-main-info="harboursMainInfo"/>
+        <HarbourDetails
+            v-if="showHarbourView"
+            :selected-harbour-id="selectedHarbourId"/>
       </div>
     </div>
 
@@ -20,10 +24,11 @@
 <script>
 import router from "@/router";
 import HarboursTable from "@/components/HarboursTable.vue";
+import HarbourDetails from "@/components/HarbourDetails.vue";
 
 export default {
   name: 'HarboursView',
-  components: {HarboursTable},
+  components: {HarbourDetails, HarboursTable},
   data() {
     return {
       harboursMainInfo: [
@@ -36,7 +41,9 @@ export default {
           minWidth: 0,
           spots: 0
         }
-      ]
+      ],
+      selectedHarbourId: 0,
+      showHarbourView: false
     }
   },
 
@@ -52,6 +59,10 @@ export default {
     },
     moveToSearchPage() {
       router.push({name: 'searchRoute'})
+    },
+    openSelectedHarbourDetails(harbourId) {
+      this.selectedHarbourId = harbourId
+      this.showHarbourView = true
     },
 
   },

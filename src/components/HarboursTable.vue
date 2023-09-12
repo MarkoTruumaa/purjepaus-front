@@ -12,7 +12,7 @@
     <tbody>
     <tr v-for="harbour in harboursMainInfo" :key="harbour.harbourId">
       <th scope="row">
-        <a href="/harbour#/harbour">{{ harbour.harbourName }}</a>
+        <a @click="openHarbourDetails(harbour.harbourId)" href="#">{{ harbour.harbourName }}</a>
       </th>
       <td>{{ harbour.locationLongitude + ', ' + harbour.locationLatitude}}</td>
       <td>{{harbour.minDepth}}</td>
@@ -27,6 +27,12 @@ export default {
   name: 'HarboursTable',
   props: {
     harboursMainInfo: {}
+  },
+
+  methods: {
+    openHarbourDetails(harbourId) {
+      this.$emit('event-open-harbour-details', harbourId)
+    },
   }
 }
 </script>
