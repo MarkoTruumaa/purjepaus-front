@@ -6,6 +6,8 @@ import HarboursView from "@/views/HarboursView.vue";
 import SearchView from "@/views/SearchView.vue";
 import AboutView from "@/views/AboutView.vue";
 
+
+
 const routes = [
     {
         path: '/',
@@ -37,6 +39,8 @@ const routes = [
         name: 'aboutRoute',
         component: AboutView
     },
+
+
 
 ]
 

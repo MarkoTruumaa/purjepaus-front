@@ -1,11 +1,5 @@
 <template>
   <div class="container text-center">
-    <div class="row mb-4">
-      <div class="col">
-        <button @click="moveToSearchPage">Täpsem otsing</button>
-      </div>
-    </div>
-
     <div class="row">
       <div class="col">
         <HarboursTable
@@ -14,6 +8,7 @@
             :harbours-main-info="harboursMainInfo"/>
         <HarbourDetails
             v-if="showHarbourView"
+            @go-back="showTableView"
             :selected-harbour-id="selectedHarbourId"/>
       </div>
     </div>
@@ -64,6 +59,9 @@ export default {
       this.selectedHarbourId = harbourId
       this.showHarbourView = true
     },
+    showTableView() {
+      this.showHarbourView = false
+    }
 
   },
 
