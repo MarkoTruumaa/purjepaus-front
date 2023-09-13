@@ -4,11 +4,18 @@
     <router-link to="/harbours">Sadamad</router-link> |
     <router-link to="/search">Täpsem otsing</router-link> |
     <router-link to="/about">Meist</router-link> |
-    <router-link to="/login">Sisse</router-link>
+    <router-link to="/login">Sisse</router-link> |
   </nav>
   <router-view/>
 </template>
 
+<script>
+export default {
+
+
+}
+
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -16,6 +23,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-direction: column;
 }
 
 nav {
