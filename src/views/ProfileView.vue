@@ -2,41 +2,40 @@
   <h1>{{ contactInfo.userName }} profiil</h1>
   <div class="align-content-center">
     <div class="card card-w-margin">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Eesnimi: {{ contactInfo.firstName }}</li>
-        <li class="list-group-item">Perekonnanimi: {{ contactInfo.lastName }}</li>
-        <li class="list-group-item">E-mail: {{ contactInfo.email }}</li>
-        <li class="list-group-item">Telefon: {{ contactInfo.telephone }}</li>
-        <li class="list-group-item">Aadress: {{ contactInfo.address }}</li>
-      </ul>
+      <ProfileInfo v-if="isView" :contact-info="contactInfo"/>
+      <ProfileInfoUpdate ref="profileInfoUpdateRef"/>
     </div>
   </div>
 
   <div class="text-center">
-    <button @click="moveToEditUserPage" type="button" class="btn btn-warning">Muuda andmeid</button>
+    <button v-if="isView" @click="displayProfileInfoUpdateComponent" type="button" class="btn btn-warning">Muuda andmeid</button>
+    <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning">Uuenda</button>
   </div>
 </template>
 
 
 <script>
 import router from "@/router";
+import ProfileInfo from "@/components/profile/ProfileInfo.vue";
+import ProfileInfoUpdate from "@/components/profile/ProfileInfoUpdate.vue";
 
 export default {
   name: 'ProfileView',
+  components: {ProfileInfoUpdate, ProfileInfo},
 
   data() {
     return {
+      isView: true,
       contactInfo: {
-        userId: '',
-        userName: 0,
-        firstName: '',
-        lastName: '',
-        email: '',
-        telephone: '',
-        address: ''
+        username: 'jaan',
+        contactFirstName: 'Jaan',
+        contactLastName: 'Suur',
+        contactEmail: 'jaan@mail.ee',
+        contactTelephone: '+37256584612',
+        contactAddress: 'Teine koht 15, Tallinn'
       },
 
-      userId: 0,
+      userId: 1,
 
     }
   },
@@ -56,8 +55,17 @@ export default {
       })
     },
 
-    moveToEditUserPage() {
-      router.push({name: 'editUserRoute'})
+    updateUserInfo() {
+      this.$refs.profileInfoUpdateRef.sendUpdateUserInfoRequest()
+    },
+
+    displayProfileInfoUpdateComponent() {
+      this.$refs.profileInfoUpdateRef.userId = this.userId
+      this.$refs.profileInfoUpdateRef.contactInfo = this.contactInfo
+      this.$refs.profileInfoUpdateRef.isEdit = true
+      this.isView = false
+
+
     }
   },
 
