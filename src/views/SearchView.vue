@@ -16,7 +16,7 @@
                   <li><a v-for="county in countyInfo"  :key="county.countyId"
                     class="dropdown-item"
                     href="#">
-                    {{ countyInfo.countyName }}
+                    {{ county.countyName }}
                     </a></li>
                 </ul>
 
@@ -60,7 +60,7 @@
             <div class="form-check">
               <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
               <label class="form-check-label" for="flexCheckDefault" v-for="extra in extraInfo"  :key="extra.extraId">
-                  {{ extraInfo.extraName }}
+                  {{ extra.extraName }}
               </label>
             </div>
           </td>
