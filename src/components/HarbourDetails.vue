@@ -1,5 +1,6 @@
 <template>
   <CaptainInfoModal ref="captainInfoModalRef"/>
+  <BookingModal ref="bookingModalRef"/>
   <div>
 
     <div class="row justify-content-center">
@@ -18,20 +19,20 @@
         <table class="table table-borderless align-bottom">
           <tbody>
           <tr>
-            <td>Aadress: {{ harbourDetailedInfo.locationAddress }}</td>
+            <td><font-awesome-icon :icon="['fas', 'location-dot']" /> Aadress: {{ harbourDetailedInfo.locationAddress }}</td>
           </tr>
           <tr>
-            <td>Koordinaadid: {{ harbourDetailedInfo.locationLongitude }}, {{ harbourDetailedInfo.locationLatitude }}
+            <td><font-awesome-icon :icon="['fas', 'map-location-dot']" /> Koordinaadid: {{ harbourDetailedInfo.locationLongitude }}, {{ harbourDetailedInfo.locationLatitude }}
             </td>
           </tr>
           <tr>
-            <td>Sissesõidu väikseim sügavus: {{ harbourDetailedInfo.minDepth }} meetrit</td>
+            <td><font-awesome-icon :icon="['fas', 'arrow-down']" /> Sissesõidu väikseim sügavus: {{ harbourDetailedInfo.minDepth }} meetrit</td>
           </tr>
           <tr>
-            <td>Sissesõidu väikseim laius: {{ harbourDetailedInfo.minWidth }} meetrit</td>
+            <td><font-awesome-icon :icon="['fas', 'arrows-left-right']" /> Sissesõidu väikseim laius: {{ harbourDetailedInfo.minWidth }} meetrit</td>
           </tr>
           <tr>
-            <td>Kohtade arv sadamas: {{ harbourDetailedInfo.spots }}</td>
+            <td><font-awesome-icon :icon="['fas', 'anchor']" /> Kohtade arv sadamas: {{ harbourDetailedInfo.spots }}</td>
           </tr>
           <tr>
             <td>Navigatsiooniperioodi algus: {{ harbourDetailedInfo.navigationStart }}
@@ -41,22 +42,23 @@
             <td>Navigatsiooniperioodi lõpp: {{ harbourDetailedInfo.navigationEnd }}</td>
           </tr>
           <tr>
-            <td>Kontakttelefon: {{ harbourDetailedInfo.phoneNumber }}</td>
+            <td><font-awesome-icon :icon="['fas', 'phone']" /> Kontakttelefon: {{ harbourDetailedInfo.phoneNumber }}</td>
           </tr>
           <tr>
-            <td>Koduleht: {{ harbourDetailedInfo.homepage }}</td>
+            <td><font-awesome-icon :icon="['fas', 'house']" /> <a href="{{harbourDetailedInfo.homepage}}"> {{ harbourDetailedInfo.homepage }}</a></td>
           </tr>
           <tr>
-            Lisavõimalused:
-            <td v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
-              {{ extra.extraName }}
-            </td>
+            <h3>Lisavõimalused:</h3>
+            <ul class="list-group">
+              <li class="list-group-item"><td v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
+                {{ extra.extraName }},
+              </td></li></ul>
           </tr>
 
           </tbody>
         </table>
         <div>
-          <button type="button" class="btn btn-secondary float-right mb-3">Vabad kohad</button>
+          <button @click="openBookingModal" type="button" class="btn btn-secondary float-right mb-3">Vabad kohad</button>
           <br>
           <button @click="this.goBack" type="button" class="btn btn-primary float-right mb-3">Tagasi sadamate juurde
           </button>
@@ -65,7 +67,7 @@
     </div>
   </div>
   <div>
-    <button type="button" class="btn btn-dark m-2">Muuda</button>
+    <button @click="moveToEditHarbourPage" type="button" class="btn btn-dark m-2">Muuda</button>
     <button type="button" class="btn btn-danger m-2">Kustuta</button>
   </div>
 
@@ -75,11 +77,13 @@
 <script>
 import router from "@/router";
 import CaptainInfoModal from "@/components/modal/CaptainInfoModal.vue";
+import BookingModal from "@/components/modal/BookingModal.vue";
+
 
 
 export default {
   name: 'HarbourDetails',
-  components: {CaptainInfoModal},
+  components: {BookingModal, CaptainInfoModal},
   props: {
     selectedHarbourId: Number,
   },
@@ -140,6 +144,12 @@ export default {
     },
     goBack() {
       this.$emit('goBack')
+    },
+    moveToEditHarbourPage() {
+      router.push({name: 'editHarbourRoute'})
+    },
+    openBookingModal() {
+      this.$refs.bookingModalRef.openModal()
     }
   },
   mounted() {

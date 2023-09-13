@@ -7,6 +7,7 @@ import SearchView from "@/views/SearchView.vue";
 import AboutView from "@/views/AboutView.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import EditUserView from "@/views/EditUserView.vue";
+import EditHarbourView from "@/views/EditHarbourView.vue";
 
 
 
@@ -51,6 +52,11 @@ const routes = [
         path: '/edit-user',
         name: 'editUserRoute',
         component: EditUserView
+    },
+    {
+        path: '/edit-harbour',
+        name: 'editHarbourRoute',
+        component: EditHarbourView
     },
 
 

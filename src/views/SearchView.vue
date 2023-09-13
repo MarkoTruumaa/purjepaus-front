@@ -10,27 +10,30 @@
               <div class="dropdown">
                 <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                  Maakonnad
+                  Kõik maakonnad
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Harju</a></li>
-                  <li><a class="dropdown-item" href="#">Pärnu</a></li>
+                  <li><a v-for="county in countyInfo"  :key="county.countyId"
+                    class="dropdown-item"
+                    href="#">
+                    {{ countyInfo.countyName }}
+                    </a></li>
                 </ul>
+
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
+
               <div class="dropdown">
                 <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                   Sissesõidu väikseim sügavus
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a v-for="number in numbers" :key="number" class="dropdown-item" href="#">{{ number }} meetrit</a></li>
+                  <li><a v-for="number in numbers" :key="number" class="dropdown-item" href="#">{{ number }} meetrit</a>
+                  </li>
                 </ul>
               </div>
             </td>
+
           </tr>
           <tr>
             <td>
@@ -40,7 +43,8 @@
                   Sissesõidu väikseim laius
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a v-for="number in numbers" :key="number" class="dropdown-item" href="#">{{ number }} meetrit</a></li>
+                  <li><a v-for="number in numbers" :key="number" class="dropdown-item" href="#">{{ number }} meetrit</a>
+                  </li>
                 </ul>
               </div>
             </td>
@@ -55,16 +59,8 @@
           <td>
             <div class="form-check">
               <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-                Valik 1
-              </label>
-            </div>
-          </td>
-          <td>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-                Valik 2
+              <label class="form-check-label" for="flexCheckDefault" v-for="extra in extraInfo" :value="extra.extraId" :key="extra.extraId">
+                  {{ extraInfo.extraName }}
               </label>
             </div>
           </td>
@@ -77,13 +73,50 @@
 </template>
 
 <script>
+import router from "@/router";
 export default {
   name: 'SearchView',
   computed: {
     numbers() {
-      return Array.from({ length: 10 }, (_, index) => index + 0.5);
+      return Array.from({length: 10}, (_, index) => index + 0.5);
     },
   },
+  data() {
+    return {
+      countyInfo: {
+        countyId: 0,
+        countyName: ''
+      },
+      extraInfo: {
+        extraId: 0,
+        extraName: '',
+        isAvailable: true
+      }
+    }
+  },
+  methods: {
+    getExtraInfo() {
+      this.$http.get("/harbour/extras"
+      ).then(response => {
+        this.extraInfo = response.data;
+      }).catch(error => {
+        router.push({name: 'errorRoute'})
+      })
+    },
+    getCountyInfo() {
+      this.$http.get("/counties"
+      ).then(response => {
+        this.countyInfo = response.data;
+      }).catch(error => {
+        router.push({name: 'errorRoute'})
+      })
+    },
+  },
+  beforeMount() {
+    this.getExtraInfo()
+    this.getCountyInfo()
+  }
 }
+
 
 </script>
