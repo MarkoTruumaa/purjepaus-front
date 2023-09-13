@@ -47,7 +47,10 @@
             <td>Koduleht: {{ harbourDetailedInfo.homepage }}</td>
           </tr>
           <tr>
-            <td>Lisavõimalused: {{ harbourDetailedInfo.extras }}</td>
+            Lisavõimalused:
+            <td v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
+              {{ extra.extraName }}
+            </td>
           </tr>
 
           </tbody>
@@ -55,7 +58,8 @@
         <div>
           <button type="button" class="btn btn-secondary float-right mb-3">Vabad kohad</button>
           <br>
-          <button @click="this.goBack" type="button" class="btn btn-primary float-right mb-3">Tagasi sadamate juurde</button>
+          <button @click="this.goBack" type="button" class="btn btn-primary float-right mb-3">Tagasi sadamate juurde
+          </button>
         </div>
       </div>
     </div>
