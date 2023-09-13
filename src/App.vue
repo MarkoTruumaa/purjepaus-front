@@ -8,7 +8,7 @@
       <router-link class="text-white fw-bold" to="/search">Täpsem otsing</router-link>
       <router-link class="text-white fw-bold" to="/about">Meist</router-link>
       <router-link class="text-white fw-bold" to="/login">Sisse</router-link>
-      <router-link class="text-white fw-bold" to="/login">
+      <router-link class="text-white fw-bold" to="/profile">
         <font-awesome-icon :icon="['fas', 'user']" />
       </router-link>
 

@@ -27,8 +27,7 @@
                   Sissesõidu väikseim sügavus
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">2 meetrit</a></li>
-                  <li><a class="dropdown-item" href="#">4 meetrit</a></li>
+                  <li><a v-for="number in numbers" :key="number" class="dropdown-item" href="#">{{ number }} meetrit</a></li>
                 </ul>
               </div>
             </td>
@@ -41,8 +40,7 @@
                   Sissesõidu väikseim laius
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">2 meetrit</a></li>
-                  <li><a class="dropdown-item" href="#">4 meetrit</a></li>
+                  <li><a v-for="number in numbers" :key="number" class="dropdown-item" href="#">{{ number }} meetrit</a></li>
                 </ul>
               </div>
             </td>
@@ -80,7 +78,12 @@
 
 <script>
 export default {
-  name: 'SearchView'
+  name: 'SearchView',
+  computed: {
+    numbers() {
+      return Array.from({ length: 10 }, (_, index) => index + 0.5);
+    },
+  },
 }
 
 </script>
