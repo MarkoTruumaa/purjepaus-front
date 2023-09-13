@@ -1,5 +1,6 @@
 <template>
-  <table class="table table-primary table-hover table-striped">
+  <h1>Kõik sadamad</h1>
+  <table class="table table-success table-hover table-striped">
     <thead>
     <tr>
       <th scope="col">Nimi</th>
@@ -12,7 +13,7 @@
     <tbody>
     <tr v-for="harbour in harboursMainInfo" :key="harbour.harbourId">
       <th scope="row">
-        <a @click="openHarbourDetails(harbour.harbourId)" href="#">{{ harbour.harbourName }}</a>
+        <a href="javascript:void(0)" @click="openHarbourDetails(harbour.harbourId)" >{{ harbour.harbourName }}</a>
       </th>
       <td>{{ harbour.locationLongitude + ', ' + harbour.locationLatitude}}</td>
       <td>{{harbour.minDepth}}</td>
