@@ -5,7 +5,8 @@
         <h4>{{ captainInfo.firstName }} {{ captainInfo.lastName }}</h4>
       </template>
       <template #body>
-        body
+        <h5>e-mail: {{captainInfo.email }} <br></h5>
+        <h5>telefon: {{captainInfo.telephone}} <br></h5>
       </template>
       <template #footer>
 
