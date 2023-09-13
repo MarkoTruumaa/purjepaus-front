@@ -80,6 +80,8 @@ export default {
           }
       ).then(response => {
         this.loginResponse = response.data
+        router.push({name: 'homeRoute'})
+
       }).catch(error => {
         this.errorResponse = error.response.data
         if (this.errorResponse.errorCode !== 111) {

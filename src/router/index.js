@@ -5,6 +5,8 @@ import ErrorView from "@/views/ErrorView.vue";
 import HarboursView from "@/views/HarboursView.vue";
 import SearchView from "@/views/SearchView.vue";
 import AboutView from "@/views/AboutView.vue";
+import ProfileView from "@/views/ProfileView.vue";
+import EditUserView from "@/views/EditUserView.vue";
 
 
 
@@ -39,6 +41,18 @@ const routes = [
         name: 'aboutRoute',
         component: AboutView
     },
+    {
+        path: '/profile',
+        name: 'profileRoute',
+        component: ProfileView
+    },
+
+    {
+        path: '/edit-user',
+        name: 'editUserRoute',
+        component: EditUserView
+    },
+
 
 
 
