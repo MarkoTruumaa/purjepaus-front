@@ -5,6 +5,9 @@
     <router-link to="/search">Täpsem otsing</router-link> |
     <router-link to="/about">Meist</router-link> |
     <router-link to="/login">Sisse</router-link> |
+    <router-link to="/profile">
+      <font-awesome-icon :icon="['fas', 'user']" />
+    </router-link>
   </nav>
   <router-view/>
 </template>
