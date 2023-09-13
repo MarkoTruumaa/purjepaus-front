@@ -7,45 +7,21 @@
           <tbody>
           <tr>
             <td>
-              <div class="dropdown">
-                <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                  Kõik maakonnad
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a v-for="county in countyInfo"  :key="county.countyId"
-                    class="dropdown-item"
-                    href="#">
-                    {{ county.countyName }}
-                    </a></li>
-                </ul>
-
-              </div>
-
-              <div class="dropdown">
-                <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                  Sissesõidu väikseim sügavus
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a v-for="number in numbers" :key="number" class="dropdown-item" href="#">{{ number }} meetrit</a>
-                  </li>
-                </ul>
-              </div>
-            </td>
-
-          </tr>
-          <tr>
-            <td>
-              <div class="dropdown">
-                <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                  Sissesõidu väikseim laius
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a v-for="number in numbers" :key="number" class="dropdown-item" href="#">{{ number }} meetrit</a>
-                  </li>
-                </ul>
+              <div class="row justify-content-center">
+                <div class="col col-4">
+                  <select class="form-select mb-3" aria-label="Default select example">
+                    <option selected :value="0">Kõik maakonnad</option>
+                    <option v-for="county in countyInfo" :value="county.countyId" :key="county.countyId">{{ county.countyName }}</option>
+                  </select>
+                  <select class="form-select mb-3" aria-label="Default select example">
+                    <option selected :value="0">Sissesõidu väikseim sügavus</option>
+                    <option v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit</option>
+                  </select>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected :value="0">Sissesõidu väikseim laius</option>
+                    <option v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit</option>
+                  </select>
+                </div>
               </div>
             </td>
           </tr>
@@ -57,11 +33,13 @@
         <tbody>
         <tr>
           <td>
-            <div class="form-check">
-              <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault" v-for="extra in extraInfo"  :key="extra.extraId">
+            <div class="row justify-content-center">
+              <div v-for="extra in extraInfo" class="col col-4 form-check">
+                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
                   {{ extra.extraName }}
-              </label>
+                </label>
+              </div>
             </div>
           </td>
         </tr>
@@ -115,7 +93,7 @@ export default {
   beforeMount() {
     this.getExtraInfo()
     this.getCountyInfo()
-  },
+  }
 }
 
 

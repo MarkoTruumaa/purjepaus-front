@@ -2,10 +2,6 @@
 Siia tuleb kasutajaandmete muutmine
 </template>
 
-<style>
-
-</style>
-
 <script>
 
 export default {
