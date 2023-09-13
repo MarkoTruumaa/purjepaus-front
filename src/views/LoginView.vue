@@ -1,6 +1,7 @@
 <template>
-  <h1>Sisse logimine</h1>
+
   <div class="container text-center">
+    <h1>Sisse logimine</h1>
     <div class="row justify-content-center">
       <div class="col" >
         <AlertDanger :alert-message="errorResponse.message"/>

@@ -1,5 +1,6 @@
 <template>
-  <table class="table table-primary table-hover table-striped">
+  <h1>Kõik sadamad</h1>
+  <table class="table table-success table-hover table-striped">
     <thead>
     <tr>
       <th scope="col">Nimi</th>

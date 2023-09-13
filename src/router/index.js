@@ -8,6 +8,8 @@ import AboutView from "@/views/AboutView.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import EditUserView from "@/views/EditUserView.vue";
 
+
+
 const routes = [
     {
         path: '/',
@@ -50,6 +52,8 @@ const routes = [
         name: 'editUserRoute',
         component: EditUserView
     },
+
+
 
 
 ]
