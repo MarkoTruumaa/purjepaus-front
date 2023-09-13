@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ contactInfo.userName }} profiil</h1>
+  <h1>{{ contactInfo.username }} profiil</h1>
   <div class="align-content-center">
     <div class="card card-w-margin">
       <ProfileInfo v-if="isView" :contact-info="contactInfo"/>
@@ -35,7 +35,7 @@ export default {
         contactAddress: 'Teine koht 15, Tallinn'
       },
 
-      userId: 1,
+      userId: sessionStorage.getItem('userId')
 
     }
   },
