@@ -59,7 +59,7 @@
           <td>
             <div class="form-check">
               <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault" v-for="extra in extraInfo" :value="extra.extraId" :key="extra.extraId">
+              <label class="form-check-label" for="flexCheckDefault" v-for="extra in extraInfo"  :key="extra.extraId">
                   {{ extraInfo.extraName }}
               </label>
             </div>
@@ -115,7 +115,7 @@ export default {
   beforeMount() {
     this.getExtraInfo()
     this.getCountyInfo()
-  }
+  },
 }
 
 

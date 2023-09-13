@@ -61,6 +61,9 @@
       <div class="container">
         <div class="row">
           <div class="col">
+            <button type="button" class="btn btn-secondary">Lisa / muuda kontaktid</button>
+          </div>
+          <div class="col">
             <button type="button" class="btn btn-secondary">Lisa teenused</button>
           </div>
           <div class="col">
