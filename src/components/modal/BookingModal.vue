@@ -2,14 +2,14 @@
   <div>
     <Modal close-button-name="Sulge" ref="modalRef">
       <template #header>
-        <h4></h4>
+        <h4>Broneeri sobiv aeg</h4>
       </template>
       <template #body>
-        <h5></h5> <br>
-        <h5> <br></h5>
+        <VueDatePicker v-model="date"></VueDatePicker>
       </template>
-      <template #footer>
 
+      <template #footer>
+        <button type="button" class="btn btn-warning">Broneeri</button>
       </template>
     </Modal>
   </div>
@@ -17,14 +17,22 @@
 
 <script>
 import Modal from "@/components/modal/Modal.vue";
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
   name: 'BookingModal',
-  components: {Modal},
+  components: {Modal, VueDatePicker},
   methods: {
-    openModal () {
+    openModal() {
       this.$refs.modalRef.openModal()
     }
+  },
+  data() {
+    return {
+      date: null,
+    }
   }
-};
+}
+
 </script>

@@ -14,7 +14,7 @@
 
     </div>
   </nav>
-  <router-view class="p-4"/>
+  <router-view class="p-4 flex-fill"/>
 </template>
 
 <style>

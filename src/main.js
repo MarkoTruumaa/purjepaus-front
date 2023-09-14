@@ -4,6 +4,12 @@ import router from './router'
 import VueAxios from "vue-axios";
 import axios from "axios";
 
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+
+
+
+
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.js"
 import "@/assets/css/my-style.css"
@@ -23,5 +29,6 @@ app.use(VueAxios, axios)
 
 // Register the FontAwesomeIcon component globally
 app.component('font-awesome-icon', FontAwesomeIcon)
+app.component('VueDatePicker', VueDatePicker);
 
 app.mount('#app')

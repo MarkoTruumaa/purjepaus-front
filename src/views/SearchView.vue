@@ -11,15 +11,19 @@
                 <div class="col col-4">
                   <select class="form-select mb-3" aria-label="Default select example">
                     <option selected :value="0">Kõik maakonnad</option>
-                    <option v-for="county in countyInfo" :value="county.countyId" :key="county.countyId">{{ county.countyName }}</option>
+                    <option v-for="county in countyInfo" :value="county.countyId" :key="county.countyId">
+                      {{ county.countyName }}
+                    </option>
                   </select>
                   <select class="form-select mb-3" aria-label="Default select example">
                     <option selected :value="0">Sissesõidu väikseim sügavus</option>
-                    <option v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit</option>
+                    <option v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit
+                    </option>
                   </select>
                   <select class="form-select" aria-label="Default select example">
                     <option selected :value="0">Sissesõidu väikseim laius</option>
-                    <option v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit</option>
+                    <option v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit
+                    </option>
                   </select>
                 </div>
               </div>
@@ -29,22 +33,24 @@
         </table>
       </div>
       <div><h3>TEENUSED</h3></div>
-      <table class="table table-borderless col-6 ">
-        <tbody>
-        <tr>
-          <td>
-            <div class="row justify-content-center">
-              <div v-for="extra in extraInfo" class="col col-4 form-check">
-                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  {{ extra.extraName }}
-                </label>
+      <div class="col">
+        <table class="table table-borderless">
+          <tbody>
+          <tr>
+            <td>
+              <div class="row justify-content-center">
+                <div v-for="extra in extraInfo" class="col col-4 form-check">
+                  <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    {{ extra.extraName }}
+                  </label>
+                </div>
               </div>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <button type="button" class="btn btn-success">OTSI</button>
   </div>
@@ -52,6 +58,7 @@
 
 <script>
 import router from "@/router";
+
 export default {
   name: 'SearchView',
   computed: {
