@@ -51,7 +51,7 @@
             <h3>Lisavõimalused:</h3>
             <ul class="list-group">
               <li class="list-group-item"><td v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
-                {{ extra.extraName }},
+               {{ extra.extraName }},
               </td></li></ul>
           </tr>
 
