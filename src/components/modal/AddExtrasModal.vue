@@ -2,11 +2,15 @@
   <div>
     <Modal close-button-name="Sulge" ref="modalRef">
       <template #header>
-        <h4></h4>
+        <h4>Lisavõimaluste lisamine</h4>
       </template>
       <template #body>
-        <h5></h5> <br>
-        <h5> <br></h5>
+        <div v-for="extra in extraInfo" class="col form-check">
+          <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            {{ extra.extraName }}
+          </label>
+        </div>
       </template>
       <template #footer>
 
@@ -18,13 +22,35 @@
 <script>
 import Modal from "@/components/modal/Modal.vue";
 
+
 export default {
   name: 'AddExtrasModal',
   components: {Modal},
-  methods: {
-    openModal () {
-      this.$refs.modalRef.openModal()
+  data(){
+    return {
+    extraInfo: {
+      extraId: 0,
+          extraName: '',
+          isAvailable: true
     }
-  }
+    }
+  },
+  methods: {
+    openModal ({extraId}) {
+      this.$http.get("/harbour/extras",{
+        params: {
+          extraId: extraId
+        }
+      }
+      ).then(response => {
+        this.extraInfo = response.data;
+        this.$refs.modalRef.openModal()
+      }).catch(error => {
+        this.errorResponse = error.response.data
+      })
+    },
+  },
+
+
 };
 </script>

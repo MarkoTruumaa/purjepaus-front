@@ -1,6 +1,8 @@
 <template>
+  <AddExtrasModal ref="addExtrasModalRef"/>
+  <AddContactInfoModal ref="addContactInfoModalRef"/>
   <div class="container">
-    <h1>Sadama muutmine</h1>
+    <h1>Sadama lisamine</h1>
     <div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Sadama nimi</span>
@@ -58,22 +60,26 @@
           <option value="3">Three</option>
         </select>
       </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Lisa kapten</span>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
       <div class="container">
         <div class="row">
           <div class="col">
-            <button type="button" class="btn btn-secondary">Muuda kontakt</button>
+            <button @click="openAddContactInfoModal" type="button" class="btn btn-secondary">Lisa kontakt</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-secondary">Lisa teenused</button>
+            <button @click="openAddExtrasModal" type="button" class="btn btn-secondary">Lisa teenused</button>
           </div>
           <div class="col">
             <button type="button" class="btn btn-secondary">Lisa / muuda pilt</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-danger">Muuda sadamat</button>
+            <button type="button" class="btn btn-danger">Lisa sadam</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-primary">Tagasi</button>
+            <button @click="moveToHarboursPage" type="button" class="btn btn-primary">Tagasi sadamate lehele</button>
           </div>
         </div>
       </div>
@@ -82,9 +88,46 @@
 </template>
 
 <script>
+import router from "@/router";
+import AddExtrasModal from "@/components/modal/AddExtrasModal.vue";
+import AddContactInfoModal from "@/components/modal/AddContactInfoModal.vue";
+
 export default {
-  name: 'EditHarbourView',
-  methods: {}
+  name: 'AddHarbourView',
+  components: {AddExtrasModal, AddContactInfoModal},
+  data(){
+    return {
+      extraInfo: {
+        extraId: 0,
+        extraName: '',
+        isAvailable: true
+      }
+    }
+  },
+  methods: {
+    moveToHarboursPage() {
+      router.push({name: 'harboursRoute'})
+    },
+    openAddContactInfoModal() {
+      this.$refs.addContactInfoModalRef.openModal()
+    },
+    getExtrasInfo() {
+      this.$http.get("/harbour/extras"
+      ).then(response => {
+        this.extraInfo = response.data;
+      }).catch(error => {
+        router.push({name: 'errorRoute'})
+      })
+    },
+    openAddExtrasModal() {
+      this.$refs.addExtrasModalRef.openModal({
+        extraId: this.extraInfo.extraId
+      });
+    }
+  },
+  mounted() {
+    this.getExtrasInfo()
+  }
 }
 
 </script>

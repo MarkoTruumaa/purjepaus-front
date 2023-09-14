@@ -31,6 +31,6 @@ html, body, #app {
 .modal-dialog {
     position: fixed; /* Positsiooni tüüp on fikseeritud */
     top: 10%; /* Ülemine paigutus on 10% */
-    left: 50%; /* Vasak paigutus on 50% */
+    left: 40%; /* Vasak paigutus on 50% */
     transform: translateX(-50%); /* Teisendab X-telje piki -50% võrra */
 }

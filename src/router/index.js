@@ -8,6 +8,7 @@ import AboutView from "@/views/AboutView.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import EditUserView from "@/views/EditUserView.vue";
 import EditHarbourView from "@/views/EditHarbourView.vue";
+import AddHarbourView from "@/views/AddHarbourView.vue";
 
 
 
@@ -58,6 +59,12 @@ const routes = [
         name: 'editHarbourRoute',
         component: EditHarbourView
     },
+    {
+        path: '/add-harbour',
+        name: 'addHarbourRoute',
+        component: AddHarbourView
+    },
+
 
 
 

@@ -1,7 +1,7 @@
 <template>
   <h1>Kõik sadamad</h1>
-  <table class="table table-success table-hover table-striped">
-    <thead>
+  <table class="table table-hover">
+    <thead class="table-dark">
     <tr>
       <th scope="col">Nimi</th>
       <th scope="col">Koordinaadid</th>
@@ -22,8 +22,13 @@
     </tr>
     </tbody>
   </table>
+  <div>
+    <button @click="moveToAddHarbourPage" type="button" class="btn btn-danger">Lisa uus sadam</button>
+  </div>
 </template>
 <script>
+import router from "@/router";
+
 export default {
   name: 'HarboursTable',
   props: {
@@ -33,6 +38,9 @@ export default {
   methods: {
     openHarbourDetails(harbourId) {
       this.$emit('event-open-harbour-details', harbourId)
+    },
+    moveToAddHarbourPage() {
+      router.push({name: 'addHarbourRoute'})
     },
   }
 }

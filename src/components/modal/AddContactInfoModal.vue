@@ -1,0 +1,30 @@
+<template>
+  <div>
+    <Modal close-button-name="Sulge" ref="modalRef">
+      <template #header>
+        <h4>Kontaktinfo lisamine</h4>
+      </template>
+      <template #body>
+        <h5></h5> <br>
+        <h5> <br></h5>
+      </template>
+      <template #footer>
+
+      </template>
+    </Modal>
+  </div>
+</template>
+
+<script>
+import Modal from "@/components/modal/Modal.vue";
+
+export default {
+  name: 'AddContactInfoModal',
+  components: {Modal},
+  methods: {
+    openModal () {
+      this.$refs.modalRef.openModal()
+    }
+  }
+};
+</script>
