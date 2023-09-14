@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ contactInfo.username }} profiil</h1>
+  <h1>Kasutaja {{ contactInfo.username }} profiil</h1>
   <div class="align-content-center">
     <div class="card card-w-margin">
       <ProfileInfo v-if="isView" :contact-info="contactInfo"/>
