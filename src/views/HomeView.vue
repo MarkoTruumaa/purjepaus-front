@@ -1,15 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div class="container d-flex flex-column">
+    <div>
+      <img alt="Vue logo" src="../assets/logo.png" style="height: 100px">
+    </div>
+    <div class="flex-fill">
+      <l-map ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
+        <l-tile-layer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            layer-type="base"
+            name="OpenStreetMap"
+        ></l-tile-layer>
+      </l-map>
+    </div>
   </div>
-
-
-
 </template>
 
 <script>
+import "leaflet/dist/leaflet.css";
+import {LMap, LTileLayer} from "@vue-leaflet/vue-leaflet";
 
 export default {
   name: 'HomeView',
+  components: {LMap, LTileLayer},
+  data() {
+    return {
+      zoom: 2,
+    };
+  },
 }
 </script>
