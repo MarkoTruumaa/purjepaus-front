@@ -4,54 +4,41 @@
     <div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Sadama nimi: </span>
-        <input v-model="harbourDetailedInfo.harbourName" type="text" class="form-control" aria-describedby="basic-addon1">
+        <input v-model="harbourDetailedInfo.harbourName" type="text" class="form-control"
+               aria-describedby="basic-addon1">
       </div>
 
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Maakond: </span>
-        <input v-model="harbourDetailedInfo.countyName" type="text" class="form-control" aria-describedby="basic-addon1">
+        <input v-model="harbourDetailedInfo.countyName" type="text" class="form-control"
+               aria-describedby="basic-addon1">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text">Sadama koordinaadid</span>
-        <input v-model="harbourDetailedInfo.locationLongitude" type="text" class="form-control" placeholder="põhjapikkus">
+        <input v-model="harbourDetailedInfo.locationLongitude" type="text" class="form-control"
+               placeholder="põhjapikkus">
         <input v-model="harbourDetailedInfo.locationLatitude" type="text" class="form-control" placeholder="lõunalaius">
       </div>
       <div class="input-group mb-3">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Sissesõidu väikseim sügavus:
-        </button>
-        <ul class="dropdown-menu">
-          <li><option class="dropdown-item" v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit</option></li>
-        </ul>
-        <input v-model="harbourDetailedInfo.minDepth" type="text" class="form-control" aria-label="Text input with dropdown button">
+        <span class="input-group-text" id="basic-addon1">Sissesõidu väikseim sügavus (meetrites): </span>
+        <input v-model="harbourDetailedInfo.minDepth" type="text" class="form-control" aria-describedby="basic-addon1">
       </div>
       <div class="input-group mb-3">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Sissesõidu väikseim laius:
-        </button>
-        <ul class="dropdown-menu">
-          <li><option class="dropdown-item" v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit</option></li>
-        </ul>
-        <input v-model="harbourDetailedInfo.minWidth" type="text" class="form-control" aria-label="Text input with dropdown button">
+        <span class="input-group-text" id="basic-addon1">Sissesõidu väikseim laius (meetrites): </span>
+        <input v-model="harbourDetailedInfo.minWidth" type="text" class="form-control" aria-describedby="basic-addon1">
       </div>
       <div class="input-group mb-3">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Kapteni nimi
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Mingi kapteni nimi</a></li>
-        </ul>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+        <span class="input-group-text" id="basic-addon1">Kapteni nimi: </span>
+        <input v-model="captainInfo.firstName" type="text" class="form-control"
+               placeholder="eesnimi">
+        <input v-model="captainInfo.lastName" type="text" class="form-control" placeholder="perekonnanimi">
       </div>
+
       <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Kohtade arv:  </label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected>{{ harbourDetailedInfo.spots }}</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+        <span class="input-group-text" id="basic-addon1">Kohtade arv: </span>
+        <input v-model="harbourDetailedInfo.spots" type="text" class="form-control" aria-describedby="basic-addon1">
       </div>
+
       <div class="container">
         <div class="row">
           <div class="col">
@@ -82,55 +69,62 @@ export default {
   name: 'EditHarbourView',
   isEdit: false,
   props: ['id'],
-  computed: {
-    numbers() {
-      return Array.from({length: 100}, (_, index) => index + 5);
-    },
-  },
+
   data() {
     return {
-      harbourDetailedInfo:
+      harbourDetailedInfo: {
+        harbourId: 0,
+        locationAddress: '',
+        locationLongitude: 0,
+        locationLatitude: 0,
+        contactId: 0,
+        countyName: '',
+        harbourName: '',
+        homepage: '',
+        navigationStart: '',
+        navigationEnd: '',
+        minDepth: 0,
+        minWidth: 0,
+        spots: 0,
+        phoneNumber: '',
+        extras: [
           {
-            harbourId: 0,
-            locationAddress: '',
-            locationLongitude: 0,
-            locationLatitude: 0,
-            contactId: 0,
-            countyName: '',
-            harbourName: '',
-            homepage: '',
-            navigationStart: '',
-            navigationEnd: '',
-            minDepth: 0,
-            minWidth: 0,
-            spots: 0,
-            phoneNumber: '',
-            extras: [
-              {
-                extraId: 0,
-                extraName: '',
-                isAvailable: true
-              }
-            ],
-            pictures: [
-              {
-                pictureId: 0,
-                pictureData: ''
-              }
-            ]
-          },
-
+            extraId: 0,
+            extraName: '',
+            isAvailable: true
+          }
+        ],
+        pictures: [
+          {
+            pictureId: 0,
+            pictureData: ''
+          }
+        ]
+      },
+      captainInfo: {
+        firstName: '',
+        lastName: ''
+      },
     }
   },
   methods: {
-    getHarbourDetailedInfo() {
-      this.$http.get('/harbour', {
+     getHarbourDetailedInfo() {
+       this.$http.get('/harbour', {
             params: {
               harbourId: this.id
             }
           }
       ).then(response => {
         this.harbourDetailedInfo = response.data
+        this.$http.get("/harbour/captain-info", {
+          params: {
+            contactId: response.data.contactId
+          }
+        }).then(response => {
+          this.captainInfo = response.data
+        }).catch(error => {
+          this.errorResponse = error.response.data
+        })
       }).catch(error => {
         this.errorResponse = error.response.data
       })
