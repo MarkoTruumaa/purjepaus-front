@@ -17,6 +17,7 @@
 <script>
 import Modal from "@/components/modal/Modal.vue";
 import {HARBOUR_LOCATION_DELETED} from "@/assets/script/AlertMessage";
+import router from "@/router";
 
 export default {
   name: 'DeleteHarbourModal',
@@ -83,10 +84,10 @@ export default {
           }
       ).then(response => {
         this.$refs.deleteHarbourModalRef.$refs.modalRef.closeModal()
-
+        router.push({name: 'harboursRoute'})
       }).catch(error => {
         // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
-        const errorResponseBody = error.response.data
+        router.push({name: 'errorRoute'})
       })
     },
 
