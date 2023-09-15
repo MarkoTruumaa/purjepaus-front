@@ -21,7 +21,7 @@
                 aria-expanded="false">Sissesõidu väikseim sügavus:
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Mingi sügavus</a></li>
+          <li><option class="dropdown-item" v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit</option></li>
         </ul>
         <input v-model="harbourDetailedInfo.minDepth" type="text" class="form-control" aria-label="Text input with dropdown button">
       </div>
@@ -30,7 +30,7 @@
                 aria-expanded="false">Sissesõidu väikseim laius:
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Mingi laius</a></li>
+          <li><option class="dropdown-item" v-for="(number, index) in numbers" :key="number" :value="index">{{ number }} meetrit</option></li>
         </ul>
         <input v-model="harbourDetailedInfo.minWidth" type="text" class="form-control" aria-label="Text input with dropdown button">
       </div>
@@ -82,6 +82,11 @@ export default {
   name: 'EditHarbourView',
   isEdit: false,
   props: ['id'],
+  computed: {
+    numbers() {
+      return Array.from({length: 100}, (_, index) => index + 5);
+    },
+  },
   data() {
     return {
       harbourDetailedInfo:
