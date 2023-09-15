@@ -10,8 +10,6 @@ import EditUserView from "@/views/EditUserView.vue";
 import EditHarbourView from "@/views/EditHarbourView.vue";
 import AddHarbourView from "@/views/AddHarbourView.vue";
 
-
-
 const routes = [
     {
         path: '/',
@@ -55,8 +53,9 @@ const routes = [
         component: EditUserView
     },
     {
-        path: '/edit-harbour',
+        path: '/edit-harbour/:id',
         name: 'editHarbourRoute',
+        props: true,
         component: EditHarbourView
     },
     {

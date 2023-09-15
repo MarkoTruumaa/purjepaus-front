@@ -82,12 +82,15 @@ export default {
           }
       ).then(response => {
         this.$refs.deleteHarbourModalRef.$refs.modalRef.closeModal()
-        router.push({name: 'harboursRoute'})
+        this.handleSuccessfullyDeletedHarbour()
       }).catch(error => {
         // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
         router.push({name: 'errorRoute'})
       })
     },
+    handleSuccessfullyDeletedHarbour(){
+      router.push({name: 'harboursRoute'})
+    }
 
   }
 }

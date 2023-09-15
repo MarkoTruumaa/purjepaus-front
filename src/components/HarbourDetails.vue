@@ -20,20 +20,34 @@
         <table class="table table-borderless align-bottom">
           <tbody>
           <tr>
-            <td><font-awesome-icon :icon="['fas', 'location-dot']" /> Aadress: {{ harbourDetailedInfo.locationAddress }}</td>
-          </tr>
-          <tr>
-            <td><font-awesome-icon :icon="['fas', 'map-location-dot']" /> Koordinaadid: {{ harbourDetailedInfo.locationLongitude }}, {{ harbourDetailedInfo.locationLatitude }}
+            <td>
+              <font-awesome-icon :icon="['fas', 'location-dot']"/>
+              Aadress: {{ harbourDetailedInfo.locationAddress }}
             </td>
           </tr>
           <tr>
-            <td><font-awesome-icon :icon="['fas', 'arrow-down']" /> Sissesõidu väikseim sügavus: {{ harbourDetailedInfo.minDepth }} meetrit</td>
+            <td>
+              <font-awesome-icon :icon="['fas', 'map-location-dot']"/>
+              Koordinaadid: {{ harbourDetailedInfo.locationLongitude }}, {{ harbourDetailedInfo.locationLatitude }}
+            </td>
           </tr>
           <tr>
-            <td><font-awesome-icon :icon="['fas', 'arrows-left-right']" /> Sissesõidu väikseim laius: {{ harbourDetailedInfo.minWidth }} meetrit</td>
+            <td>
+              <font-awesome-icon :icon="['fas', 'arrow-down']"/>
+              Sissesõidu väikseim sügavus: {{ harbourDetailedInfo.minDepth }} meetrit
+            </td>
           </tr>
           <tr>
-            <td><font-awesome-icon :icon="['fas', 'anchor']" /> Kohtade arv sadamas: {{ harbourDetailedInfo.spots }}</td>
+            <td>
+              <font-awesome-icon :icon="['fas', 'arrows-left-right']"/>
+              Sissesõidu väikseim laius: {{ harbourDetailedInfo.minWidth }} meetrit
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <font-awesome-icon :icon="['fas', 'anchor']"/>
+              Kohtade arv sadamas: {{ harbourDetailedInfo.spots }}
+            </td>
           </tr>
           <tr>
             <td>Navigatsiooniperioodi algus: {{ harbourDetailedInfo.navigationStart }}
@@ -43,23 +57,32 @@
             <td>Navigatsiooniperioodi lõpp: {{ harbourDetailedInfo.navigationEnd }}</td>
           </tr>
           <tr>
-            <td><font-awesome-icon :icon="['fas', 'phone']" /> Kontakttelefon: {{ harbourDetailedInfo.phoneNumber }}</td>
+            <td>
+              <font-awesome-icon :icon="['fas', 'phone']"/>
+              Kontakttelefon: {{ harbourDetailedInfo.phoneNumber }}
+            </td>
           </tr>
           <tr>
-            <td><font-awesome-icon :icon="['fas', 'house']" /> <a href="{{harbourDetailedInfo.homepage}}"> {{ harbourDetailedInfo.homepage }}</a></td>
+            <td>
+              <font-awesome-icon :icon="['fas', 'house']"/>
+              <a href="{{harbourDetailedInfo.homepage}}"> {{ harbourDetailedInfo.homepage }}</a></td>
           </tr>
           <tr>
             <h3>Lisavõimalused:</h3>
             <ul class="list-group">
-              <li class="list-group-item"><td v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
-                {{ extra.extraName }},
-              </td></li></ul>
+              <li class="list-group-item">
+                <td v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
+                  {{ extra.extraName }},
+                </td>
+              </li>
+            </ul>
           </tr>
 
           </tbody>
         </table>
         <div>
-          <button @click="openBookingModal" type="button" class="btn btn-secondary float-right mb-3">Vabad kohad</button>
+          <button @click="openBookingModal" type="button" class="btn btn-secondary float-right mb-3">Vabad kohad
+          </button>
           <br>
           <button @click="this.goBack" type="button" class="btn btn-primary float-right mb-3">Tagasi sadamate juurde
           </button>
@@ -81,7 +104,6 @@ import CaptainInfoModal from "@/components/modal/CaptainInfoModal.vue";
 import BookingModal from "@/components/modal/BookingModal.vue";
 import DeleteHarbourModal from "@/components/modal/DeleteHarbourModal.vue";
 import {DELETE_MODAL} from "@/assets/script/ModalType";
-
 
 
 export default {
@@ -123,8 +145,6 @@ export default {
           ]
         },
       ]
-
-
     }
   },
   methods: {
@@ -146,7 +166,7 @@ export default {
       });
     },
 
-    openDeleteHarbourModal(){
+    openDeleteHarbourModal() {
       this.$refs.deleteHarbourModalRef.openModal({
         harbourId: this.harbourDetailedInfo.harbourId, DELETE_MODAL
       });
@@ -154,8 +174,8 @@ export default {
     goBack() {
       this.$emit('goBack')
     },
-    moveToEditHarbourPage({harbourId}) {
-      router.push({name: 'editHarbourRoute'})
+    moveToEditHarbourPage() {
+      router.push({name: 'editHarbourRoute', params: {id: this.selectedHarbourId}})
     },
     openBookingModal() {
       this.$refs.bookingModalRef.openModal()

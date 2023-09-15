@@ -38,7 +38,8 @@ export default {
   methods: {
     openModal () {
       this.$refs.modalRef.openModal()
-    }
+    },
+
   }
 };
 </script>

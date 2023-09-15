@@ -123,7 +123,8 @@ export default {
       this.$refs.addExtrasModalRef.openModal({
         extraId: this.extraInfo.extraId
       });
-    }
+    },
+
   },
   mounted() {
     this.getExtrasInfo()
