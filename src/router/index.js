@@ -64,11 +64,6 @@ const routes = [
         name: 'addHarbourRoute',
         component: AddHarbourView
     },
-
-
-
-
-
 ]
 
 const router = createRouter({
