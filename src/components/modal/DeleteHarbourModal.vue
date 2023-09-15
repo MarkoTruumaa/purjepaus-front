@@ -60,7 +60,6 @@ export default {
   },
   methods: {
 
-    // todo: AINULT admin peaks nägema kustutamise nuppe.
     openModal({harbourId}) {
       this.$http.get("/harbour", {
             params: {
