@@ -17,6 +17,31 @@
   <router-view class="p-4 flex-fill"/>
 </template>
 
+
+<script>
+
+import {ADMIN} from "@/assets/script/Role";
+
+export default {
+  data() {
+    return {
+      isLoggedIn: false,
+
+
+    }
+  },
+
+  methods: {
+    updateNavMenu() {
+      this.isLoggedIn = sessionStorage.getItem('userId') !== null
+
+    }
+  }
+}
+
+</script>
+
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -25,11 +50,8 @@
   text-align: center;
   color: #2c3e50;
 }
+
 a.router-link-exact-active {
   color: #42b983 !important;
 }
 </style>
-<script setup>
-
-
-</script>

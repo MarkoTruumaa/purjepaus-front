@@ -6,7 +6,6 @@ import HarboursView from "@/views/HarboursView.vue";
 import SearchView from "@/views/SearchView.vue";
 import AboutView from "@/views/AboutView.vue";
 import ProfileView from "@/views/ProfileView.vue";
-import EditUserView from "@/views/EditUserView.vue";
 import EditHarbourView from "@/views/EditHarbourView.vue";
 import AddHarbourView from "@/views/AddHarbourView.vue";
 
@@ -47,11 +46,6 @@ const routes = [
         component: ProfileView
     },
 
-    {
-        path: '/edit-user',
-        name: 'editUserRoute',
-        component: EditUserView
-    },
     {
         path: '/edit-harbour/:id',
         name: 'editHarbourRoute',
