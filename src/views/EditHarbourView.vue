@@ -3,42 +3,36 @@
     <h1>{{ harbourDetailedInfo.harbourName }} muutmine</h1>
     <div>
       <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Sadama nimi: {{ harbourDetailedInfo.harbourName }} </span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1">
+        <span class="input-group-text" id="basic-addon1">Sadama nimi: </span>
+        <input v-model="harbourDetailedInfo.harbourName" type="text" class="form-control" aria-describedby="basic-addon1">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Maakond: </span>
+        <input v-model="harbourDetailedInfo.countyName" type="text" class="form-control" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Sadama koordinaadid</span>
+        <input v-model="harbourDetailedInfo.locationLongitude" type="text" class="form-control" placeholder="põhjapikkus">
+        <input v-model="harbourDetailedInfo.locationLatitude" type="text" class="form-control" placeholder="lõunalaius">
       </div>
       <div class="input-group mb-3">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Maakond
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Harju</a></li>
-        </ul>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text">Sadama koordinaadid {{
-            harbourDetailedInfo.locationLongitude
-          }} {{ harbourDetailedInfo.locationLatitude }}</span>
-        <input type="text" class="form-control" placeholder="põhjapikkus">
-        <input type="text" class="form-control" placeholder="lõunalaius">
-      </div>
-      <div class="input-group mb-3">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Sissesõidu väikseim sügavus: {{ harbourDetailedInfo.minDepth }}
+                aria-expanded="false">Sissesõidu väikseim sügavus:
         </button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="#">Mingi sügavus</a></li>
         </ul>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+        <input v-model="harbourDetailedInfo.minDepth" type="text" class="form-control" aria-label="Text input with dropdown button">
       </div>
       <div class="input-group mb-3">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Sissesõidu väikseim laius: {{ harbourDetailedInfo.minWidth }}
+                aria-expanded="false">Sissesõidu väikseim laius:
         </button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="#">Mingi laius</a></li>
         </ul>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+        <input v-model="harbourDetailedInfo.minWidth" type="text" class="form-control" aria-label="Text input with dropdown button">
       </div>
       <div class="input-group mb-3">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -50,9 +44,9 @@
         <input type="text" class="form-control" aria-label="Text input with dropdown button">
       </div>
       <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Kohtade arv: {{ harbourDetailedInfo.spots }} </label>
+        <label class="input-group-text" for="inputGroupSelect01">Kohtade arv:  </label>
         <select class="form-select" id="inputGroupSelect01">
-          <option selected>Vali...</option>
+          <option selected>{{ harbourDetailedInfo.spots }}</option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
@@ -82,6 +76,8 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: 'EditHarbourView',
   isEdit: false,
@@ -95,6 +91,7 @@ export default {
             locationLongitude: 0,
             locationLatitude: 0,
             contactId: 0,
+            countyName: '',
             harbourName: '',
             homepage: '',
             navigationStart: '',
@@ -133,6 +130,7 @@ export default {
         this.errorResponse = error.response.data
       })
     },
+
     sendUpdateHarbourInfoRequest() {
       this.$http.patch("/harbour", this.harbourDetailedInfo, {
             params: {
