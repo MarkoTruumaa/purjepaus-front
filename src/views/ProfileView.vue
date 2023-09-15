@@ -1,17 +1,27 @@
 <template>
   <h1>Kasutaja {{ contactInfo.username }} profiil</h1>
   <div class="align-content-center">
+    <div class="row justify-content-center">
+      <div class="col col-4">
+        <AlertDanger :alert-message="errorMessage"/>
+        <AlertSuccess :alert-message="successMessage"/>
+      </div>
+    </div>
     <div class="card card-w-margin">
-      <ProfileInfo v-if="isView" :contact-info="contactInfo"/>
-      <ProfileInfoUpdate ref="profileInfoUpdateRef"/>
+      <ProfileInfo v-if="isView" :contact-info="contactInfo" ref="profileInfoRef"/>
+      <ProfileInfoUpdate @event-update-error-message="displayMessage"
+                         @event-update-profile-view="displayProfileInfoComponent"
+                         ref="profileInfoUpdateRef"/>
     </div>
   </div>
 
   <div class="text-center">
-    <button v-if="isView" @click="displayProfileInfoUpdateComponent" type="button" class="btn btn-warning">Muuda andmeid</button>
+    <button v-if="isView" @click="displayProfileInfoUpdateComponent" type="button" class="btn btn-warning">Muuda
+      andmeid
+    </button>
     <div>
       <div class="mb-1">
-      <button v-if="isView" @click="" type="button" class="btn btn-danger">Muuda parooli</button>
+        <button v-if="isView" @click="" type="button" class="btn btn-danger">Muuda parooli</button>
       </div>
     </div>
     <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning">Uuenda</button>
@@ -23,14 +33,19 @@
 import router from "@/router";
 import ProfileInfo from "@/components/profile/ProfileInfo.vue";
 import ProfileInfoUpdate from "@/components/profile/ProfileInfoUpdate.vue";
+import AlertDanger from "@/components/AlertDanger.vue";
+import {USER_INFO_UPDATE_ERROR, USER_INFO_UPDATED} from "@/assets/script/AlertMessage";
+import AlertSuccess from "@/components/AlertSuccess.vue";
 
 export default {
   name: 'ProfileView',
-  components: {ProfileInfoUpdate, ProfileInfo},
+  components: {AlertSuccess, AlertDanger, ProfileInfoUpdate, ProfileInfo},
 
   data() {
     return {
       isView: true,
+      errorMessage: '',
+      successMessage: '',
       contactInfo: {
         username: '',
         contactFirstName: '',
@@ -39,8 +54,6 @@ export default {
         contactTelephone: '',
         contactAddress: ''
       }
-
-
     }
   },
 
@@ -60,7 +73,8 @@ export default {
     },
 
     updateUserInfo() {
-      this.$refs.profileInfoUpdateRef.sendUpdateUserInfoRequest()
+      this.errorMessage = ''
+      this.$refs.profileInfoUpdateRef.handleUserInfoUpdateRequest()
     },
 
     displayProfileInfoUpdateComponent() {
@@ -68,12 +82,26 @@ export default {
       this.$refs.profileInfoUpdateRef.contactInfo = this.contactInfo
       this.$refs.profileInfoUpdateRef.isEdit = true
       this.isView = false
+    },
 
+    displayMessage() {
+      this.errorMessage = USER_INFO_UPDATE_ERROR;
+    },
 
-    }
+    displayProfileInfoComponent() {
+      this.successMessage = USER_INFO_UPDATED
+      setTimeout(() => {
+        this.successMessage = ''
+        this.getUserInfo()
+        this.$refs.profileInfoUpdateRef.isEdit = false
+        this.isView = true
+      }, 2500)
+    },
+
   },
 
   mounted() {
+    this.successMessage = ''
     this.getUserInfo()
   }
 

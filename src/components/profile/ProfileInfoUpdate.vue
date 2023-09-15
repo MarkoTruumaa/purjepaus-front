@@ -29,16 +29,15 @@
   </div>
 </template>
 <script>
-import {USER_INFO_UPDATE_ERROR, USER_INFO_UPDATED} from "@/assets/script/AlertMessage";
+import router from "@/router";
 
 export default {
   name: 'ProfileInfoUpdate',
+
   data() {
     return {
       isEdit: false,
       userId: 0,
-      successMessage: '',
-      errorMessage: '',
       contactInfo: {
         username: '',
         contactFirstName: '',
@@ -49,46 +48,36 @@ export default {
       },
     }
   },
+
   methods: {
     sendUpdateUserInfoRequest() {
-
       this.$http.patch("user", this.contactInfo, {
             params: {
-              userId: this.userId
+              userId: sessionStorage.getItem('userId')
             }
           }
       ).then(response => {
-        this.handleUserInfoUpdateRequest()
+        this.$emit('event-update-profile-view')
 
       }).catch(error => {
-        this.handleUserInfoUpdateErrorResponse()
+        router.push({name: 'errorRoute'})
       })
     },
 
     handleUserInfoUpdateRequest() {
       if (this.mandatoryFieldsAreFilled()) {
-        this.successMessage = USER_INFO_UPDATED
-
+        this.sendUpdateUserInfoRequest()
       } else {
-        this.errorMessage = USER_INFO_UPDATE_ERROR
+        this.$emit('event-update-error-message')
       }
-
     },
 
-    handleUserInfoUpdateErrorResponse() {
-      this.errorMessage = USER_INFO_UPDATE_ERROR
-
-
-    },
     mandatoryFieldsAreFilled() {
       let request = this.contactInfo
       return request.contactFirstName.length > 0 &&
           request.contactLastName.length > 0 &&
-          request.contactEmail > 0
-
+          request.contactEmail.length > 0
     }
-
-
   }
 }
 </script>
