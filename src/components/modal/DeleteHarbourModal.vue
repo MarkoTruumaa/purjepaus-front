@@ -16,7 +16,6 @@
 </template>
 <script>
 import Modal from "@/components/modal/Modal.vue";
-import {HARBOUR_LOCATION_DELETED} from "@/assets/script/AlertMessage";
 import router from "@/router";
 
 export default {
