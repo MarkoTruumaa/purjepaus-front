@@ -29,6 +29,7 @@
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Kapteni nimi: </span>
+        <input v-model="captainInfo.firstName" type="text" class="form-control" aria-describedby="basic-addon1">
         <input v-model="captainInfo.firstName" type="text" class="form-control"
                placeholder="eesnimi">
         <input v-model="captainInfo.lastName" type="text" class="form-control" placeholder="perekonnanimi">
