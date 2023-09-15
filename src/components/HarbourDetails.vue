@@ -1,6 +1,7 @@
 <template>
   <CaptainInfoModal ref="captainInfoModalRef"/>
   <BookingModal ref="bookingModalRef"/>
+  <DeleteHarbourModal ref="deleteHarbourModalRef"/>
   <div>
 
     <div class="row justify-content-center">
@@ -68,7 +69,7 @@
   </div>
   <div>
     <button @click="moveToEditHarbourPage" type="button" class="btn btn-dark m-2">Muuda</button>
-    <button type="button" class="btn btn-danger m-2">Kustuta</button>
+    <button @click="openDeleteHarbourModal" type="button" class="btn btn-danger m-2">Kustuta</button>
   </div>
 
 </template>
@@ -78,12 +79,14 @@
 import router from "@/router";
 import CaptainInfoModal from "@/components/modal/CaptainInfoModal.vue";
 import BookingModal from "@/components/modal/BookingModal.vue";
+import DeleteHarbourModal from "@/components/modal/DeleteHarbourModal.vue";
+import {DELETE_MODAL} from "@/assets/script/ModalType";
 
 
 
 export default {
   name: 'HarbourDetails',
-  components: {BookingModal, CaptainInfoModal},
+  components: {DeleteHarbourModal, BookingModal, CaptainInfoModal},
   props: {
     selectedHarbourId: Number,
   },
@@ -142,15 +145,22 @@ export default {
         contactId: this.harbourDetailedInfo.contactId
       });
     },
+
+    openDeleteHarbourModal(){
+      this.$refs.deleteHarbourModalRef.openModal({
+        harbourId: this.harbourDetailedInfo.harbourId, DELETE_MODAL
+      });
+    },
     goBack() {
       this.$emit('goBack')
     },
-    moveToEditHarbourPage() {
+    moveToEditHarbourPage({harbourId}) {
       router.push({name: 'editHarbourRoute'})
     },
     openBookingModal() {
       this.$refs.bookingModalRef.openModal()
-    }
+    },
+
   },
   mounted() {
     this.getHarbourDetailedInfo()

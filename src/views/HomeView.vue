@@ -2,6 +2,7 @@
   <div class="container d-flex flex-column">
     <div>
       <img alt="Vue logo" src="../assets/logo.png" style="height: 100px">
+
     </div>
     <div class="flex-fill">
       <l-map ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">

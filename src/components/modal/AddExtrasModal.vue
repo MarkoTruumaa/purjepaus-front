@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal close-button-name="Sulge" ref="modalRef">
+    <Modal close-button-name="Tagasi" ref="modalRef">
       <template #header>
         <h4>Lisavõimaluste lisamine</h4>
       </template>
