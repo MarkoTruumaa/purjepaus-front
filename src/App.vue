@@ -7,15 +7,40 @@
       <router-link class="text-white fw-bold" to="/harbours">Sadamad</router-link>
       <router-link class="text-white fw-bold" to="/search">Täpsem otsing</router-link>
       <router-link class="text-white fw-bold" to="/about">Meist</router-link>
-      <router-link class="text-white fw-bold" to="/login">Sisse</router-link>
-      <router-link class="text-white fw-bold" to="/profile">
-        <font-awesome-icon :icon="['fas', 'user']" />
+      <router-link v-if="!isLoggedIn" class="text-white fw-bold" to="/login">Sisse</router-link>
+      <router-link v-if="isLoggedIn" class="text-white fw-bold" to="/profile">
+        <font-awesome-icon :icon="['fas', 'user']"/>
       </router-link>
 
     </div>
   </nav>
-  <router-view class="p-4 flex-fill"/>
+  <router-view @event-update-nav-menu="updateNavMenu" class="p-4 flex-fill"/>
 </template>
+
+
+<script>
+
+import {ADMIN} from "@/assets/script/Role";
+
+export default {
+  data() {
+    return {
+      isLoggedIn: false,
+
+
+    }
+  },
+
+  methods: {
+    updateNavMenu() {
+      this.isLoggedIn = sessionStorage.getItem('userId') !== null
+
+    }
+  }
+}
+
+</script>
+
 
 <style>
 #app {
@@ -25,9 +50,8 @@
   text-align: center;
   color: #2c3e50;
 }
+
 a.router-link-exact-active {
   color: #42b983 !important;
 }
 </style>
-<script setup>
-</script>

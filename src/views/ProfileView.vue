@@ -9,6 +9,11 @@
 
   <div class="text-center">
     <button v-if="isView" @click="displayProfileInfoUpdateComponent" type="button" class="btn btn-warning">Muuda andmeid</button>
+    <div>
+      <div class="mb-1">
+      <button v-if="isView" @click="" type="button" class="btn btn-danger">Muuda parooli</button>
+      </div>
+    </div>
     <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning">Uuenda</button>
   </div>
 </template>
@@ -27,15 +32,14 @@ export default {
     return {
       isView: true,
       contactInfo: {
-        username: 'jaan',
-        contactFirstName: 'Jaan',
-        contactLastName: 'Suur',
-        contactEmail: 'jaan@mail.ee',
-        contactTelephone: '+37256584612',
-        contactAddress: 'Teine koht 15, Tallinn'
-      },
+        username: '',
+        contactFirstName: '',
+        contactLastName: '',
+        contactEmail: '',
+        contactTelephone: '',
+        contactAddress: ''
+      }
 
-      userId: sessionStorage.getItem('userId')
 
     }
   },
@@ -45,7 +49,7 @@ export default {
     getUserInfo() {
       this.$http.get("/user", {
             params: {
-              userId: this.userId,
+              userId: sessionStorage.getItem('userId'),
             }
           }
       ).then(response => {
@@ -70,7 +74,7 @@ export default {
   },
 
   mounted() {
-    // this.getUserInfo()
+    this.getUserInfo()
   }
 
 }

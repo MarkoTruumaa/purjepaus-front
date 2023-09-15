@@ -29,7 +29,7 @@
   </div>
 </template>
 <script>
-import {USER_INFO_UPDATE_ERROR, USER_INFO_UPDATED} from "@/AlertMessage";
+import {USER_INFO_UPDATE_ERROR, USER_INFO_UPDATED} from "@/assets/script/AlertMessage";
 
 export default {
   name: 'ProfileInfoUpdate',
