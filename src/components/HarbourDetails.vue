@@ -3,6 +3,7 @@
   <BookingModal ref="bookingModalRef"/>
   <DeleteHarbourModal ref="deleteHarbourModalRef"/>
   <div>
+    <div class="card border-white">
     <div class="row justify-content-center">
       <div class="col-9 mb-3"><h1>{{ harbourDetailedInfo.harbourName }} </h1></div>
       <div class="col-4  mb-1">
@@ -94,7 +95,7 @@
     <button @click="moveToEditHarbourPage" type="button" class="btn btn-dark m-2">Muuda</button>
     <button @click="openDeleteHarbourModal" type="button" class="btn btn-danger m-2">Kustuta</button>
   </div>
-
+  </div>
 </template>
 
 

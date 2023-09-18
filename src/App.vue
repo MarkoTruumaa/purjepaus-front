@@ -1,34 +1,40 @@
 <template>
-
   <nav class="navbar navbar-dark bg-black ">
-    <div class="container position-relative">
+    <div class="container d-flex flex-row">
       <router-link to="/" class="navbar-brand p-0">
         <img src="./assets/purjepaus-black.png" style="height: 30px;" alt="logo">
       </router-link>
-      <router-link class="text-white fw-bold btn btn-secondary-outline shadow-lg"
-                   tag="button" to="/harbours">Sadamad</router-link>
-      <router-link class="text-white fw-bold btn btn-secondary-outline shadow-lg"
-                   tag="button" to="/search">Täpsem otsing</router-link>
-      <router-link class="text-white fw-bold btn btn-secondary-outline shadow-lg"
-                   tag="button" to="/about">Meist</router-link>
-      <router-link class="text-white fw-bold btn btn-secondary-outline shadow-lg"
-                   tag="button"  to="/login">Sisse</router-link>
+      <div class="position-relative flex-fill">
+        <div class="position-absolute w-100 d-flex justify-content-evenly" style="bottom: -40px">
+          <router-link class="text-dark fw-bold btn btn-light shadow-sm rounded-0"
+                       tag="button" to="/harbours">Sadamad
+          </router-link>
+          <router-link class="text-dark fw-bold btn btn-light shadow-sm rounded-0"
+                       tag="button" to="/search">Täpsem otsing
+          </router-link>
+          <router-link class="text-dark fw-bold btn btn-light shadow-sm rounded-0"
+                       tag="button" to="/about">Meist
+          </router-link>
+          <router-link class="text-dark fw-bold btn btn-light shadow-sm rounded-0"
+                       tag="button" to="/login">Sisse
+          </router-link>
+        </div>
+      </div>
       <router-link class="text-white fw-bold" to="/profile">
-        <font-awesome-icon :icon="['fas', 'user']" />
+        <font-awesome-icon :icon="['fas', 'user']"/>
       </router-link>
-
     </div>
   </nav>
   <router-view class="p-4 flex-fill"/>
-  <footer class="bg-warning-subtle  text-center text-lg-start">
-
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0);">
+  <footer class="text-right text-sm-end">
+    <div class="text-right text-secondary fw-medium p-3 " style="
+background: linear-gradient(0deg, rgba(255,241,179,1) 0%, rgba(255,255,255,0) 100%);">
       © 2023 Copyright:
-      <a class="text-dark" href="https://mdbootstrap.com/">Purjepaus</a>
+      <a class="text-dark text-secondary fw-medium" href="./about">Purjepaus</a>
+
     </div>
 
   </footer>
-
 </template>
 
 
@@ -69,4 +75,6 @@ export default {
 a.router-link-exact-active {
   color: #bde8e8 !important;
 }
+
+
 </style>

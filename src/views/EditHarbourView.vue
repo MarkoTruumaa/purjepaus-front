@@ -1,7 +1,6 @@
 <template>
-  <EditContactInfoModal ref="editContactInfoModalRef"/>
-
   <div>
+    <EditContactInfoModal ref="editContactInfoModalRef"/>
     <div class="container">
 
       <h1>{{ harbourDetailedInfo.harbourName }} muutmine</h1>

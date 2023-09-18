@@ -2,6 +2,13 @@ html, body, #app {
     height: 100%;
 }
 
+body {
+
+    background-image: url('../sea.jpg') ;
+    background-size: cover;
+
+}
+
 #app {
     display: flex;
     flex-direction: column;

@@ -38,9 +38,9 @@
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">Kapteni nimi: </span>
 
-          <input  disabled type="text" class="form-control"
+          <input disabled type="text" class="form-control"
                  placeholder="eesnimi">
-          <input  disabled type="text" class="form-control" placeholder="perekonnanimi">
+          <input disabled type="text" class="form-control" placeholder="perekonnanimi">
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">Kohtade arv: </span>
@@ -157,13 +157,6 @@ export default {
     }
   },
   methods: {
-    getHarbourDetailedInfo() {
-      this.$http.get('/harbour', {}).then(response => {
-        this.harbourDetailedInfo = response.data
-      }).catch(error => {
-        this.errorResponse = error.response.data
-      })
-    },
     getCountyInfo() {
       this.$http.get("/counties"
       ).then(response => {
@@ -191,18 +184,15 @@ export default {
     moveToHarboursPage() {
       router.push({name: 'harboursRoute'})
     },
-    sendAddNewHarbourInfoRequest(){
-      this.$http.post("/harbour", this.harbourDetailedInfo,
-      ).then(response => {
+    sendAddNewHarbourInfoRequest() {
+      this.$http.post("/harbour", this.harbourDetailedInfo).then(response => {
         const responseBody = response.data
-
       }).catch(error => {
         const errorResponseBody = error.response.data
       })
     },
   },
   mounted() {
-    this.getHarbourDetailedInfo()
     this.getExtrasInfo()
     this.getCountyInfo()
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="container d-flex flex-column">
     <div>
-      <img alt="Vue logo" src="../assets/logo.png" style="height: 100px">
+      <img alt="Vue logo" src="../assets/logo.png" style="height: 100px ; mix-blend-mode: multiply">
       <div class="input-group mb-3 shadow-sm">
         <input v-model="harbourSearchValue" type="text" class="form-control dropdown-toggle border-0"
                placeholder="Otsi sadamat ja mine reisule"
@@ -16,7 +16,7 @@
         <span class="input-group-text border-0 bg-white"><font-awesome-icon :icon="['fas', 'search']"/></span>
       </div>
     </div>
-    <div class="flex-fill position-relative">
+    <div class="flex-fill position-relative border-white shadow-sm">
       <l-map ref="map" :zoom="7" :center="[58.889389, 25.541139]">
         <l-tile-layer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
