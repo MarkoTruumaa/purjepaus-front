@@ -6,65 +6,84 @@
       <h1>Sadama lisamine</h1>
       <div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Sadama nimi</span>
-          <input type="text" class="form-control" aria-describedby="basic-addon1">
+          <span class="input-group-text">Sadama nimi: </span>
+          <input v-model="harbourDetailedInfo.harbourName" type="text" class="form-control"
+                 aria-describedby="basic-addon1">
         </div>
         <div class="input-group mb-3">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Maakond
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Harju</a></li>
-            <li><a class="dropdown-item" href="#">Pärnu</a></li>
-            <li><a class="dropdown-item" href="#">Kolmas maakond</a></li>
-          </ul>
-          <input type="text" class="form-control" aria-label="Text input with dropdown button">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text">Sadama koordinaadid</span>
-          <input type="text" class="form-control" placeholder="põhjapikkus">
-          <input type="text" class="form-control" placeholder="lõunalaius">
-        </div>
-        <div class="input-group mb-3">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Sissesõidu väikseim sügavus
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Mingi sügavus</a></li>
-          </ul>
-          <input type="text" class="form-control" aria-label="Text input with dropdown button">
-        </div>
-        <div class="input-group mb-3">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Sissesõidu väikseim laius
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Mingi laius</a></li>
-          </ul>
-          <input type="text" class="form-control" aria-label="Text input with dropdown button">
-        </div>
-        <div class="input-group mb-3">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Kapteni nimi
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Mingi kapteni nimi</a></li>
-          </ul>
-          <input type="text" class="form-control" aria-label="Text input with dropdown button">
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Kohtade arv</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option selected>Vali...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select class="form-select mb-3" aria-label="Default select example">
+            <option selected :value="0">Kõik maakonnad</option>
+            <option v-for="county in countyInfo" :value="county.countyId" :key="county.countyId">
+              {{ county.countyName }}
+            </option>
           </select>
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Lisa kapten</span>
-          <input type="text" class="form-control" placeholder="Kapteni nimi">
+          <span class="input-group-text">Sadama koordinaadid</span>
+          <input v-model="harbourDetailedInfo.locationLongitude" type="number" class="form-control"
+                 placeholder="põhjapikkus" step="0.000001">
+          <input v-model="harbourDetailedInfo.locationLatitude" type="number" class="form-control"
+                 placeholder="lõunalaius" step="0.000001">
         </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="depth-input">Sissesõidu väikseim sügavus (meetrites): </span>
+          <input v-model="harbourDetailedInfo.minDepth" type="number" step="0.1" class="form-control"
+                 aria-describedby="depth-input">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Sissesõidu väikseim laius (meetrites): </span>
+          <input v-model="harbourDetailedInfo.minWidth" type="number" step="0.1" class="form-control"
+                 aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Kapteni nimi: </span>
+
+          <input  disabled type="text" class="form-control"
+                 placeholder="eesnimi">
+          <input  disabled type="text" class="form-control" placeholder="perekonnanimi">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Kohtade arv: </span>
+          <input v-model="harbourDetailedInfo.spots" type="number" class="form-control" aria-describedby="basic-addon1">
+        </div>
+        <div>
+          <div>
+            <h4>
+              Kontaktandmete muutmine
+            </h4>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Muuda aadressi: </span>
+            <input v-model="harbourDetailedInfo.locationAddress" type="text" class="form-control">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Muuda telefoninumber: </span>
+            <input v-model="harbourDetailedInfo.phoneNumber" type="text" class="form-control">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Muuda navigatsiooniperioodi algus: </span>
+            <input v-model="harbourDetailedInfo.navigationStart" type="date" class="form-control">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Muuda navigatsiooniperioodi lõpp: </span>
+            <input v-model="harbourDetailedInfo.navigationEnd" type="date" class="form-control">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Muuda/lisa sadama koduleht: </span>
+            <input v-model="harbourDetailedInfo.homepage" type="text" class="form-control">
+          </div>
+        </div>
+        <div>
+          <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Sadama pildi lisamine
+            </button>
+            <input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
+                   aria-label="Upload">
+          </div>
+
+        </div>
+
+
         <div class="container">
           <div class="row">
             <div class="col">
@@ -74,10 +93,7 @@
               <button @click="openAddExtrasModal" type="button" class="btn btn-secondary">Lisa teenused</button>
             </div>
             <div class="col">
-              <button type="button" class="btn btn-secondary">Lisa / muuda pilt</button>
-            </div>
-            <div class="col">
-              <button type="button" class="btn btn-danger">Lisa sadam</button>
+              <button @click="sendAddNewHarbourInfoRequest" type="button" class="btn btn-success">Lisa sadam</button>
             </div>
             <div class="col">
               <button @click="moveToHarboursPage" type="button" class="btn btn-primary">Tagasi sadamate lehele</button>
@@ -103,12 +119,58 @@ export default {
         extraId: 0,
         extraName: '',
         isAvailable: true
-      }
+      },
+      countyInfo: [{
+        countyId: 0,
+        countyName: ''
+      }],
+      harbourDetailedInfo: {
+        harbourId: 0,
+        locationAddress: '',
+        locationLongitude: 0,
+        locationLatitude: 0,
+        contactId: 0,
+        countyName: '',
+        harbourName: '',
+        homepage: '',
+        navigationStart: '',
+        navigationEnd: '',
+        minDepth: 0,
+        minWidth: 0,
+        spots: 0,
+        phoneNumber: '',
+        extras: [
+          {
+            extraId: 0,
+            extraName: '',
+            isAvailable: true
+          }
+        ],
+        pictures: [
+          {
+            pictureId: 0,
+            pictureData: ''
+          }
+        ],
+      },
+      selectedCountyId: 0,
     }
   },
   methods: {
-    moveToHarboursPage() {
-      router.push({name: 'harboursRoute'})
+    getHarbourDetailedInfo() {
+      this.$http.get('/harbour', {}).then(response => {
+        this.harbourDetailedInfo = response.data
+      }).catch(error => {
+        this.errorResponse = error.response.data
+      })
+    },
+    getCountyInfo() {
+      this.$http.get("/counties"
+      ).then(response => {
+        this.countyInfo = response.data;
+      }).catch(error => {
+        router.push({name: 'errorRoute'})
+      })
     },
     openAddContactInfoModal() {
       this.$refs.addContactInfoModalRef.openModal()
@@ -126,10 +188,23 @@ export default {
         extraId: this.extraInfo.extraId
       });
     },
+    moveToHarboursPage() {
+      router.push({name: 'harboursRoute'})
+    },
+    sendAddNewHarbourInfoRequest(){
+      this.$http.post("/harbour", this.harbourDetailedInfo,
+      ).then(response => {
+        const responseBody = response.data
 
+      }).catch(error => {
+        const errorResponseBody = error.response.data
+      })
+    },
   },
   mounted() {
+    this.getHarbourDetailedInfo()
     this.getExtrasInfo()
+    this.getCountyInfo()
   }
 }
 

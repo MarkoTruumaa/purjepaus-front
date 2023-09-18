@@ -1,9 +1,16 @@
 <template>
-  <div>
+  <EditContactInfoModal ref="editContactInfoModalRef"/>
 
+  <div>
     <div class="container">
 
       <h1>{{ harbourDetailedInfo.harbourName }} muutmine</h1>
+      <div class="row justify-content-center">
+        <div class="col col-4">
+          <AlertDanger :alert-message="errorMessage"/>
+          <AlertSuccess :alert-message="successMessage"/>
+        </div>
+      </div>
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text">Sadama nimi: </span>
@@ -47,9 +54,12 @@
           <span class="input-group-text" id="basic-addon1">Kohtade arv: </span>
           <input v-model="harbourDetailedInfo.spots" type="number" class="form-control" aria-describedby="basic-addon1">
         </div>
+
         <div>
           <div>
-            <h4>Kontaktinfo muutmine</h4>
+            <h4>
+              Kontaktandmete muutmine
+            </h4>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Muuda aadressi: </span>
@@ -72,18 +82,26 @@
             <input v-model="harbourDetailedInfo.homepage" type="text" class="form-control">
           </div>
         </div>
+        <div>
+          <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Sadama pildi lisamine
+            </button>
+            <input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
+                   aria-label="Upload">
+          </div>
+
+        </div>
 
         <div class="container">
           <div class="row">
             <div class="col">
-              <button  type="button" class="btn btn-secondary">Muuda kontakt</button>
+              <button @click="openEditContactInfoModal" type="button" class="btn btn-secondary">Muuda kontakt</button>
             </div>
-
             <div class="col">
               <button @click="sendUpdateHarbourInfoRequest" type="button" class="btn btn-success">Muuda sadamat</button>
             </div>
             <div class="col">
-              <button type="button" class="btn btn-primary">Tagasi</button>
+              <button @click="" type="button" class="btn btn-primary">Tagasi sadamate juurde</button>
             </div>
           </div>
         </div>
@@ -95,15 +113,21 @@
 <script>
 import router from "@/router";
 import Modal from "@/components/modal/Modal.vue";
+import EditContactInfoModal from "@/components/modal/EditContactInfoModal.vue";
+import AlertSuccess from "@/components/AlertSuccess.vue";
+import AlertDanger from "@/components/AlertDanger.vue";
+import {HARBOUR_LOCATION_UPDATED, HARBOUR_LOCATION_ERROR} from "@/assets/script/AlertMessage"
 
 export default {
   name: 'EditHarbourView',
-  components: {Modal},
+  components: {EditContactInfoModal, Modal, AlertSuccess, AlertDanger},
   props: ['id'],
 
   data() {
     return {
       isEdit: false,
+      errorMessage: '',
+      successMessage: '',
       harbourDetailedInfo: {
         harbourId: 0,
         locationAddress: '',
@@ -194,6 +218,8 @@ export default {
         minWidth: this.harbourDetailedInfo.minWidth,
         spots: this.harbourDetailedInfo.spots,
         phoneNumber: this.harbourDetailedInfo.phoneNumber,
+        extras: this.harbourDetailedInfo.extras,
+        pictures: this.harbourDetailedInfo.pictures
       };
     },
     sendUpdateHarbourInfoRequest() {
@@ -205,18 +231,28 @@ export default {
       ).then(response => {
         // Siit saame kätte JSONi  ↓↓↓↓↓↓↓↓
         const responseBody = response.data
+        this.displayMessageUpdateComplete()
       }).catch(error => {
         // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
         const errorResponseBody = error.response.data
       })
     },
-    openContactInfoModal() {
-      this.$refs.contactInfoModalRef.openModal()
-    }
+
+    openEditContactInfoModal() {
+      this.$refs.editContactInfoModalRef.openModal({
+        harbourId: this.harbourId
+      })
+    },
+
+    displayMessageUpdateComplete() {
+      this.successMessage = HARBOUR_LOCATION_UPDATED
+    },
 
   },
   mounted() {
     this.getHarbourDetailedInfo()
+    this.successMessage = ''
+    this.errorMessage = ''
   },
   beforeMount() {
     this.getCountyInfo()
