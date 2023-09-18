@@ -3,7 +3,6 @@
   <BookingModal ref="bookingModalRef"/>
   <DeleteHarbourModal ref="deleteHarbourModalRef"/>
   <div>
-
     <div class="row justify-content-center">
       <div class="col-9 mb-3"><h1>{{ harbourDetailedInfo.harbourName }} </h1></div>
       <div class="col-4  mb-1">
@@ -65,7 +64,8 @@
           <tr>
             <td>
               <font-awesome-icon :icon="['fas', 'house']"/>
-              <a href="{{harbourDetailedInfo.homepage}}"> {{ harbourDetailedInfo.homepage }}</a></td>
+              <a :href="'https://' + harbourDetailedInfo.homepage"> {{ harbourDetailedInfo.homepage }}</a>
+            </td>
           </tr>
           <tr>
             <h3>Lisavõimalused:</h3>
@@ -84,7 +84,7 @@
           <button @click="openBookingModal" type="button" class="btn btn-secondary float-right mb-3">Vabad kohad
           </button>
           <br>
-          <button @click="this.goBack" type="button" class="btn btn-primary float-right mb-3">Tagasi sadamate juurde
+          <button @click="goBack" type="button" class="btn btn-primary float-right mb-3">Tagasi sadamate juurde
           </button>
         </div>
       </div>
@@ -109,42 +109,40 @@ import {DELETE_MODAL} from "@/assets/script/ModalType";
 export default {
   name: 'HarbourDetails',
   components: {DeleteHarbourModal, BookingModal, CaptainInfoModal},
+  emits: ['goBack'],
   props: {
     selectedHarbourId: Number,
   },
-
   data() {
     return {
-      harbourDetailedInfo: [
-        {
-          harbourId: 0,
-          locationAddress: '',
-          locationLongitude: 0,
-          locationLatitude: 0,
-          contactId: 0,
-          harbourName: '',
-          homepage: '',
-          navigationStart: '',
-          navigationEnd: '',
-          minDepth: 0,
-          minWidth: 0,
-          spots: 0,
-          phoneNumber: '',
-          extras: [
-            {
-              extraId: 0,
-              extraName: '',
-              isAvailable: true
-            }
-          ],
-          pictures: [
-            {
-              pictureId: 0,
-              pictureData: ''
-            }
-          ]
-        },
-      ]
+      harbourDetailedInfo: {
+        harbourId: 0,
+        locationAddress: '',
+        locationLongitude: 0,
+        locationLatitude: 0,
+        contactId: 0,
+        harbourName: '',
+        homepage: '',
+        navigationStart: '',
+        navigationEnd: '',
+        minDepth: 0,
+        minWidth: 0,
+        spots: 0,
+        phoneNumber: '',
+        extras: [
+          {
+            extraId: 0,
+            extraName: '',
+            isAvailable: true
+          }
+        ],
+        pictures: [
+          {
+            pictureId: 0,
+            pictureData: ''
+          }
+        ]
+      },
     }
   },
   methods: {
@@ -165,7 +163,6 @@ export default {
         contactId: this.harbourDetailedInfo.contactId
       });
     },
-
     openDeleteHarbourModal() {
       this.$refs.deleteHarbourModalRef.openModal({
         harbourId: this.harbourDetailedInfo.harbourId, DELETE_MODAL
@@ -180,7 +177,6 @@ export default {
     openBookingModal() {
       this.$refs.bookingModalRef.openModal()
     },
-
   },
   mounted() {
     this.getHarbourDetailedInfo()

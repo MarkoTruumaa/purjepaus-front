@@ -13,17 +13,22 @@
     <tbody>
     <tr v-for="harbour in harboursMainInfo" :key="harbour.harbourId">
       <th scope="row">
-        <a href="javascript:void(0)" @click="openHarbourDetails(harbour.harbourId)" >{{ harbour.harbourName }}</a>
+        <a href="javascript:void(0)" @click="openHarbourDetails(harbour.harbourId)">{{ harbour.harbourName }}</a>
       </th>
-      <td>{{ harbour.locationLongitude + ', ' + harbour.locationLatitude}}</td>
-      <td>{{harbour.minDepth}}</td>
+      <td>{{ harbour.locationLongitude + ', ' + harbour.locationLatitude }}</td>
+      <td>{{ harbour.minDepth }}</td>
       <td>{{ harbour.minWidth }}</td>
       <td>{{ harbour.spots }}</td>
     </tr>
     </tbody>
   </table>
   <div>
-    <button @click="moveToAddHarbourPage" type="button" class="btn btn-danger">Lisa uus sadam</button>
+    <button @click="moveToAddHarbourPage" type="button" class="btn btn-primary mb-3">Lisa uus sadam</button>
+    <br>
+  </div>
+  <div>
+    <button @click="moveToSearchHarbourPage" type="button" class="btn btn-secondary mb-3">Sadamate otsingu lehele
+    </button>
   </div>
 </template>
 <script>
@@ -31,17 +36,21 @@ import router from "@/router";
 
 export default {
   name: 'HarboursTable',
+  emits: ['openHarbourDetails'],
   props: {
     harboursMainInfo: {}
   },
 
   methods: {
     openHarbourDetails(harbourId) {
-      this.$emit('event-open-harbour-details', harbourId)
+      this.$emit('openHarbourDetails', harbourId)
     },
     moveToAddHarbourPage() {
       router.push({name: 'addHarbourRoute'})
     },
+    moveToSearchHarbourPage() {
+      router.push({name: 'searchRoute'})
+    }
   }
 }
 </script>

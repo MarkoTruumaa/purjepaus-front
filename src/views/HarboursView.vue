@@ -4,7 +4,7 @@
       <div class="col">
         <HarboursTable
             v-if="!showHarbourView"
-            @event-open-harbour-details="openSelectedHarbourDetails"
+            @open-harbour-details="openSelectedHarbourDetails"
             :harbours-main-info="harboursMainInfo"/>
         <HarbourDetails
             v-if="showHarbourView"

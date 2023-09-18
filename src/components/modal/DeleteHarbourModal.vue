@@ -1,6 +1,7 @@
 <template>
   <div>
     <Modal close-button-name="Tagasi" ref="modalRef">
+
       <template #header>
         <h3>{{ harbourDetailedInfo.harbourName }}</h3>
       </template>
@@ -17,10 +18,13 @@
 <script>
 import Modal from "@/components/modal/Modal.vue";
 import router from "@/router";
+import {HARBOUR_LOCATION_DELETED} from "@/assets/script/AlertMessage";
+import AlertSuccess from "@/components/alert/AlertSuccess.vue";
 
 export default {
   name: 'DeleteHarbourModal',
-  components: {Modal},
+
+  components: {Modal, AlertSuccess},
   props: {
     selectedHarbourId: Number,
   },
@@ -81,15 +85,22 @@ export default {
             }
           }
       ).then(response => {
+        console.log("tsau")
+        this.displayMessage()
         this.$refs.deleteHarbourModalRef.$refs.modalRef.closeModal()
         this.handleSuccessfullyDeletedHarbour()
       }).catch(error => {
-        // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
+
         router.push({name: 'errorRoute'})
       })
     },
+    displayMessage() {
+      console.log("tsau")
+      this.message = HARBOUR_LOCATION_DELETED;
+    },
     handleSuccessfullyDeletedHarbour(){
-      router.push({name: 'harboursRoute'})
+      console.log("tsau")
+      router.push({name: 'homeRoute'})
     }
 
   }
