@@ -101,7 +101,7 @@
               <button @click="sendUpdateHarbourInfoRequest" type="button" class="btn btn-success">Muuda sadamat</button>
             </div>
             <div class="col">
-              <button @click="" type="button" class="btn btn-primary">Tagasi sadamate juurde</button>
+              <button type="button" class="btn btn-primary">Tagasi sadamate juurde</button>
             </div>
           </div>
         </div>

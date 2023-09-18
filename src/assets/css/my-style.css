@@ -11,10 +11,6 @@ html, body, #app {
     width: 75%;
 }
 
-.hoverable-link {
-    cursor: pointer;
-}
-
 /* Kui modaal on nähtav, rakenda järgmised stiilid */
 .modal.fade.show.d-block {
     background-color: rgba(0, 0, 0, 0.8); /* Tausta värv koos läbipaistvusega */

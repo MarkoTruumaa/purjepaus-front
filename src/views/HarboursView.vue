@@ -24,6 +24,7 @@ import HarbourDetails from "@/components/HarbourDetails.vue";
 export default {
   name: 'HarboursView',
   components: {HarbourDetails, HarboursTable},
+  props: ['id'],
   data() {
     return {
       harboursMainInfo: [
@@ -41,7 +42,6 @@ export default {
       showHarbourView: false
     }
   },
-
   methods: {
     getHarboursMainInfo() {
       this.$http.get("/harbours")
@@ -52,9 +52,6 @@ export default {
             router.push({name: 'errorRoute'})
           })
     },
-    moveToSearchPage() {
-      router.push({name: 'searchRoute'})
-    },
     openSelectedHarbourDetails(harbourId) {
       this.selectedHarbourId = harbourId
       this.showHarbourView = true
@@ -64,10 +61,14 @@ export default {
     }
 
   },
-
+  beforeMount() {
+    if (this.id) {
+      this.openSelectedHarbourDetails(Number(this.id))
+    }
+  },
   mounted() {
     this.getHarboursMainInfo()
-  }
+  },
 
 }
 

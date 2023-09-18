@@ -1,4 +1,5 @@
 <template>
+  <div>
   <h1>Kasutaja {{ contactInfo.username }} profiil</h1>
   <div class="align-content-center">
     <div class="row justify-content-center">
@@ -25,6 +26,7 @@
       </div>
     </div>
     <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning">Uuenda</button>
+  </div>
   </div>
 </template>
 

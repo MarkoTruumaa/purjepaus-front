@@ -1,5 +1,6 @@
 <template>
-<h1>Ooops.. Something went wrong!</h1>
+<h1> Ups... Midagi läks valesti</h1>
+  <font-awesome-icon :icon="['far', 'face-sad-tear']" size="2xl"/>
 </template>
 
 <script>
