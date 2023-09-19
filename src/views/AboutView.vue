@@ -1,40 +1,31 @@
 <template>
-  <div>
-  <h1>Oleme Purjepausi tiim</h1>
-
-
-  Tegutseme aastast 2023 ja siin saad jätta meile tagasisidet.
-
-
-  <div class="container py-4">
-
-    <form id="contactForm">
-
-      <!-- Name input -->
-      <div class="mb-3">
-        <label class="form-label" for="name">Sinu nimi</label>
-        <input class="form-control" id="name" type="text" placeholder="Name" />
+  <div class="margin mt-4">
+    <h1>Meist</h1>
+  </div>
+  <div class="align-content-center">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text">Sina ju tead ja teame ka meie, et merele minnes on kõige olulisem plaan. Millal minna,
+          kuidas ja kuhu välja jõuda.</p>
+        <p>
+          Teame ka seda, et meri nagu plaanidki võib kiiresti muutuda ning siis tuleb merelolijail kohaneda.
+        </p>
+        <p>
+          Purjepaus aitab sul teha merele minnes plaani, kuhu sadamasse sa jõuda tahad. Ning kui plaan muutub, saad meie
+          abil uue sadama valida.
+        </p>
+        <p>
+          Lisaks tavapärasele sadamainfole pakume me võimalust leida sadam, mis sinu vajadustele vastab - olgu sul
+          kaasas väikesed lapsed või oled ise juba kogenud purjetaja, kelle jaoks on oluline sadama ja selle teenuste
+          ligipääsetavus.
+        </p>
+        <p>
+          Kui sul on küsimusi või ettepanekuid, kuidas saaksime veel paremini, võta meiega kindlasti ühendust!
+        </p>
+        <p>Sinu Purjepaus</p>
       </div>
-
-      <!-- Email address input -->
-      <div class="mb-3">
-        <label class="form-label" for="emailAddress">Siia saab sulle kirju saata</label>
-        <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" />
-      </div>
-
-      <!-- Message input -->
-      <div class="mb-3">
-        <label class="form-label" for="message">Sinu sõnum meile</label>
-        <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;"></textarea>
-      </div>
-
-      <!-- Form submit button -->
-      <div class="d-grid">
-        <button class="btn btn-dark btn-lg" type="submit">Pane kiri teele</button>
-      </div>
-
-    </form>
     </div>
+
   </div>
 
 </template>
@@ -47,3 +38,12 @@ export default {
 
 
 </script>
+
+<style scoped>
+.card {
+  top: 25px;
+  left: 42%;
+  width: 350px;
+
+}
+</style>
