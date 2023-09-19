@@ -2,6 +2,12 @@ html, body, #app {
     height: 100%;
 }
 
+body {
+    background-image: url('../michael-held-HvIdCs2aU-k-unsplash.jpg') ;
+    background-size: cover;
+    background-attachment: local, scroll;
+}
+
 #app {
     display: flex;
     flex-direction: column;
@@ -11,13 +17,9 @@ html, body, #app {
     width: 75%;
 }
 
-.hoverable-link {
-    cursor: pointer;
-}
-
 /* Kui modaal on nähtav, rakenda järgmised stiilid */
 .modal.fade.show.d-block {
-    background-color: rgba(0, 0, 0, 0.8); /* Tausta värv koos läbipaistvusega */
+    background-color: rgba(0, 0, 0, 0.38); /* Tausta värv koos läbipaistvusega */
     position: fixed; /* Positsiooni tüüp on fikseeritud */
     z-index: 1050; /* Z-indeks määrab modaalakna kihi järjekorra */
     left: 0; /* Vasak paigutus on null */

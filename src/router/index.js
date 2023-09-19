@@ -31,6 +31,12 @@ const routes = [
         component: HarboursView
     },
     {
+        path: '/harbours/:id',
+        name: 'harboursRouteId',
+        props: true,
+        component: HarboursView
+    },
+    {
         path: '/search',
         name: 'searchRoute',
         component: SearchView
@@ -45,7 +51,6 @@ const routes = [
         name: 'profileRoute',
         component: ProfileView
     },
-
     {
         path: '/edit-harbour/:id',
         name: 'editHarbourRoute',

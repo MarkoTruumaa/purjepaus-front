@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1>Täpne sadamaotsing</h1>
-    <div class="row">
-      <div class="col">
+    <div class="card shadow-sm">
+      <div class="card-body">
         <table class="table table-borderless">
           <tbody>
           <tr>
@@ -31,28 +31,30 @@
           </tr>
           </tbody>
         </table>
-      </div>
-      <div><h3>TEENUSED</h3></div>
-      <div class="col">
-        <table class="table table-borderless">
-          <tbody>
-          <tr>
-            <td>
-              <div class="row justify-content-center">
-                <div v-for="extra in extraInfo" class="col col-4 form-check">
-                  <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    {{ extra.extraName }}
-                  </label>
+        <div><h3>TEENUSED</h3></div>
+        <div class="col">
+          <table class="table table-borderless">
+            <tbody>
+            <tr>
+              <td>
+                <div class="row justify-content-center">
+                  <div v-for="extra in extraInfo" class="col col-4 form-check">
+                    <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{ extra.extraName }}
+                    </label>
+                  </div>
                 </div>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn btn-success rounded-0">OTSI</button>
+        </div>
       </div>
-    </div>
-    <button type="button" class="btn btn-success">OTSI</button>
+      </div>
+
+
   </div>
 </template>
 

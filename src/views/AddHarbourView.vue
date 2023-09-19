@@ -1,7 +1,6 @@
 <template>
   <div>
     <AddExtrasModal ref="addExtrasModalRef"/>
-    <AddContactInfoModal ref="addContactInfoModalRef"/>
     <div class="container">
       <h1>Sadama lisamine</h1>
       <div>
@@ -38,9 +37,9 @@
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">Kapteni nimi: </span>
 
-          <input  disabled type="text" class="form-control"
+          <input disabled type="text" class="form-control"
                  placeholder="eesnimi">
-          <input  disabled type="text" class="form-control" placeholder="perekonnanimi">
+          <input disabled type="text" class="form-control" placeholder="perekonnanimi">
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">Kohtade arv: </span>
@@ -86,17 +85,15 @@
 
         <div class="container">
           <div class="row">
+
             <div class="col">
-              <button @click="openAddContactInfoModal" type="button" class="btn btn-secondary">Lisa kontakt</button>
+              <button @click="openAddExtrasModal" type="button" class="btn btn-secondary text-light fw-bold shadow-sm rounded-0 ">Lisa teenused</button>
             </div>
             <div class="col">
-              <button @click="openAddExtrasModal" type="button" class="btn btn-secondary">Lisa teenused</button>
+              <button @click="sendAddNewHarbourInfoRequest" type="button" class="btn btn-success text-light fw-bold shadow-sm rounded-0">Lisa sadam</button>
             </div>
             <div class="col">
-              <button @click="sendAddNewHarbourInfoRequest" type="button" class="btn btn-success">Lisa sadam</button>
-            </div>
-            <div class="col">
-              <button @click="moveToHarboursPage" type="button" class="btn btn-primary">Tagasi sadamate lehele</button>
+              <button @click="moveToHarboursPage" type="button" class="btn btn-primary text-light fw-bold shadow-sm rounded-0">Tagasi sadamate lehele</button>
             </div>
           </div>
         </div>
@@ -108,11 +105,11 @@
 <script>
 import router from "@/router";
 import AddExtrasModal from "@/components/modal/AddExtrasModal.vue";
-import AddContactInfoModal from "@/components/modal/AddContactInfoModal.vue";
+
 
 export default {
   name: 'AddHarbourView',
-  components: {AddExtrasModal, AddContactInfoModal},
+  components: {AddExtrasModal},
   data() {
     return {
       extraInfo: {
@@ -157,13 +154,6 @@ export default {
     }
   },
   methods: {
-    getHarbourDetailedInfo() {
-      this.$http.get('/harbour', {}).then(response => {
-        this.harbourDetailedInfo = response.data
-      }).catch(error => {
-        this.errorResponse = error.response.data
-      })
-    },
     getCountyInfo() {
       this.$http.get("/counties"
       ).then(response => {
@@ -171,9 +161,6 @@ export default {
       }).catch(error => {
         router.push({name: 'errorRoute'})
       })
-    },
-    openAddContactInfoModal() {
-      this.$refs.addContactInfoModalRef.openModal()
     },
     getExtrasInfo() {
       this.$http.get("/harbour/extras"
@@ -191,18 +178,15 @@ export default {
     moveToHarboursPage() {
       router.push({name: 'harboursRoute'})
     },
-    sendAddNewHarbourInfoRequest(){
-      this.$http.post("/harbour", this.harbourDetailedInfo,
-      ).then(response => {
+    sendAddNewHarbourInfoRequest() {
+      this.$http.post("/harbour", this.harbourDetailedInfo).then(response => {
         const responseBody = response.data
-
       }).catch(error => {
         const errorResponseBody = error.response.data
       })
     },
   },
   mounted() {
-    this.getHarbourDetailedInfo()
     this.getExtrasInfo()
     this.getCountyInfo()
   }
