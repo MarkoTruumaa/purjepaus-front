@@ -5,23 +5,23 @@
         <h4>Selle sadama kapten on:</h4>
       </template>
       <template #body>
-        <h4>{{ captainInfo.firstName }} {{ captainInfo.lastName }}</h4>
-        <h5>e-mail: {{captainInfo.email }} <br></h5>
-        <h5>telefon: {{captainInfo.telephone}} <br></h5>
+        <div>
+          <h4>{{ captainInfo.firstName }} {{ captainInfo.lastName }}</h4>
+          <h5>e-mail: {{ captainInfo.email }} <br /></h5>
+          <h5>telefon: {{ captainInfo.telephone }} <br /></h5>
+        </div>
       </template>
-      <template #footer>
-
-      </template>
+      <template #footer> </template>
     </Modal>
   </div>
 </template>
 
 <script>
-import Modal from "@/components/modal/Modal.vue";
+import Modal from '@/components/modal/Modal.vue'
 
 export default {
   name: 'CaptainInfoModal',
-  components: {Modal},
+  components: { Modal },
   data() {
     return {
       captainInfo: {
@@ -29,24 +29,26 @@ export default {
         lastName: '',
         email: '',
         telephone: '',
-        address: ''
+        address: '',
       },
     }
   },
   methods: {
-    openModal({contactId}) {
-      this.$http.get("/harbour/captain-info", {
-            params: {
-              contactId: contactId
-            }
-          }
-      ).then(response => {
-        this.captainInfo = response.data;
-        this.$refs.modalRef.openModal()
-      }).catch(error => {
-        this.errorResponse = error.response.data
-      })
+    openModal({ contactId }) {
+      this.$http
+        .get('/harbour/captain-info', {
+          params: {
+            contactId: contactId,
+          },
+        })
+        .then((response) => {
+          this.captainInfo = response.data
+          this.$refs.modalRef.openModal()
+        })
+        .catch((error) => {
+          this.errorResponse = error.response.data
+        })
     },
   },
-};
+}
 </script>
