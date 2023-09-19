@@ -8,6 +8,7 @@ import AboutView from "@/views/AboutView.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import EditHarbourView from "@/views/EditHarbourView.vue";
 import AddHarbourView from "@/views/AddHarbourView.vue";
+import CreateNewUser from "@/views/CreateNewUser.vue";
 
 const routes = [
     {
@@ -61,6 +62,11 @@ const routes = [
         path: '/add-harbour',
         name: 'addHarbourRoute',
         component: AddHarbourView
+    },
+    {
+        path: '/new-user',
+        name: 'createNewUserRoute',
+        component: CreateNewUser
     },
 ]
 

@@ -27,7 +27,7 @@
           <button @click="login" type="button" class="btn btn-secondary">Logi sisse</button>
         </div>
         <div class="mb-5">
-          <button type="button" class="btn btn-secondary">Loo uus kasutaja</button>
+          <button @click="changeView" type="button" class="btn btn-secondary">Loo uus kasutaja</button>
         </div>
       </div>
     </div>
@@ -91,6 +91,10 @@ export default {
           router.push({name: 'errorRoute'})
         }
       })
+    },
+
+    changeView() {
+      router.push({name: 'createNewUserRoute'})
     },
   }
 }
