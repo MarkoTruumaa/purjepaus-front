@@ -11,6 +11,7 @@ backdrop-filter: blur(7.8px);
 border: 1px solid rgba(255, 255, 255, 0.3);">
       <div class="container-fluid">
         <div class="row justify-content-center" style="background-color: transparent">
+
           <div class="col-9 mb-3"><h1>{{ harbourDetailedInfo.harbourName }} </h1></div>
           <div class="col-4  mb-1">
 
@@ -19,7 +20,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);">
             <div>
 
               <button @click="openCaptainInfoModal" type="button"
-                      class="btn btn-secondary text-white shadow-sm rounded-0 mb-3">Sadamakapteni info
+                      class="text-light  btn btn-outline-light shadow-sm rounded-0 mb-3">Sadamakapteni info
               </button>
             </div>
 
