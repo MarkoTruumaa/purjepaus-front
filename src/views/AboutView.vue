@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="margin mt-4">
     <h1>Meist</h1>
   </div>
@@ -26,6 +27,7 @@
       </div>
     </div>
 
+  </div>
   </div>
 
 </template>

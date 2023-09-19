@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="flex-fill position-relative border-white shadow-sm">
-      <l-map ref="map" :zoom="7" :center="[58.889389, 25.541139]">
+      <l-map ref="map" :zoom="8" :center="[58.90540407714214, 24.440707020436466]">
         <l-tile-layer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"

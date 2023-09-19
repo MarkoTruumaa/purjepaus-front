@@ -3,8 +3,13 @@
   <BookingModal ref="bookingModalRef"/>
   <DeleteHarbourModal ref="deleteHarbourModalRef"/>
   <div>
-    <div class="card shadow-sm" style="background-color: white">
-      <div class="card-body">
+    <div class="container shadow-sm" style="
+background: rgba(255, 255, 255, 0.08);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(7.8px);
+-webkit-backdrop-filter: blur(7.8px);
+border: 1px solid rgba(255, 255, 255, 0.3);">
+      <div class="container-fluid">
         <div class="row justify-content-center" style="background-color: transparent">
           <div class="col-9 mb-3"><h1>{{ harbourDetailedInfo.harbourName }} </h1></div>
           <div class="col-4  mb-1">
@@ -13,89 +18,80 @@
                  :style="{ width: 300 + 'px', height: 300 + 'px' }"> <br>
             <div>
 
-              <button @click="openCaptainInfoModal" type="button" class="btn btn-secondary text-white shadow-sm rounded-0 mb-3">Sadamakapteni info
+              <button @click="openCaptainInfoModal" type="button"
+                      class="btn btn-secondary text-white shadow-sm rounded-0 mb-3">Sadamakapteni info
               </button>
             </div>
 
           </div>
           <div class="col-6">
-            <table class="table table-borderless align-bottom">
-              <tbody>
-              <tr>
-                <td>
-                  <font-awesome-icon :icon="['fas', 'location-dot']"/>
-                  Aadress: {{ harbourDetailedInfo.locationAddress }}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <font-awesome-icon :icon="['fas', 'map-location-dot']"/>
-                  Koordinaadid: {{ harbourDetailedInfo.locationLongitude }}, {{ harbourDetailedInfo.locationLatitude }}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <font-awesome-icon :icon="['fas', 'arrow-down']"/>
-                  Sissesõidu väikseim sügavus: {{ harbourDetailedInfo.minDepth }} meetrit
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <font-awesome-icon :icon="['fas', 'arrows-left-right']"/>
-                  Sissesõidu väikseim laius: {{ harbourDetailedInfo.minWidth }} meetrit
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <font-awesome-icon :icon="['fas', 'anchor']"/>
-                  Kohtade arv sadamas: {{ harbourDetailedInfo.spots }}
-                </td>
-              </tr>
-              <tr>
-                <td>Navigatsiooniperioodi algus: {{ harbourDetailedInfo.navigationStart }}
-                </td>
-              </tr>
-              <tr>
-                <td>Navigatsiooniperioodi lõpp: {{ harbourDetailedInfo.navigationEnd }}</td>
-              </tr>
-              <tr>
-                <td>
-                  <font-awesome-icon :icon="['fas', 'phone']"/>
-                  Kontakttelefon: {{ harbourDetailedInfo.phoneNumber }}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <font-awesome-icon :icon="['fas', 'house']"/>
-                  <a :href="'https://' + harbourDetailedInfo.homepage"> {{ harbourDetailedInfo.homepage }}</a>
-                </td>
-              </tr>
-              <tr>
-                <h3>Lisavõimalused:</h3>
-                <ul class="list-group" >
-                  <li class="list-group-item" style="border: ghostwhite; align-content: center">
-                    <td v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
-                      <font-awesome-icon :icon="['fas', 'check']" /> {{ extra.extraName }}
-                    </td>
-                  </li>
-                </ul>
-              </tr>
-
-              </tbody>
-            </table>
             <div>
-              <button @click="openBookingModal" type="button" class="text-dark fw-bold btn btn-outline-secondary shadow-sm rounded-0 float-right mb-3">Vabad kohad
+              <font-awesome-icon :icon="['fas', 'location-dot']"/>
+              Aadress: {{ harbourDetailedInfo.locationAddress }}
+            </div>
+            <div>
+              <font-awesome-icon :icon="['fas', 'map-location-dot']"/>
+              Koordinaadid: {{ harbourDetailedInfo.locationLongitude }}, {{ harbourDetailedInfo.locationLatitude }}
+            </div>
+            <div>
+              <font-awesome-icon :icon="['fas', 'arrow-down']"/>
+              Sissesõidu väikseim sügavus: {{ harbourDetailedInfo.minDepth }} meetrit
+            </div>
+            <div>
+              <font-awesome-icon :icon="['fas', 'arrows-left-right']"/>
+              Sissesõidu väikseim laius: {{ harbourDetailedInfo.minWidth }} meetrit
+            </div>
+            <div>
+              <font-awesome-icon :icon="['fas', 'anchor']"/>
+              Kohtade arv sadamas: {{ harbourDetailedInfo.spots }}
+            </div>
+            <div>Navigatsiooniperioodi algus: {{ harbourDetailedInfo.navigationStart }}
+            </div>
+            <div>Navigatsiooniperioodi lõpp: {{ harbourDetailedInfo.navigationEnd }}</div>
+            <div>
+              <font-awesome-icon :icon="['fas', 'phone']"/>
+              Kontakttelefon: {{ harbourDetailedInfo.phoneNumber }}
+            </div>
+            <div>
+              <font-awesome-icon :icon="['fas', 'house']"/>
+              <a :href="'https://' + harbourDetailedInfo.homepage"> {{ harbourDetailedInfo.homepage }}</a>
+            </div>
+            <div>
+              <h3>Lisavõimalused:</h3>
+              <ul class="list-group mb-3">
+                <li class="list-group-item" style="background: rgba(255, 255, 255, 0);
+border-radius: 0px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(0px);
+-webkit-backdrop-filter: blur(0px);">
+                  <td v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
+                    <font-awesome-icon :icon="['fas', 'check']"/>
+                    {{ extra.extraName }}
+                  </td>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <button @click="openBookingModal" type="button"
+                      class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3">Vabad
+                kohad
               </button>
               <br>
-              <button @click="goBack" type="button" class="text-dark btn btn-outline-primary shadow-sm rounded-0 float-right mb-3">Tagasi sadamate juurde
+              <button @click="goBack" type="button"
+                      class="text-light  btn btn-outline-light shadow-sm rounded-0 mb-3">Tagasi sadamate
+                juurde
               </button>
             </div>
           </div>
         </div>
       </div>
       <div>
-        <button @click="moveToEditHarbourPage" type="button" class="btn btn-dark btn-outline-light text-white shadow-sm rounded-0  m-2">Muuda</button>
-        <button @click="openDeleteHarbourModal" type="button" class="btn btn-danger btn-outline-light text-white shadow-sm rounded-0 m-2">Kustuta</button>
+        <button @click="moveToEditHarbourPage" type="button"
+                class="btn btn-dark btn-outline-light text-white shadow-sm rounded-0  m-2">Muuda
+        </button>
+        <button @click="openDeleteHarbourModal" type="button"
+                class="btn btn-danger btn-outline-light text-white shadow-sm rounded-0 m-2">Kustuta
+        </button>
       </div>
     </div>
   </div>
