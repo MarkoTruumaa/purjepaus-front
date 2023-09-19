@@ -1,5 +1,5 @@
 <template>
-  <div class="container d-flex flex-column">
+  <div class="container d-flex flex-column" style="background-color: transparent">
     <div>
       <img alt="Vue logo" src="../assets/logo.png" style="height: 100px ; mix-blend-mode: multiply">
       <div class="input-group mb-3 shadow-sm">

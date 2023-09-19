@@ -7,6 +7,7 @@
 
 
   <div class="container py-4">
+
     <form id="contactForm">
 
       <!-- Name input -->
@@ -33,9 +34,9 @@
       </div>
 
     </form>
+    </div>
+  </div>
 
-  </div>
-  </div>
 </template>
 
 

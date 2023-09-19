@@ -3,10 +3,9 @@ html, body, #app {
 }
 
 body {
-
-    background-image: url('../sea.jpg') ;
+    background-image: url('../michael-held-HvIdCs2aU-k-unsplash.jpg') ;
     background-size: cover;
-
+    background-attachment: local, scroll;
 }
 
 #app {
@@ -20,7 +19,7 @@ body {
 
 /* Kui modaal on nähtav, rakenda järgmised stiilid */
 .modal.fade.show.d-block {
-    background-color: rgba(0, 0, 0, 0.8); /* Tausta värv koos läbipaistvusega */
+    background-color: rgba(0, 0, 0, 0.38); /* Tausta värv koos läbipaistvusega */
     position: fixed; /* Positsiooni tüüp on fikseeritud */
     z-index: 1050; /* Z-indeks määrab modaalakna kihi järjekorra */
     left: 0; /* Vasak paigutus on null */
