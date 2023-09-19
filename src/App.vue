@@ -15,10 +15,10 @@
           <router-link class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
                        tag="button" to="/about">Meist
           </router-link>
-          <router-link class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
+          <router-link v-if="!isLoggedIn" class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
                        tag="button" to="/login">Sisse
           </router-link>
-          <router-link class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0" to="/profile">
+          <router-link v-if="isLoggedIn" class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0" to="/profile">
             <font-awesome-icon :icon="['fas', 'user']"/>
           </router-link>
         </div>
@@ -26,7 +26,7 @@
 
     </div>
   </nav>
-  <router-view class="p-4 flex-fill"/>
+  <router-view @event-update-nav-menu="updateNavMenu" class="p-4 flex-fill"/>
   <footer class="text-center text-sm-start">
     <div class="text-center text-dark fw-medium p-3 " style="
 background: linear-gradient(0deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);">
