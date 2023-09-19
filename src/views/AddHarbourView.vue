@@ -48,7 +48,7 @@
         <div>
           <div>
             <h4>
-              Kontaktandmete muutmine
+              Kontaktandmed
             </h4>
           </div>
           <div class="input-group mb-3">
