@@ -108,7 +108,7 @@
         <div class="col col-6">
         </div>
         <div class="col">
-          <div v-if="!isLoggedIn" class="btn-group">
+          <div v-if="isLoggedIn" class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               {{
                 {
