@@ -2,10 +2,23 @@ html, body, #app {
     height: 100%;
 }
 
-body {
+.body {
     background-image: url('../michael-held-HvIdCs2aU-k-unsplash.jpg') ;
     background-size: cover;
     background-attachment: local, scroll;
+}
+
+#purjepaus {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-image: url('../michael-held-HvIdCs2aU-k-unsplash.jpg') ;
+    background-size: cover;
+    background-attachment: local, scroll;
+}
+
+#purjepaus.createNewUserRoute, #purjepaus.loginRoute {
+    background-image: url('../lake-1915846_1920.jpg');
 }
 
 #app {

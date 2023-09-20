@@ -9,11 +9,12 @@
     <div v-if="errorMessage" class="alert-warning">
       <div class="text-bg-danger p-3">{{ errorMessage }}</div>
     </div>
-
     <div class="mb-3">
       <div class="row">
         <div class="col">
-          <label for="Eesnimi" class="form-label">Eesnimi <font-awesome-icon :icon="['fas', 'asterisk']"/></label>
+          <label for="Eesnimi" class="form-label">Eesnimi
+            <font-awesome-icon :icon="['fas', 'asterisk']"/>
+          </label>
         </div>
         <div class="col">
           <input v-model="userData.contactFirstName" type="text" class="form-control" id="Eesnimi">
@@ -23,7 +24,9 @@
     <div class="mb-3">
       <div class="row">
         <div class="col">
-          <label for="Perekonnanimi" class="form-label">Perekonnanimi<font-awesome-icon :icon="['fas', 'asterisk']"/></label>
+          <label for="Perekonnanimi" class="form-label">Perekonnanimi
+            <font-awesome-icon :icon="['fas', 'asterisk']"/>
+          </label>
         </div>
         <div class="col">
           <input v-model="userData.contactLastName" type="text" class="form-control" id="Perekonnanimi">
@@ -33,7 +36,9 @@
     <div class="mb-3">
       <div class="row">
         <div class="col col-6">
-          <label for="E-mail" class="form-label">E-mail <font-awesome-icon :icon="['fas', 'asterisk']"/></label>
+          <label for="E-mail" class="form-label">E-mail
+            <font-awesome-icon :icon="['fas', 'asterisk']"/>
+          </label>
         </div>
         <div class="col">
           <input v-model="userData.contactEmail" type="text" class="form-control" id="E-mail">
@@ -43,7 +48,9 @@
     <div class="mb-3">
       <div class="row">
         <div class="col col-6">
-          <label for="Kasutajanimi" class="form-label">Kasutajanimi <font-awesome-icon :icon="['fas', 'asterisk']"/></label>
+          <label for="Kasutajanimi" class="form-label">Kasutajanimi
+            <font-awesome-icon :icon="['fas', 'asterisk']"/>
+          </label>
         </div>
         <div class="col">
           <input v-model="userData.username" type="text" class="form-control" id="Kasutajanimi">
@@ -54,7 +61,9 @@
       <div class="mb-3">
         <div class="row">
           <div class="col col-6">
-            <label for="Parool" class="form-label">Parool <font-awesome-icon :icon="['fas', 'asterisk']"/></label>
+            <label for="Parool" class="form-label">Parool
+              <font-awesome-icon :icon="['fas', 'asterisk']"/>
+            </label>
           </div>
           <div class="col">
             <input v-model="userData.password" type="password" class="form-control" id="Parool">
@@ -64,7 +73,9 @@
       <div class="mb-3">
         <div class="row">
           <div class="col col-6">
-            <label for="Korda parooli" class="form-label">Korda parooli <font-awesome-icon :icon="['fas', 'asterisk']"/></label>
+            <label for="Korda parooli" class="form-label">Korda parooli
+              <font-awesome-icon :icon="['fas', 'asterisk']"/>
+            </label>
           </div>
           <div class="col">
             <input v-model="passwordConfirmation" type="password" class="form-control" id="Parool uuesti">
@@ -92,35 +103,45 @@
         </div>
       </div>
     </div>
-    <div class="btn-group">
-      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        {{
-          {
-            user: 'Sinu roll on Kasutaja',
-            captain: 'Sinu roll on Kapten',
-            admin: 'Sinu roll on Admin'
-          }[userData.roleName] || 'Vali Roll'
-        }}
-      </button>
-      <div>
+    <div class="mb-3">
+      <div class="row">
+        <div class="col col-6">
+        </div>
+        <div class="col">
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              {{
+                {
+                  user: 'Sinu roll on Kasutaja',
+                  captain: 'Sinu roll on Kapten',
+                  admin: 'Sinu roll on Admin'
+                }[userData.roleName] || 'Vali Roll'
+              }}
+            </button>
+            <div>
 
+            </div>
+            <ul class="dropdown-menu">
+              <li>
+                <button type="button" class="dropdown-item" v-on:click="userData.roleName='user'">Kasutaja</button>
+              </li>
+              <li>
+                <button type="button" class="dropdown-item" v-on:click="userData.roleName='captain'">Kapten</button>
+              </li>
+              <li>
+                <button type="button" class="dropdown-item" v-on:click="userData.roleName='admin'">Admin</button>
+              </li>
+            </ul>
+          </div>
+          <div style="margin-top: 15px">
+            <button @click="addNewUser" type="button" class="btn btn-success">Loo uus kasutaja</button>
+          </div>
+        </div>
+        </div>
       </div>
-      <ul class="dropdown-menu">
-        <li>
-          <button type="button" class="dropdown-item" v-on:click="userData.roleName='user'">Kasutaja</button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item" v-on:click="userData.roleName='captain'">Kapten</button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item" v-on:click="userData.roleName='admin'">Admin</button>
-        </li>
-      </ul>
     </div>
-    <div>
-      <button @click="addNewUser" type="button" class="btn btn-success">Loo uus kasutaja</button>
-    </div>
-  </div>
+
+
 
 
 </template>
@@ -169,10 +190,6 @@ export default {
       return this.userData.roleName.length > 0
     },
 
-    displaySuccessMessage() {
-      this.displaySuccessMessage = NEW_USER_CREATED
-    },
-
     addNewUser() {
 
       if (!this.mandatoryFieldsAreFilled()) {
@@ -187,9 +204,8 @@ export default {
     sendAddNewUserRequest() {
       this.$http.post("user", this.userData, {}).then((response) => {
         if (response.status === 200) {
-          this.displaySuccessMessage()
+          this.successMessage = NEW_USER_CREATED
           setTimeout(() => {
-            this.successMessage = ''
             router.push({name: 'loginRoute', replace: true})
           }, 4500)
         } else if (response.status === 403) {
@@ -214,6 +230,7 @@ label {
   width: 100px; /* Adjust the width as needed to align labels properly */
   text-align: right; /* Optional: Right-align the labels */
   margin-right: 10px; /* Optional: Add some spacing between the label and input */
+  white-space: nowrap;
 }
 
 .required label:after {
@@ -230,13 +247,19 @@ input {
   columns: auto;
   align-items: flex-end;
 }
+
 .col {
   position: relative;
-  left: 550px; /* Adjust the value as needed */
+  left: 550px;
 }
+
 .btn {
 
 }
 
+#purjepaus {
+  background-image: url("../assets/lake-1915846_1920.jpg");
+  background-size: cover;
+}
 
 </style>
