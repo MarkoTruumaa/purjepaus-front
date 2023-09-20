@@ -1,12 +1,12 @@
 <template>
   <div>
-    <Modal close-button-name="Tagasi" ref="modalRef">
+    <Modal close-button-name="Lisa" ref="modalRef">
       <template #header>
-        <h4>Lisavõimaluste lisamine</h4>
+        <h4>Teenuste lisamine</h4>
       </template>
       <template #body>
         <div v-for="extra in extraInfo" class="col form-check">
-          <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault">
+          <input v-model="extra.isAvailable" class="form-check-input " type="checkbox" :checked="extra.isAvailable">
           <label class="form-check-label" for="flexCheckDefault">
             {{ extra.extraName }}
           </label>
@@ -26,22 +26,20 @@ import Modal from "@/components/modal/Modal.vue";
 export default {
   name: 'AddExtrasModal',
   components: {Modal},
-  data(){
+  data() {
     return {
-    extraInfo: {
-      extraId: 0,
+      extraInfo: [
+        {
+          extraId: 0,
           extraName: '',
-          isAvailable: true
-    }
+          isAvailable: false
+        }
+      ]
     }
   },
   methods: {
-    openModal ({extraId}) {
-      this.$http.get("/harbour/extras",{
-        params: {
-          extraId: extraId
-        }
-      }
+    openModal() {
+      this.$http.get("/harbour/extras"
       ).then(response => {
         this.extraInfo = response.data;
         this.$refs.modalRef.openModal()
