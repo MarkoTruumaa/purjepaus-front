@@ -1,18 +1,19 @@
 <template>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Eesnimi: {{ contactInfo.contactFirstName }}</li>
-    <li class="list-group-item">Perekonnanimi: {{ contactInfo.contactLastName }}</li>
-    <li class="list-group-item">E-mail: {{ contactInfo.contactEmail }}</li>
-    <li class="list-group-item">Telefon: {{ contactInfo.contactTelephone }}</li>
-    <li class="list-group-item">Aadress: {{ contactInfo.contactAddress }}</li>
-  </ul>
-
+  <div class="container p-4 glass-background">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Eesnimi: {{ contactInfo.contactFirstName }}</li>
+      <li class="list-group-item">Perekonnanimi: {{ contactInfo.contactLastName }}</li>
+      <li class="list-group-item">E-mail: {{ contactInfo.contactEmail }}</li>
+      <li class="list-group-item">Telefon: {{ contactInfo.contactTelephone }}</li>
+      <li class="list-group-item">Aadress: {{ contactInfo.contactAddress }}</li>
+    </ul>
+  </div>
 </template>
 <script>
 export default {
   name: 'ProfileInfo',
   props: {
-    contactInfo: {}
-  }
+    contactInfo: {},
+  },
 }
 </script>
