@@ -8,7 +8,7 @@ import AboutView from "@/views/AboutView.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import EditHarbourView from "@/views/EditHarbourView.vue";
 import AddHarbourView from "@/views/AddHarbourView.vue";
-import CreateNewUser from "@/views/CreateNewUser.vue";
+import CreateNewUser from "@/views/CreateNewUserView.vue";
 
 const routes = [
     {

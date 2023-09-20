@@ -1,4 +1,5 @@
 <template>
+  <div id="purjepaus" :class="route.name">
   <nav class="navbar navbar-transparent bg-transparent">
     <div class="container d-flex flex-row">
       <router-link to="/" class="navbar-brand p-0">
@@ -36,6 +37,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 
     </div>
 
   </footer>
+  </div>
 </template>
 
 
@@ -43,6 +45,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 
 
 import {ADMIN} from "@/assets/script/Role";
 import router from "@/router";
+import {useRoute} from "vue-router";
 
 export default {
   data() {
@@ -52,7 +55,7 @@ export default {
 
     }
   },
-
+  computed: { route: () => useRoute() },
   methods: {
     updateNavMenu() {
       this.isLoggedIn = sessionStorage.getItem('userId') !== null
@@ -64,13 +67,18 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+footer {
+  margin-top: 30px;
 }
 
 a.router-link-exact-active {

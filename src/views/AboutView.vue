@@ -5,7 +5,7 @@
   <div class="align-content-center">
     <div class="card">
       <div class="card-body">
-        <p class="card-text">Sina ju tead ja teame ka meie, et merele minnes on kõige olulisem plaan. Millal minna,
+        <p class="card-text">Sina ju tead nagu meiegi, et merele minnes on kõige olulisem plaan. Millal minna,
           kuidas ja kuhu välja jõuda.</p>
         <p>
           Teame ka seda, et meri nagu plaanidki võib kiiresti muutuda ning siis tuleb merelolijail kohaneda.
@@ -44,6 +44,11 @@ export default {
   top: 25px;
   left: 42%;
   width: 350px;
-
 }
+
+h1 {
+  text-align: center;
+}
+
+
 </style>
