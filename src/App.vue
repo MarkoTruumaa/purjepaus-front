@@ -38,6 +38,14 @@
           >
             <font-awesome-icon :icon="['fas', 'user']" />
           </router-link>
+          <router-link
+            v-if="isLoggedIn"
+            class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
+            tag="button"
+            to="#"
+            @click="executeLogOut"
+            >Välja
+          </router-link>
         </div>
       </div>
     </div>
@@ -57,6 +65,8 @@
 </template>
 
 <script>
+import router from '@/router'
+
 export default {
   data() {
     return {
@@ -67,6 +77,12 @@ export default {
   methods: {
     updateNavMenu() {
       this.isLoggedIn = sessionStorage.getItem('userId') !== null
+    },
+
+    executeLogOut() {
+      sessionStorage.clear()
+      this.updateNavMenu()
+      router.push({ name: 'homeRoute' })
     },
   },
 }

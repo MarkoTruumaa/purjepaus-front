@@ -2,7 +2,7 @@
   <div>
     <Modal close-button-name="Tagasi" ref="modalRef">
       <template #header>
-        <h3>{{ harbourDetailedInfo.harbourName }}</h3>
+        <h3>{{ harbourName }} sadam</h3>
       </template>
       <template #body> Kas sa oled kindel, et soovid sadama kustutada? </template>
       <template #footer>
@@ -17,85 +17,43 @@
 import Modal from '@/components/modal/Modal.vue'
 import router from '@/router'
 import { HARBOUR_LOCATION_DELETED } from '@/assets/script/AlertMessage'
-import AlertSuccess from '@/components/alert/AlertSuccess.vue'
+import AlertSuccess from '@/components/AlertSuccess.vue'
 
 export default {
   name: 'DeleteHarbourModal',
   components: { Modal, AlertSuccess },
-  props: {
-    selectedHarbourId: Number,
-  },
 
   data() {
     return {
+      harbourId: 0,
+      harbourName: '',
       successMessage: '',
-      harbourDetailedInfo: {
-        locationAddress: '',
-        locationLongitude: 0,
-        locationLatitude: 0,
-        contactId: 0,
-        harbourName: '',
-        homepage: '',
-        navigationStart: '',
-        navigationEnd: '',
-        minDepth: 0,
-        minWidth: 0,
-        spots: 0,
-        phoneNumber: '',
-        extras: [
-          {
-            extraId: 0,
-            extraName: '',
-            isAvailable: true,
-          },
-        ],
-        pictures: [
-          {
-            pictureId: 0,
-            pictureData: '',
-          },
-        ],
-      },
     }
   },
-  methods: {
-    openModal({ harbourId }) {
-      this.$http
-        .get('/harbour', {
-          params: {
-            harbourId: harbourId,
-          },
-        })
-        .then((response) => {
-          this.harbourDetailedInfo = response.data
-          this.$refs.modalRef.openModal()
-        })
-        .catch((error) => {
-          router.push({ name: 'errorRoute' })
-        })
-    },
 
+  methods: {
     deleteHarbourPage() {
       this.$http
-        .delete('/harbour', this.harbourDetailedInfo, {
+        .delete('/harbour', {
           params: {
-            harbourId: this.id,
+            harbourId: this.harbourId,
           },
         })
         .then((response) => {
           this.displayMessage()
-          this.$refs.deleteHarbourModalRef.$refs.modalRef.closeModal()
+          this.$refs.modalRef.closeModal()
           this.handleSuccessfullyDeletedHarbour()
         })
         .catch((error) => {
           router.push({ name: 'errorRoute' })
         })
     },
+
     displayMessage() {
-      this.successMessage = HARBOUR_LOCATION_DELETED
+      this.successMessage = HARBOUR_LOCATION_DELETED.replace('?', this.harbourName)
     },
     handleSuccessfullyDeletedHarbour() {
-      router.push({ name: 'homeRoute' })
+      router.push({ name: 'harboursRoute' })
     },
   },
 }
