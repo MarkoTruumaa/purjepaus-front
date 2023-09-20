@@ -105,7 +105,8 @@
         </div>
         <div class="col">
           <div v-if="isLoggedIn" class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
               {{
                 {
                   user: 'Sinu roll on Kasutaja',
@@ -131,13 +132,15 @@
           </div>
           <div style="margin-top: 15px">
             <button @click="addNewUser" type="button" class="btn btn-success">Loo uus kasutaja</button>
+            <button @click="moveToProfileView" type="button"
+                    class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
+              Tagasi
+            </button>
           </div>
-        </div>
         </div>
       </div>
     </div>
-
-
+  </div>
 
 
 </template>
@@ -153,6 +156,7 @@ import {
 import router from "@/router";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import AlertDanger from "@/components/AlertDanger.vue";
+import {HARBOUR_NAME_UNAVAILABLE, USERNAME_UNAVAILABLE} from "@/assets/script/ErrorCode";
 
 export default {
   name: 'CreateNewUser',
@@ -160,6 +164,7 @@ export default {
   data() {
     return {
       isLoggedIn: false,
+      isAdmin: false,
       userData: {
         username: '',
         password: '',
@@ -171,6 +176,10 @@ export default {
         contactAddress: '',
         contactIsCaptain: false,
       },
+      loginResponse: {
+        userId: 0,
+        roleName: '',
+      },
       passwordConfirmation: '',
       errorMessage: '',
       successMessage: ''
@@ -180,6 +189,19 @@ export default {
 
     checkLoginStatus() {
       this.isLoggedIn = sessionStorage.getItem('userId') !== null
+      if (sessionStorage.getItem('roleName') === 'admin') {
+        this.isAdmin = true
+      }
+    },
+
+    addNewUser() {
+      this.resetMessages()
+      if (this.mandatoryFieldsAreFilled()) {
+        this.userData.roleName === 'captain' ? this.userData.contactIsCaptain = true : false
+        this.sendAddNewUserRequest();
+      } else {
+        this.errorMessage = USER_INFO_UPDATE_ERROR;
+      }
     },
 
     mandatoryFieldsAreFilled() {
@@ -191,32 +213,79 @@ export default {
           this.userData.contactEmail.length > 0;
     },
 
-    addNewUser() {
+    sendAddNewUserRequest() {
+      this.$http
+          .post("user", this.userData)
+          .then((response) => {
+            this.successMessage = NEW_USER_CREATED
+            if (this.isAdmin) {
+              setTimeout(() => {
+                this.resetAllFields()
+              }, 2500);
+            } else {
+              setTimeout(() => {
+                this.sendLoginRequest()
+              }, 1500);
+            }
+          }).catch((error) => {
+        this.errorMessage = error.message;
+        this.handleErrorResponse()
+      })
+    },
 
-      if (!this.mandatoryFieldsAreFilled()) {
-        this.errorMessage = USER_INFO_UPDATE_ERROR;
+    sendLoginRequest() {
+      this.$http
+          .get('/login', {
+            params: {
+              username: this.userData.username,
+              password: this.userData.password,
+            },
+          })
+          .then((response) => {
+            this.loginResponse = response.data
+            this.handleSuccess();
+          })
+          .catch((error) => {
+            this.errorResponse = error.response.data
+            if (this.errorResponse.errorCode !== 111) {
+              router.push({name: 'errorRoute'})
+            }
+          })
+    },
+
+    handleErrorResponse() {
+      if (this.errorResponse.errorCode === USERNAME_UNAVAILABLE) {
+        this.errorMessage = this.errorResponse.message
       } else {
-        this.sendAddNewUserRequest();
+        router.push({name: 'errorRoute'})
       }
     },
 
-    sendAddNewUserRequest() {
-      this.$http.post("user", this.userData, {}).then((response) => {
-        if (response.status === 200) {
-          this.successMessage = NEW_USER_CREATED
-          setTimeout(() => {
-            router.push({name: 'loginRoute', replace: true})
-          }, 4500)
-        } else if (response.status === 403) {
-          this.errorMessage = USERNAME_ALREADY_EXISTS
-        }
-      }).catch((error) => {
-        this.errorMessage = error.message;
-      })
-    }
+    handleSuccess() {
+      sessionStorage.setItem('userId', this.loginResponse.userId)
+      sessionStorage.setItem('roleName', this.loginResponse.roleName)
+      this.$emit('event-update-nav-menu')
+      router.push({name: 'homeRoute'})
+    },
+
+    resetAllFields() {
+      this.userData = []
+      this.passwordConfirmation = ''
+      this.resetMessages()
+    },
+
+    moveToProfileView() {
+      router.push({name: 'profileRoute'})
+    },
+
+    resetMessages() {
+      this.successMessage = ''
+      this.errorMessage = ''
+    },
 
   },
   mounted() {
+    this.resetMessages()
     this.checkLoginStatus()
   }
 }
