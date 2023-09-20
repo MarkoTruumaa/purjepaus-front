@@ -108,7 +108,7 @@
         <div class="col col-6">
         </div>
         <div class="col">
-          <div class="btn-group">
+          <div v-if="!isLoggedIn" class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               {{
                 {
@@ -151,7 +151,6 @@
 
 import {
   NEW_USER_CREATED,
-  ROLE_NAME_NOT_SELECTED,
   USER_INFO_UPDATE_ERROR,
   USERNAME_ALREADY_EXISTS
 } from "@/assets/script/AlertMessage";
@@ -161,16 +160,17 @@ export default {
   name: 'CreateNewUser',
   data() {
     return {
+      isLoggedIn: false,
       userData: {
         username: '',
         password: '',
-        roleName: '',
+        roleName: 'user',
         contactFirstName: '',
         contactLastName: '',
         contactEmail: '',
         contactTelephone: '',
         contactAddress: '',
-        contactIsCaptain: true,
+        contactIsCaptain: false,
       },
       passwordConfirmation: '',
       errorMessage: '',
@@ -179,23 +179,24 @@ export default {
   },
   methods: {
 
+    checkLoginStatus() {
+      this.isLoggedIn = sessionStorage.getItem('userId') !== null
+    },
+
     mandatoryFieldsAreFilled() {
       return this.userData.username.length > 0 &&
+          this.userData.contactFirstName.length > 0 &&
+          this.userData.contactLastName.length > 0 &&
           this.userData.password.length > 0 &&
           this.passwordConfirmation.length > 0 &&
           this.userData.contactEmail.length > 0;
-    },
-
-    roleNameIsSelected() {
-      return this.userData.roleName.length > 0
     },
 
     addNewUser() {
 
       if (!this.mandatoryFieldsAreFilled()) {
         this.errorMessage = USER_INFO_UPDATE_ERROR;
-      } else if (!this.roleNameIsSelected()) {
-        this.errorMessage = ROLE_NAME_NOT_SELECTED;
+
       } else {
         this.sendAddNewUserRequest();
       }
@@ -211,14 +212,14 @@ export default {
         } else if (response.status === 403) {
           this.errorMessage = USERNAME_ALREADY_EXISTS
         }
-
       }).catch((error) => {
-
         this.errorMessage = error.message;
       })
     }
 
-
+  },
+  mounted() {
+    this.checkLoginStatus()
   }
 }
 </script>
