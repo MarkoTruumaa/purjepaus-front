@@ -40,7 +40,7 @@
         </button>
       </div>
       <div>
-        <button v-if="isView" @click="displayCreateNewUserView" type="button" class="btn btn-warning">
+        <button v-if="isView && isAdmin" @click="displayCreateNewUserView" type="button" class="btn btn-warning">
           Loo uus kasutaja
         </button>
       </div>
@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       isView: true,
+      isAdmin: false,
       errorMessage: '',
       successMessage: '',
       contactInfo: {
@@ -127,11 +128,18 @@ export default {
         this.isView = true
       }, 2500)
     },
+
+    checkUserRole() {
+      if (sessionStorage.getItem('roleName') === 'admin') {
+        this.isAdmin = true
+      }
+    },
   },
 
   mounted() {
     this.successMessage = ''
     this.getUserInfo()
+    this.checkUserRole()
   },
 }
 </script>
