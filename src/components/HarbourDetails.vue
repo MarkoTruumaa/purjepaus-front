@@ -1,7 +1,5 @@
 <template>
   <CaptainInfoModal ref="captainInfoModalRef" />
-  <BookingModal ref="bookingModalRef" />
-  <DeleteHarbourModal ref="deleteHarbourModalRef" />
   <div class="container p-4 glass-background">
     <div class="row justify-content-center" style="background-color: transparent">
       <h1>{{ harbourDetailedInfo.harbourName }}</h1>
@@ -115,29 +113,19 @@
           <button
             @click="goBack"
             type="button"
-            class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3"
+            class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
           >
             Tagasi sadamate juurde
           </button>
+          <button
+            @click="moveToEditHarbourPage"
+            type="button"
+            class="btn btn-dark btn-outline-light text-white shadow-sm rounded-0 mb-3 m-2"
+          >
+            Muuda
+          </button>
         </div>
       </div>
-    </div>
-
-    <div>
-      <button
-        @click="moveToEditHarbourPage"
-        type="button"
-        class="btn btn-dark btn-outline-light text-white shadow-sm rounded-0 m-2"
-      >
-        Muuda
-      </button>
-      <button
-        @click="openDeleteHarbourModal"
-        type="button"
-        class="btn btn-danger btn-outline-light text-white shadow-sm rounded-0 m-2"
-      >
-        Kustuta
-      </button>
     </div>
   </div>
 </template>
@@ -145,14 +133,11 @@
 <script>
 import router from '@/router'
 import CaptainInfoModal from '@/components/modal/CaptainInfoModal.vue'
-import BookingModal from '@/components/modal/BookingModal.vue'
-import DeleteHarbourModal from '@/components/modal/DeleteHarbourModal.vue'
-import { DELETE_MODAL } from '@/assets/script/ModalType'
 import HarbourPicture from '@/components/image/HarbourPicture.vue'
 
 export default {
   name: 'HarbourDetails',
-  components: { HarbourPicture, DeleteHarbourModal, BookingModal, CaptainInfoModal },
+  components: { HarbourPicture, CaptainInfoModal },
   emits: ['goBack'],
   props: {
     selectedHarbourId: Number,
@@ -214,12 +199,6 @@ export default {
         contactId: this.harbourDetailedInfo.contactId,
       })
     },
-    openDeleteHarbourModal() {
-      this.$refs.deleteHarbourModalRef.openModal({
-        harbourId: this.harbourDetailedInfo.harbourId,
-        DELETE_MODAL,
-      })
-    },
     goBack() {
       this.$emit('goBack')
     },
@@ -228,9 +207,6 @@ export default {
         name: 'editHarbourRoute',
         params: { id: this.selectedHarbourId },
       })
-    },
-    openBookingModal() {
-      this.$refs.bookingModalRef.openModal()
     },
   },
   beforeMount() {
