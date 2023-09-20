@@ -6,7 +6,9 @@
       </template>
       <template #body> Kas sa oled kindel, et soovid sadama kustutada? </template>
       <template #footer>
-        <button @click="deleteHarbourPage" type="button" class="btn btn-danger">Kustuta</button>
+        <button @click="deleteHarbourPage" type="button" class="btn btn-danger rounded-0">
+          Kustuta
+        </button>
       </template>
     </Modal>
   </div>
