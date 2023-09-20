@@ -224,14 +224,15 @@ import AlertSuccess from '@/components/AlertSuccess.vue'
 import AlertDanger from '@/components/AlertDanger.vue'
 import DeleteHarbourModal from '@/components/modal/DeleteHarbourModal.vue'
 import { HARBOUR_LOCATION_UPDATED, HARBOUR_LOCATION_ERROR } from '@/assets/script/AlertMessage'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'EditHarbourView',
   components: { AlertSuccess, AlertDanger, DeleteHarbourModal },
-  props: ['id'],
 
   data() {
     return {
+      harbourId: Number(useRoute().query.harbourId),
       isEdit: false,
       errorMessage: '',
       successMessage: '',
@@ -281,7 +282,7 @@ export default {
       this.$http
         .get('/harbour', {
           params: {
-            harbourId: this.id,
+            harbourId: this.harbourId,
           },
         })
         .then((response) => {
@@ -294,9 +295,9 @@ export default {
         })
     },
     openDeleteHarbourModal() {
-      this.$refs.deleteHarbourModalRef.openModal({
-        harbourId: this.id,
-      })
+      this.$refs.deleteHarbourModalRef.harbourId = this.harbourId
+      this.$refs.deleteHarbourModalRef.harbourName = this.harbourDetailedInfo.harbourName
+      this.$refs.deleteHarbourModalRef.$refs.modalRef.openModal()
     },
     getCountyInfo() {
       this.$http
@@ -345,7 +346,7 @@ export default {
       this.$http
         .put('/harbour', this.harbourDetailedInfo, {
           params: {
-            harbourId: this.id,
+            harbourId: this.harbourId,
           },
         })
         .then((response) => {

@@ -8,19 +8,6 @@ body {
     background-position: center center;
 }
 
-#purjepaus {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    background-image: url('../michael-held-HvIdCs2aU-k-unsplash.jpg') ;
-    background-size: cover;
-    background-attachment: local, scroll;
-}
-
-#purjepaus.createNewUserRoute, #purjepaus.loginRoute {
-    background-image: url('../lake-1915846_1920.jpg');
-}
-
 #app {
     display: flex;
     flex-direction: column;

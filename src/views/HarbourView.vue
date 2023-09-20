@@ -134,14 +134,12 @@
 import router from '@/router'
 import CaptainInfoModal from '@/components/modal/CaptainInfoModal.vue'
 import HarbourPicture from '@/components/image/HarbourPicture.vue'
+import { useRoute } from 'vue-router'
 
 export default {
-  name: 'HarbourDetails',
+  name: 'HarbourView',
   components: { HarbourPicture, CaptainInfoModal },
-  emits: ['goBack'],
-  props: {
-    selectedHarbourId: Number,
-  },
+
   computed: {
     getImageData() {
       return this.harbourDetailedInfo.pictures?.[0]?.pictureData || null
@@ -149,8 +147,8 @@ export default {
   },
   data() {
     return {
+      harbourId: Number(useRoute().query.harbourId),
       harbourDetailedInfo: {
-        harbourId: 0,
         locationAddress: '',
         locationLongitude: 0,
         locationLatitude: 0,
@@ -184,7 +182,7 @@ export default {
       this.$http
         .get('/harbour', {
           params: {
-            harbourId: this.selectedHarbourId,
+            harbourId: this.harbourId,
           },
         })
         .then((response) => {
@@ -203,10 +201,7 @@ export default {
       this.$emit('goBack')
     },
     moveToEditHarbourPage() {
-      router.push({
-        name: 'editHarbourRoute',
-        params: { id: this.selectedHarbourId },
-      })
+      router.push({ name: 'editHarbourRoute', query: { harbourId: this.harbourId } })
     },
   },
   beforeMount() {

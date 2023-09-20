@@ -15,7 +15,7 @@
         <tbody>
           <tr v-for="harbour in harboursMainInfo" :key="harbour.harbourId">
             <th scope="row">
-              <a href="javascript:void(0)" @click="openHarbourDetails(harbour.harbourId)">{{
+              <a href="javascript:void(0)" @click="navigateToHarbourView(harbour.harbourId)">{{
                 harbour.harbourName
               }}</a>
             </th>
@@ -55,8 +55,8 @@ export default {
   },
 
   methods: {
-    openHarbourDetails(harbourId) {
-      this.$emit('openHarbourDetails', harbourId)
+    navigateToHarbourView(harbourId) {
+      router.push({ name: 'harbourRoute', query: { harbourId: harbourId } })
     },
     moveToAddHarbourPage() {
       router.push({ name: 'addHarbourRoute' })
