@@ -1,5 +1,4 @@
 <template>
-  <div id="purjepaus" :class="route.name">
     <nav class="navbar navbar-transparent bg-transparent">
       <div class="container d-flex flex-row">
         <router-link to="/" class="navbar-brand p-0">
@@ -63,7 +62,6 @@
         <a class="text-dark text-dark fw-medium" href="./about">Purjepaus</a>
       </div>
     </footer>
-  </div>
 
 </template>
 
