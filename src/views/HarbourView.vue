@@ -5,13 +5,13 @@
       <div class="row justify-content-center" style="background-color: transparent">
         <h1>{{ harbourDetailedInfo.harbourName }}</h1>
         <div class="col-4 mb-1">
-          <HarbourPicture :picture-data-base64="getImageData" />
+          <HarbourPicture :image-data-base64="getImageData" />
           <br />
           <div>
             <button
               @click="openCaptainInfoModal"
               type="button"
-              class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3"
+              class="text-dark btn btn-outline-light shadow-sm rounded-0 mb-3"
             >
               Sadamakapteni info
             </button>
@@ -114,14 +114,14 @@
             <button
               @click="moveToHarboursPage"
               type="button"
-              class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
+              class="text-dark btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
             >
               Tagasi sadamate juurde
             </button>
             <button
               @click="moveToEditHarbourPage"
               type="button"
-              class="btn btn-dark btn-outline-light text-white shadow-sm rounded-0 mb-3 m-2"
+              class="btn btn-dark text-white shadow-sm rounded-0 mb-3 m-2"
             >
               Muuda
             </button>

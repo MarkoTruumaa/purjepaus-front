@@ -24,7 +24,7 @@
         <div class="modal-footer border-0 rounded-0">
           <button
             type="button"
-            class="btn btn-secondary btn-outline-light text-white shadow-sm rounded-0"
+            class="btn btn-secondary text-white shadow-sm rounded-0"
             @click="closeModal"
           >
             {{ closeButtonName }}
