@@ -7,11 +7,6 @@
           @open-harbour-details="openSelectedHarbourDetails"
           :harbours-main-info="harboursMainInfo"
         />
-        <HarbourDetails
-          v-if="showHarbourView"
-          @go-back="showTableView"
-          :selected-harbour-id="selectedHarbourId"
-        />
       </div>
     </div>
   </div>
@@ -20,11 +15,10 @@
 <script>
 import router from '@/router'
 import HarboursTable from '@/components/HarboursTable.vue'
-import HarbourDetails from '@/components/HarbourDetails.vue'
 
 export default {
   name: 'HarboursView',
-  components: { HarbourDetails, HarboursTable },
+  components: { HarboursTable },
   props: ['id'],
   data() {
     return {
