@@ -28,6 +28,7 @@ body {
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 /* Kui modaal on nähtav, rakenda järgmised stiilid */
 .modal.fade.show.d-block {
     background-color: rgba(0, 0, 0, 0.38); /* Tausta värv koos läbipaistvusega */

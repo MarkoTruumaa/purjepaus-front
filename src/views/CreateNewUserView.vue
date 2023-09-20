@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <div class="margin mt-3">
-      <h1>Loo uus kasutaja</h1>
-    </div>
-    <div v-if="successMessage" class="alert-success">
-      <div class="text-bg-success p-3">{{ successMessage }}</div>
-    </div>
-    <div v-if="errorMessage" class="alert-warning">
-      <div class="text-bg-danger p-3">{{ errorMessage }}</div>
+  <div class="container p-4 glass-background">
+    <h1>Loo uus kasutaja</h1>
+    <div class="col col-4">
+      <AlertDanger :alert-message="errorMessage"/>
+      <AlertSuccess :alert-message="successMessage"/>
     </div>
     <div class="mb-3">
       <div class="row">
@@ -108,7 +104,7 @@
         <div class="col col-6">
         </div>
         <div class="col">
-          <div v-if="!isLoggedIn" class="btn-group">
+          <div v-if="isLoggedIn" class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               {{
                 {
@@ -155,9 +151,12 @@ import {
   USERNAME_ALREADY_EXISTS
 } from "@/assets/script/AlertMessage";
 import router from "@/router";
+import AlertSuccess from "@/components/AlertSuccess.vue";
+import AlertDanger from "@/components/AlertDanger.vue";
 
 export default {
   name: 'CreateNewUser',
+  components: {AlertDanger, AlertSuccess},
   data() {
     return {
       isLoggedIn: false,
@@ -196,7 +195,6 @@ export default {
 
       if (!this.mandatoryFieldsAreFilled()) {
         this.errorMessage = USER_INFO_UPDATE_ERROR;
-
       } else {
         this.sendAddNewUserRequest();
       }
@@ -251,16 +249,11 @@ input {
 
 .col {
   position: relative;
-  left: 550px;
+  left: 275px;
 }
 
 .btn {
 
-}
-
-#purjepaus {
-  background-image: url("../assets/lake-1915846_1920.jpg");
-  background-size: cover;
 }
 
 </style>
