@@ -40,6 +40,12 @@
         </button>
       </div>
       <div>
+        <button v-if="!isView" @click="back" type="button"
+                class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
+          Tagasi
+        </button>
+      </div>
+      <div>
         <button v-if="isView && isAdmin" @click="displayCreateNewUserView" type="button" class="btn btn-warning">
           Loo uus kasutaja
         </button>
@@ -133,6 +139,10 @@ export default {
       if (sessionStorage.getItem('roleName') === 'admin') {
         this.isAdmin = true
       }
+    },
+    back() {
+      this.isView = true
+      this.$refs.profileInfoUpdateRef.isEdit = false
     },
   },
 

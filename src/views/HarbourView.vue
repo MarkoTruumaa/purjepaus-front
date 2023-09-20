@@ -1,16 +1,16 @@
 <template>
-  <CaptainInfoModal ref="captainInfoModalRef" />
+  <CaptainInfoModal ref="captainInfoModalRef"/>
   <div class="container p-4 glass-background">
     <div class="row justify-content-center" style="background-color: transparent">
       <h1>{{ harbourDetailedInfo.harbourName }}</h1>
       <div class="col-4 mb-1">
-        <HarbourPicture :picture-data-base64="getImageData" />
-        <br />
+        <HarbourPicture :picture-data-base64="getImageData"/>
+        <br/>
         <div>
           <button
-            @click="openCaptainInfoModal"
-            type="button"
-            class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3"
+              @click="openCaptainInfoModal"
+              type="button"
+              class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3"
           >
             Sadamakapteni info
           </button>
@@ -21,7 +21,8 @@
           <li class="list-group-item bg-transparent border-0 rounded-0">
             <div class="ms-2 me-auto">
               <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'location-dot']" />Aadress
+                <font-awesome-icon :icon="['fas', 'location-dot']"/>
+                Aadress
               </div>
               {{ harbourDetailedInfo.locationAddress }}
             </div>
@@ -29,7 +30,7 @@
           <li class="list-group-item bg-transparent border-0 rounded-0">
             <div class="ms-2 me-auto">
               <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'map-location-dot']" />
+                <font-awesome-icon :icon="['fas', 'map-location-dot']"/>
                 Koordinaadid
               </div>
               {{ harbourDetailedInfo.locationLongitude }},
@@ -39,7 +40,7 @@
           <li class="list-group-item bg-transparent border-0 rounded-0">
             <div class="ms-2 me-auto">
               <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'arrow-down']" />
+                <font-awesome-icon :icon="['fas', 'arrow-down']"/>
                 Sissesõidu väikseim sügavus
               </div>
               {{ harbourDetailedInfo.minDepth }} meetrit
@@ -48,7 +49,7 @@
           <li class="list-group-item bg-transparent border-0 rounded-0">
             <div class="ms-2 me-auto">
               <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'arrows-left-right']" />
+                <font-awesome-icon :icon="['fas', 'arrows-left-right']"/>
                 Sissesõidu väikseim laius
               </div>
               {{ harbourDetailedInfo.minWidth }} meetrit
@@ -57,7 +58,7 @@
           <li class="list-group-item bg-transparent border-0 rounded-0">
             <div class="ms-2 me-auto">
               <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'anchor']" />
+                <font-awesome-icon :icon="['fas', 'anchor']"/>
                 Kohtade arv sadamas
               </div>
               {{ harbourDetailedInfo.spots }}
@@ -82,7 +83,7 @@
           <li class="list-group-item bg-transparent border-0 rounded-0">
             <div class="ms-2 me-auto">
               <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'phone']" />
+                <font-awesome-icon :icon="['fas', 'phone']"/>
                 Kontakttelefon
               </div>
               {{ harbourDetailedInfo.phoneNumber }}
@@ -91,7 +92,7 @@
           <li class="list-group-item bg-transparent border-0 rounded-0">
             <div class="ms-2 me-auto">
               <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'house']" />
+                <font-awesome-icon :icon="['fas', 'house']"/>
                 <a :href="'https://' + harbourDetailedInfo.homepage" class="text-light">
                   {{ harbourDetailedInfo.homepage }}</a
                 >
@@ -102,7 +103,7 @@
             <div class="ms-2 me-auto">
               <div class="fw-bold">Lisavõimalused</div>
               <div v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
-                <font-awesome-icon :icon="['fas', 'check']" />
+                <font-awesome-icon :icon="['fas', 'check']"/>
                 {{ extra.extraName }}
               </div>
             </div>
@@ -111,16 +112,17 @@
 
         <div>
           <button
-            @click="moveToHarboursPage"
-            type="button"
-            class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
+              @click="moveToHarboursPage"
+              type="button"
+              class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
           >
             Tagasi sadamate juurde
           </button>
           <button
-            @click="moveToEditHarbourPage"
-            type="button"
-            class="btn btn-dark btn-outline-light text-white shadow-sm rounded-0 mb-3 m-2"
+              v-if="isAdmin"
+              @click="moveToEditHarbourPage"
+              type="button"
+              class="btn btn-dark btn-outline-light text-white shadow-sm rounded-0 mb-3 m-2"
           >
             Muuda
           </button>
@@ -134,11 +136,11 @@
 import router from '@/router'
 import CaptainInfoModal from '@/components/modal/CaptainInfoModal.vue'
 import HarbourPicture from '@/components/image/HarbourPicture.vue'
-import { useRoute } from 'vue-router'
+import {useRoute} from 'vue-router'
 
 export default {
   name: 'HarbourView',
-  components: { HarbourPicture, CaptainInfoModal },
+  components: {HarbourPicture, CaptainInfoModal},
 
   computed: {
     getImageData() {
@@ -147,6 +149,7 @@ export default {
   },
   data() {
     return {
+      isAdmin: false,
       harbourId: Number(useRoute().query.harbourId),
       harbourDetailedInfo: {
         locationAddress: '',
@@ -180,17 +183,17 @@ export default {
   methods: {
     getHarbourDetailedInfo() {
       this.$http
-        .get('/harbour', {
-          params: {
-            harbourId: this.harbourId,
-          },
-        })
-        .then((response) => {
-          this.harbourDetailedInfo = response.data
-        })
-        .catch((error) => {
-          this.errorResponse = error.response.data
-        })
+          .get('/harbour', {
+            params: {
+              harbourId: this.harbourId,
+            },
+          })
+          .then((response) => {
+            this.harbourDetailedInfo = response.data
+          })
+          .catch((error) => {
+            this.errorResponse = error.response.data
+          })
     },
     openCaptainInfoModal() {
       this.$refs.captainInfoModalRef.openModal({
@@ -198,14 +201,21 @@ export default {
       })
     },
     moveToHarboursPage() {
-      router.push({ name: 'harboursRoute' })
+      router.push({name: 'harboursRoute'})
     },
     moveToEditHarbourPage() {
-      router.push({ name: 'editHarbourRoute', query: { harbourId: this.harbourId } })
+      router.push({name: 'editHarbourRoute', query: {harbourId: this.harbourId}})
+    },
+
+    checkUserRole() {
+      if (sessionStorage.getItem('roleName') === 'admin') {
+        this.isAdmin = true
+      }
     },
   },
   beforeMount() {
     this.getHarbourDetailedInfo()
+    this.checkUserRole()
   },
 }
 </script>

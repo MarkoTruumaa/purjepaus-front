@@ -27,7 +27,7 @@
         </tbody>
       </table>
       <div>
-        <button @click="moveToAddHarbourPage" type="button" class="btn btn-primary rounded-0 mb-3">
+        <button v-if="isAdmin" @click="moveToAddHarbourPage" type="button" class="btn btn-primary rounded-0 mb-3">
           Lisa uus sadam
         </button>
         <br />
@@ -53,6 +53,11 @@ export default {
   props: {
     harboursMainInfo: {},
   },
+  data() {
+    return {
+      isAdmin: false
+    }
+  },
 
   methods: {
     navigateToHarbourView(harbourId) {
@@ -64,6 +69,15 @@ export default {
     moveToSearchHarbourPage() {
       router.push({ name: 'searchRoute' })
     },
+
+    checkUserRole() {
+      if (sessionStorage.getItem('roleName') === 'admin') {
+        this.isAdmin = true
+      }
+    }
   },
+  mounted() {
+    this.checkUserRole()
+  }
 }
 </script>
