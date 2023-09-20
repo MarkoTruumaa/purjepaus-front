@@ -111,7 +111,7 @@
 
         <div>
           <button
-            @click="goBack"
+            @click="moveToHarboursPage"
             type="button"
             class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
           >
@@ -197,8 +197,8 @@ export default {
         contactId: this.harbourDetailedInfo.contactId,
       })
     },
-    goBack() {
-      this.$emit('goBack')
+    moveToHarboursPage() {
+      router.push({ name: 'harboursRoute' })
     },
     moveToEditHarbourPage() {
       router.push({ name: 'editHarbourRoute', query: { harbourId: this.harbourId } })
