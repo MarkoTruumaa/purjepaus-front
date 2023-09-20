@@ -51,7 +51,7 @@
             <h6 class="card-subtitle mb-2 text-body-secondary">
               {{ selectedHarbour.locationLatitude }}, {{ selectedHarbour.locationLongitude }}
             </h6>
-            <router-link :to="'/harbours/' + selectedHarbour.harbourId"
+            <router-link :to="'/harbour?harbourId=' + selectedHarbour.harbourId"
               >Lisainfo sadama kohta</router-link
             >
           </div>
