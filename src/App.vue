@@ -1,74 +1,78 @@
 <template>
-  <div id="purjepaus" :class="route.name">
   <nav class="navbar navbar-transparent bg-transparent">
     <div class="container d-flex flex-row">
       <router-link to="/" class="navbar-brand p-0">
-        <img src="./assets/logo.png" style="height: 80px;  mix-blend-mode: multiply" alt="logo">
+        <img src="./assets/logo.png" style="height: 80px; mix-blend-mode: multiply" alt="logo" />
       </router-link>
       <div class="position-relative flex-fill">
         <div class="position-absolute w-100 d-flex justify-content-evenly" style="bottom: -20px">
-          <router-link class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
-                       tag="button" to="/harbours">Sadamad
+          <router-link
+            class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
+            tag="button"
+            to="/harbours"
+            >Sadamad
           </router-link>
-          <router-link class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
-                       tag="button" to="/search">Täpsem otsing
+          <router-link
+            class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
+            tag="button"
+            to="/search"
+            >Täpsem otsing
           </router-link>
-          <router-link class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
-                       tag="button" to="/about">Meist
+          <router-link
+            class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
+            tag="button"
+            to="/about"
+            >Meist
           </router-link>
-          <router-link v-if="!isLoggedIn" class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
-                       tag="button" to="/login">Sisse
+          <router-link
+            v-if="!isLoggedIn"
+            class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
+            tag="button"
+            to="/login"
+            >Sisse
           </router-link>
-          <router-link v-if="isLoggedIn" class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0" to="/profile">
-            <font-awesome-icon :icon="['fas', 'user']"/>
+          <router-link
+            v-if="isLoggedIn"
+            class="text-dark fw-bold btn btn-outline-light shadow-sm rounded-0"
+            to="/profile"
+          >
+            <font-awesome-icon :icon="['fas', 'user']" />
           </router-link>
         </div>
       </div>
-
     </div>
   </nav>
-  <router-view @event-update-nav-menu="updateNavMenu" class="p-4 flex-fill"/>
+  <router-view @event-update-nav-menu="updateNavMenu" class="flex-fill" />
   <footer class="text-center text-sm-start">
-    <div class="text-center text-dark fw-medium p-3 " style="
-background: linear-gradient(0deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);">
+    <div
+      class="text-center text-dark fw-medium p-3"
+      style="
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+      "
+    >
       © 2023 Copyright:
       <a class="text-dark text-dark fw-medium" href="./about">Purjepaus</a>
-
     </div>
-
   </footer>
-  </div>
 </template>
 
-
 <script>
-
-import {ADMIN} from "@/assets/script/Role";
-import router from "@/router";
-import {useRoute} from "vue-router";
-
 export default {
   data() {
     return {
       isLoggedIn: false,
-
-
     }
   },
-  computed: { route: () => useRoute() },
+
   methods: {
     updateNavMenu() {
       this.isLoggedIn = sessionStorage.getItem('userId') !== null
-
-    }
-  }
+    },
+  },
 }
-
 </script>
 
-
-<style scoped>
-
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -77,13 +81,7 @@ export default {
   color: #2c3e50;
 }
 
-footer {
-  margin-top: 30px;
-}
-
 a.router-link-exact-active {
   color: rgba(7, 40, 84, 0.8) !important;
 }
-
-
 </style>

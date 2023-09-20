@@ -1,47 +1,57 @@
 <template>
-  <div>
-  <h1>Kasutaja {{ contactInfo.username }} profiil</h1>
-  <div class="align-content-center">
-    <div class="row justify-content-center">
-      <div class="col col-4">
-        <AlertDanger :alert-message="errorMessage"/>
-        <AlertSuccess :alert-message="successMessage"/>
+  <div class="container p-4 glass-background">
+    <h1>Kasutaja {{ contactInfo.username }} profiil</h1>
+    <div class="align-content-center">
+      <div class="row justify-content-center">
+        <div class="col col-4">
+          <AlertDanger :alert-message="errorMessage" />
+          <AlertSuccess :alert-message="successMessage" />
+        </div>
+      </div>
+      <div class="card card-w-margin">
+        <ProfileInfo v-if="isView" :contact-info="contactInfo" ref="profileInfoRef" />
+        <ProfileInfoUpdate
+          @event-update-error-message="displayMessage"
+          @event-update-profile-view="displayProfileInfoComponent"
+          ref="profileInfoUpdateRef"
+        />
       </div>
     </div>
-    <div class="card card-w-margin">
-      <ProfileInfo v-if="isView" :contact-info="contactInfo" ref="profileInfoRef"/>
-      <ProfileInfoUpdate @event-update-error-message="displayMessage"
-                         @event-update-profile-view="displayProfileInfoComponent"
-                         ref="profileInfoUpdateRef"/>
-    </div>
-  </div>
 
-  <div class="text-center">
-    <button v-if="isView" @click="displayProfileInfoUpdateComponent" type="button" class="btn btn-warning">Muuda
-      andmeid
-    </button>
-    <div>
-      <div class="mb-1">
-        <button v-if="isView" @click="" type="button" class="btn btn-danger">Muuda parooli</button>
+    <div class="text-center">
+      <button
+        v-if="isView"
+        @click="displayProfileInfoUpdateComponent"
+        type="button"
+        class="btn btn-warning"
+      >
+        Muuda andmeid
+      </button>
+      <div>
+        <div class="mb-1">
+          <button v-if="isView" @click="" type="button" class="btn btn-danger">
+            Muuda parooli
+          </button>
+        </div>
       </div>
+      <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning">
+        Uuenda
+      </button>
     </div>
-    <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning">Uuenda</button>
-  </div>
   </div>
 </template>
 
-
 <script>
-import router from "@/router";
-import ProfileInfo from "@/components/profile/ProfileInfo.vue";
-import ProfileInfoUpdate from "@/components/profile/ProfileInfoUpdate.vue";
-import AlertDanger from "@/components/AlertDanger.vue";
-import {USER_INFO_UPDATE_ERROR, USER_INFO_UPDATED} from "@/assets/script/AlertMessage";
-import AlertSuccess from "@/components/AlertSuccess.vue";
+import router from '@/router'
+import ProfileInfo from '@/components/profile/ProfileInfo.vue'
+import ProfileInfoUpdate from '@/components/profile/ProfileInfoUpdate.vue'
+import AlertDanger from '@/components/AlertDanger.vue'
+import { USER_INFO_UPDATE_ERROR, USER_INFO_UPDATED } from '@/assets/script/AlertMessage'
+import AlertSuccess from '@/components/AlertSuccess.vue'
 
 export default {
   name: 'ProfileView',
-  components: {AlertSuccess, AlertDanger, ProfileInfoUpdate, ProfileInfo},
+  components: { AlertSuccess, AlertDanger, ProfileInfoUpdate, ProfileInfo },
 
   data() {
     return {
@@ -54,24 +64,25 @@ export default {
         contactLastName: '',
         contactEmail: '',
         contactTelephone: '',
-        contactAddress: ''
-      }
+        contactAddress: '',
+      },
     }
   },
 
-
   methods: {
     getUserInfo() {
-      this.$http.get("/user", {
-            params: {
-              userId: sessionStorage.getItem('userId'),
-            }
-          }
-      ).then(response => {
-        this.contactInfo = response.data
-      }).catch(error => {
-        router.push({name: 'errorRoute'})
-      })
+      this.$http
+        .get('/user', {
+          params: {
+            userId: sessionStorage.getItem('userId'),
+          },
+        })
+        .then((response) => {
+          this.contactInfo = response.data
+        })
+        .catch((error) => {
+          router.push({ name: 'errorRoute' })
+        })
     },
 
     updateUserInfo() {
@@ -87,7 +98,7 @@ export default {
     },
 
     displayMessage() {
-      this.errorMessage = USER_INFO_UPDATE_ERROR;
+      this.errorMessage = USER_INFO_UPDATE_ERROR
     },
 
     displayProfileInfoComponent() {
@@ -99,16 +110,13 @@ export default {
         this.isView = true
       }, 2500)
     },
-
   },
 
   mounted() {
     this.successMessage = ''
     this.getUserInfo()
-  }
-
+  },
 }
-
 </script>
 
 <style>

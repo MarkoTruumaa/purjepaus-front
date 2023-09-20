@@ -1,12 +1,13 @@
 <template>
-  <img v-if="pictureDataBase64 === ''" src="../sea-boat.jpg" class="img-thumbnail img-fluid mb-4"/>
-  <img v-else :src="pictureDataBase64" class="img-thumbnail">
+  <img v-if="!imageDataBase64" src="../../assets/sea-boat.jpg" class="img-fluid mb-4" />
+  <img v-else :src="imageDataBase64" class="img-fluid mb-4" />
 </template>
 <script>
 export default {
   name: 'HarbourPicture',
   props: {
-    pictureDataBase64: String
-  }
+    imageDataBase64: String,
+  },
 }
 </script>
+<style></style>
