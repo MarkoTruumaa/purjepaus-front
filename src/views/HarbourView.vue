@@ -103,8 +103,10 @@
             <div class="ms-2 me-auto">
               <div class="fw-bold">Lisavõimalused</div>
               <div v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
-                <font-awesome-icon :icon="['fas', 'check']"/>
-                {{ extra.extraName }}
+                <p v-if="extra.isAvailable">
+                  <font-awesome-icon :icon="['fas', 'check']"/>
+                  {{ extra.extraName }}
+                </p>
               </div>
             </div>
           </li>
