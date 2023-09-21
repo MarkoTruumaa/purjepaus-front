@@ -49,6 +49,9 @@
             </div>
           </div>
         </div>
+        <div v-if="true" class="row">
+          <HarboursTable :harbours-main-info="harboursMainInfo"/>
+        </div>
       </div>
     </div>
   </div>
@@ -56,12 +59,14 @@
 
 <script>
 import router from '@/router'
+import HarboursTable from "@/components/HarboursTable.vue";
 
 export default {
   name: 'SearchView',
+  components: {HarboursTable},
   computed: {
     numbers() {
-      return Array.from({length: 10}, (_, index) => index + 0.5)
+      return Array.from({length: 10}, (_, index) => index + 0.3)
     },
   },
   data() {
@@ -129,7 +134,6 @@ export default {
       this.$http.post("/harbours/search", this.searchInfo
       ).then(response => {
         this.harboursMainInfo = response.data
-
       }).catch(error => {
         router.push({name: 'errorRoute'})
       })

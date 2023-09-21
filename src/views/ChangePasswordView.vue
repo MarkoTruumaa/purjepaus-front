@@ -20,7 +20,7 @@
                 </label>
               </div>
               <div class="col">
-                <input v-model="oldPassword" type="text" class="form-control" id="Vana parool">
+                <input v-model="confirmOldPassword" type="text" class="form-control" id="Vana parool">
               </div>
             </div>
           </div>
@@ -32,7 +32,7 @@
                 </label>
               </div>
               <div class="col">
-                <input v-model="userData.newPassword" type="text" class="form-control" id="Uus parool">
+                <input v-model="newPassword" type="text" class="form-control" id="Uus parool">
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
                 </label>
               </div>
               <div class="col">
-                <input v-model="confirmPassword" type="text" class="form-control" id="Kinnita uus parool">
+                <input v-model="confirmNewPassword" type="text" class="form-control" id="Kinnita uus parool">
               </div>
             </div>
           </div>
@@ -66,7 +66,11 @@
 
 <script>
 
-import {USER_INFO_UPDATE_ERROR, USER_PASSWORD_UPDATED} from "@/assets/script/AlertMessage";
+import {
+  USER_INFO_UPDATE_ERROR, USER_NEW_PASSWORD_UPDATED_ERROR,
+  USER_OLD_PASSWORD_UPDATED_ERROR,
+  USER_PASSWORD_UPDATED
+} from "@/assets/script/AlertMessage";
 import router from "@/router";
 import AlertDanger from '@/components/AlertDanger.vue'
 import AlertSuccess from '@/components/AlertSuccess.vue'
@@ -76,11 +80,11 @@ export default {
   components: {AlertSuccess, AlertDanger},
   data() {
     return {
-      userData: {
-        userId: null,
-        newPassword: ''
-      },
-      confirmPassword: '',
+      userId: '',
+      oldPassword: '',
+      newPassword: '',
+      confirmOldPassword: '',
+      confirmNewPassword: '',
       errorMessage: '',
       successMessage: ''
     }
@@ -88,32 +92,54 @@ export default {
 
   methods: {
     mandatoryFieldsAreFilled() {
-      const userId = sessionStorage.getItem('userId')
-      return userId > 0 &&
-          this.userData.newPassword.length > 0 &&
-          this.confirmPassword > 0
+      return this.userId > 0 &&
+          this.confirmOldPassword.length > 0 &&
+          this.confirmNewPassword.length > 0 && this.newPassword.length > 0
+    },
+
+    differentOldPassword() {
+      return this.oldPassword !== this.confirmOldPassword
+    },
+
+    differentNewPassword() {
+      return this.newPassword !== this.confirmNewPassword
     },
 
     handlePasswordUpdateRequest() {
       if (!this.mandatoryFieldsAreFilled()) {
         this.errorMessage = USER_INFO_UPDATE_ERROR
       } else {
-        this.updateUserPassword()
+        this.differentOldPassword() ? this.errorMessage = USER_OLD_PASSWORD_UPDATED_ERROR : this.differentNewPassword() ?
+            this.errorMessage = USER_NEW_PASSWORD_UPDATED_ERROR : this.updateUserPassword()
       }
 
     },
 
-    updateUserPassword() {
-      const patchData = {
-        userId: Number(sessionStorage.getItem('userId')),
-        newPassword: this.userData.newPassword
-      }
-      this.$http.patch('user/password', patchData, {
-        params: patchData
-      }).then(response => {
-        this.successMessage = USER_PASSWORD_UPDATED
-        setTimeout(() => {router.push({name: 'loginRoute'})}, 1500)
+    getOldPassword() {
+      this.$http.get("/user/password", {
+            params: {
+              userId: this.userId = Number(sessionStorage.getItem('userId')),
+            }
+          }
+      ).then(response => {
+        this.oldPassword = response.data
+      }).catch(error => {
+        router.push({name: 'errorRoute'})
+      })
+    },
 
+    updateUserPassword() {
+      this.$http.patch("/user/password", null, {
+            params: {
+              userId: this.userId,
+              newPassword: this.newPassword
+            }
+          }
+      ).then(response => {
+        this.successMessage = USER_PASSWORD_UPDATED
+        setTimeout(() => {
+          router.push({name: 'profileRoute'})
+        }, 1500)
       }).catch(error => {
         router.push({name: 'errorRoute'})
       })
@@ -122,6 +148,10 @@ export default {
     back() {
       router.push({name: 'profileRoute'})
     }
+  },
+
+  mounted() {
+    this.getOldPassword()
   }
 }
 
