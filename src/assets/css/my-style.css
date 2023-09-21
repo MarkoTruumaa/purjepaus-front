@@ -31,7 +31,7 @@ body {
 
 /* Kui modaal on nähtav, rakenda järgmised stiilid */
 .modal.fade.show.d-block {
-    background-color: rgba(0, 0, 0, 0.38); /* Tausta värv koos läbipaistvusega */
+    background-color: rgba(0, 0, 0, 0.70); /* Tausta värv koos läbipaistvusega */
     position: fixed; /* Positsiooni tüüp on fikseeritud */
     z-index: 1050; /* Z-indeks määrab modaalakna kihi järjekorra */
     left: 0; /* Vasak paigutus on null */
@@ -44,11 +44,23 @@ body {
 
 /* Rakenda järgmised stiilid modaalakna sisule */
 .modal-dialog {
-    background: black;
-    font-palette: light;
     position: fixed; /* Positsiooni tüüp on fikseeritud */
     top: 10%; /* Ülemine paigutus on 10% */
     left: 40%; /* Vasak paigutus on 50% */
     transform: translateX(-50%); /* Teisendab X-telje piki -50% võrra */
+
+}
+.modal-content {/* From https://css.glass */
+    background: rgba(82, 118, 167, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(14.2px);
+    -webkit-backdrop-filter: blur(14.2px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #cbcdd0;
 
 }

@@ -101,33 +101,33 @@
             <h4>Kontaktandmed</h4>
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Muuda aadressi: </span>
+            <span class="input-group-text" id="basic-addon1">Lisa aadress: </span>
             <input v-model="harbourDetailedInfo.locationAddress" type="text" class="form-control" />
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Muuda telefoninumber: </span>
+            <span class="input-group-text" id="basic-addon1">Lisa telefoninumber: </span>
             <input v-model="harbourDetailedInfo.phoneNumber" type="text" class="form-control" />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"
-              >Muuda navigatsiooniperioodi algus:
+              >Lisa navigatsiooniperioodi algus:
             </span>
             <input v-model="harbourDetailedInfo.navigationStart" type="date" class="form-control" />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"
-              >Muuda navigatsiooniperioodi lõpp:
+              >Lisa navigatsiooniperioodi lõpp:
             </span>
             <input v-model="harbourDetailedInfo.navigationEnd" type="date" class="form-control" />
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Muuda/lisa sadama koduleht: </span>
+            <span class="input-group-text" id="basic-addon1">Lisa sadama koduleht: </span>
             <input v-model="harbourDetailedInfo.homepage" type="text" class="form-control" />
           </div>
         </div>
         <div>
           <div class="input-group mb-3">
-            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">
+            <button class="btn btn-secondary" type="button" id="inputGroupFileAddon03">
               Sadama pildi lisamine
             </button>
             <input

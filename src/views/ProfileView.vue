@@ -4,49 +4,51 @@
     <div class="align-content-center">
       <div class="row justify-content-center">
         <div class="col col-4">
-          <AlertDanger :alert-message="errorMessage"/>
-          <AlertSuccess :alert-message="successMessage"/>
+          <AlertDanger :alert-message="errorMessage" />
+          <AlertSuccess :alert-message="successMessage" />
         </div>
       </div>
       <div class="card card-w-margin">
-        <ProfileInfo v-if="isView" :contact-info="contactInfo" ref="profileInfoRef"/>
+        <ProfileInfo v-if="isView" :contact-info="contactInfo" ref="profileInfoRef" />
         <ProfileInfoUpdate
-            @event-update-error-message="displayMessage"
-            @event-update-profile-view="displayProfileInfoComponent"
-            ref="profileInfoUpdateRef"
+          @event-update-error-message="displayMessage"
+          @event-update-profile-view="displayProfileInfoComponent"
+          ref="profileInfoUpdateRef"
         />
       </div>
     </div>
 
     <div class="text-center">
+      <div class="mb-3">
       <button
-          v-if="isView"
-          @click="displayProfileInfoUpdateComponent"
-          type="button"
-          class="btn btn-warning"
-      >
+        v-if="isView"
+        @click="displayProfileInfoUpdateComponent"
+        type="button" class="btn btn-secondary rounded-0">
         Muuda andmeid
       </button>
+      </div>
       <div>
-        <div class="mb-1">
-          <button v-if="isView" @click="displayChangePasswordView" type="button" class="btn btn-danger">
+        <div class="mb-2">
+          <button v-if="isView" @click="displayChangePasswordView" type="button" class="btn btn-secondary rounded-0">
             Muuda parooli
           </button>
         </div>
       </div>
       <div>
-        <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning">
+        <div class="mb-3">
+        <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-secondary rounded-0">
           Uuenda
         </button>
+        </div>
       </div>
       <div>
         <button v-if="!isView" @click="back" type="button"
-                class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
+                class="btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
           Tagasi
         </button>
       </div>
       <div>
-        <button v-if="isView && isAdmin" @click="displayCreateNewUserView" type="button" class="btn btn-warning">
+        <button v-if="isView && isAdmin" @click="displayCreateNewUserView" type="button" class="btn btn-secondary rounded-0">
           Loo uus kasutaja
         </button>
       </div>
@@ -98,17 +100,17 @@ export default {
 
     getUserInfo() {
       this.$http
-          .get('/user', {
-            params: {
-              userId: sessionStorage.getItem('userId'),
-            },
-          })
-          .then((response) => {
-            this.contactInfo = response.data
-          })
-          .catch((error) => {
-            router.push({name: 'errorRoute'})
-          })
+        .get('/user', {
+          params: {
+            userId: sessionStorage.getItem('userId'),
+          },
+        })
+        .then((response) => {
+          this.contactInfo = response.data
+        })
+        .catch((error) => {
+          router.push({ name: 'errorRoute' })
+        })
     },
 
     displayCreateNewUserView() {
@@ -164,7 +166,12 @@ export default {
 .card-w-margin {
   width: 18rem;
   margin: auto;
-  margin-bottom: 3em;
-  margin-top: 3em;
+  margin-bottom: 1em;
+  margin-top: 2em;
+}
+
+button {
+  margin: auto;
+
 }
 </style>

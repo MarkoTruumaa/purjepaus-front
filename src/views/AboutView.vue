@@ -1,5 +1,5 @@
 <template>
-  <div class="container p-4 glass-background">
+  <div class="container p-2 glass-background">
     <div class="margin mt-4">
       <h1>Meist</h1>
     </div>
@@ -30,20 +30,42 @@
           <p>Sinu Purjepaus</p>
         </div>
       </div>
+      <div>
+        <div class="margin-top: 20px">
+          <button @click="moveToHomeView" type="button"
+                  class="btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
+            Tagasi
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: 'AboutView',
+  methods: {
+    moveToHomeView() {
+      router.push({name: 'homeRoute'})
+    }
+
+  }
 }
 </script>
 
 <style scoped>
 .card {
-  top: 25px;
-  left: 42%;
+  top: 3px;
+  left: 37%;
   width: 350px;
+}
+
+header {
+  top: 25px;
+  left: 20%;
+  width: 30px;
 }
 </style>

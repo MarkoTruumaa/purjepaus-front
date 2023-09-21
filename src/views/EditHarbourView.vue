@@ -194,7 +194,7 @@
                   type="button"
                   class="btn btn-primary rounded-0"
                 >
-                  Tagasi sadamate juurde
+                  Tagasi sadama juurde
                 </button>
               </div>
               <div class="col">

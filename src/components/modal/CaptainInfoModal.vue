@@ -2,7 +2,7 @@
   <div>
     <Modal close-button-name="Sulge" ref="modalRef">
       <template #header>
-        <h4>Selle sadama kapten on:</h4>
+        <h5>Selle sadama kapten:</h5>
       </template>
       <template #body>
         <div>
