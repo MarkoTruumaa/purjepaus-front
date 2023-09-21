@@ -53,11 +53,6 @@
         />
       </div>
     </div>
-    <div v-if="isEdit">
-      <button @click="goBackToProfile" type="button" class="btn btn-primary rounded-0 mb-3">
-        Tagasi profiili juurde
-      </button>
-    </div>
   </div>
 </template>
 <script>
@@ -115,7 +110,7 @@ export default {
     },
 
     goBackToProfile() {
-      sessionStorage.setItem('userId', this.userId)
+      sessionStorage.getItem('userId', this.userId)
       router.push({ name: 'profileRoute' })
     },
   },

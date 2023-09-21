@@ -98,6 +98,10 @@ export default {
           router.push({ name: 'errorRoute' })
         })
     },
+
+    moveToHarboursView() {
+      router.push({name: 'harboursRoute'})
+    }
   },
   beforeMount() {
     this.getExtraInfo()

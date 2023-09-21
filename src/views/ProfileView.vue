@@ -19,34 +19,36 @@
     </div>
 
     <div class="text-center">
+      <div class="mb-3">
       <button
         v-if="isView"
         @click="displayProfileInfoUpdateComponent"
-        type="button"
-        class="btn btn-warning"
-      >
+        type="button" class="btn btn-secondary rounded-0">
         Muuda andmeid
       </button>
+      </div>
       <div>
-        <div class="mb-1">
-          <button v-if="isView" @click="displayChangePasswordView" type="button" class="btn btn-danger">
+        <div class="mb-2">
+          <button v-if="isView" @click="displayChangePasswordView" type="button" class="btn btn-secondary rounded-0">
             Muuda parooli
           </button>
         </div>
       </div>
       <div>
-        <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning mb-3">
+        <div class="mb-3">
+        <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-secondary rounded-0">
           Uuenda
         </button>
+        </div>
       </div>
       <div>
         <button v-if="!isView" @click="back" type="button"
-                class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
+                class="btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
           Tagasi
         </button>
       </div>
       <div>
-        <button v-if="isView && isAdmin" @click="displayCreateNewUserView" type="button" class="btn btn-warning">
+        <button v-if="isView && isAdmin" @click="displayCreateNewUserView" type="button" class="btn btn-secondary rounded-0">
           Loo uus kasutaja
         </button>
       </div>
@@ -164,7 +166,12 @@ export default {
 .card-w-margin {
   width: 18rem;
   margin: auto;
-  margin-bottom: 3em;
-  margin-top: 3em;
+  margin-bottom: 1em;
+  margin-top: 2em;
+}
+
+button {
+  margin: auto;
+
 }
 </style>
