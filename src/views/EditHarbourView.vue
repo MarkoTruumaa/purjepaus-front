@@ -321,6 +321,8 @@ export default {
         })
     },
 
+
+
     mandatoryFieldsAreFilled() {
       let info = this.harbourDetailedInfo
       return (
