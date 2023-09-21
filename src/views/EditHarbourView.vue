@@ -163,11 +163,7 @@
         </div>
         <div class="row">
           <div class="col col-2 text-light">
-            <div
-              v-for="extra in harbourDetailedInfo.extras"
-              :key="extra.extraId"
-              class="form-check"
-            >
+            <div v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId" class="form-check">
               <input
                 v-model="extra.isAvailable"
                 class="form-check-input"
@@ -354,7 +350,7 @@ export default {
         .then((response) => {
           this.successMessage = HARBOUR_LOCATION_UPDATED.replace(
             '?',
-            this.harbourDetailedInfo.harbourName,
+            this.harbourDetailedInfo.harbourName
           )
         })
         .catch((error) => {

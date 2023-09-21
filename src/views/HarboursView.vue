@@ -52,9 +52,6 @@ export default {
       this.selectedHarbourId = harbourId
       this.showHarbourView = true
     },
-    showTableView() {
-      this.showHarbourView = false
-    },
   },
   beforeMount() {
     if (this.id) {

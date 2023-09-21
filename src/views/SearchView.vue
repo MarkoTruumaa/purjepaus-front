@@ -7,23 +7,23 @@
           <div>
             <div class="row justify-content-center">
               <div class="col col-4">
-                <select class="form-select mb-3" aria-label="Default select example">
+                <select v-model="searchInfo.countyId" class="form-select mb-3" aria-label="Default select example">
                   <option selected :value="0">Kõik maakonnad</option>
                   <option
-                    v-for="county in countyInfo"
-                    :value="county.countyId"
-                    :key="county.countyId"
+                      v-for="county in countyInfo"
+                      :value="county.countyId"
+                      :key="county.countyId"
                   >
                     {{ county.countyName }}
                   </option>
                 </select>
-                <select class="form-select mb-3" aria-label="Default select example">
+                <select v-model="searchInfo.minDepth" class="form-select mb-3" aria-label="Default select example">
                   <option selected :value="0">Sissesõidu väikseim sügavus</option>
                   <option v-for="(number, index) in numbers" :key="number" :value="index">
                     {{ number }} meetrit
                   </option>
                 </select>
-                <select class="form-select" aria-label="Default select example">
+                <select v-model="searchInfo.minWidth" class="form-select" aria-label="Default select example">
                   <option selected :value="0">Sissesõidu väikseim laius</option>
                   <option v-for="(number, index) in numbers" :key="number" :value="index">
                     {{ number }} meetrit
@@ -37,15 +37,15 @@
             <h3>TEENUSED</h3>
 
             <div class="row justify-content-start">
-              <div v-for="extra in extraInfo" class="col-4 form-check d-flex">
-                <input class="form-check-input" type="checkbox" value="" :id="extra.extraName" />
-                <label class="form-check-label ps-2" :for="extra.extraName">
+              <div v-for="extra in extraInfo" :key="extraInfo.extraId" class="col-4 form-check d-flex">
+                <input v-model="extra.isAvailable" class="form-check-input" type="checkbox"/>
+                <label class="form-check-label ps-2">
                   {{ extra.extraName }}
                 </label>
               </div>
             </div>
             <div class="p-4">
-              <button type="button" class="row btn btn-success rounded-0">OTSI</button>
+              <button @click="sendHarbourSearchInfo" type="button" class="row btn btn-success rounded-0">OTSI</button>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default {
   name: 'SearchView',
   computed: {
     numbers() {
-      return Array.from({ length: 10 }, (_, index) => index + 0.5)
+      return Array.from({length: 10}, (_, index) => index + 0.5)
     },
   },
   data() {
@@ -70,34 +70,76 @@ export default {
         countyId: 0,
         countyName: '',
       },
-      extraInfo: {
-        extraId: 0,
-        extraName: '',
-        isAvailable: true,
+      extraInfo: [
+        {
+          extraId: 0,
+          extraName: '',
+          isAvailable: true,
+        }
+      ],
+      searchInfo: {
+        countyId: 0,
+        minDepth: 0,
+        minWidth: 0,
+        extras: [
+          {
+            extraId: 0,
+            extraName: '',
+            isAvailable: false
+          }
+        ]
       },
+      harboursMainInfo: [
+        {
+          harbourId: 0,
+          harbourName: '',
+          locationLongitude: 0,
+          locationLatitude: 0,
+          minDepth: 0,
+          minWidth: 0,
+          spots: 0,
+        },
+      ],
     }
   },
   methods: {
     getExtraInfo() {
       this.$http
-        .get('/harbour/extras')
-        .then((response) => {
-          this.extraInfo = response.data
-        })
-        .catch((error) => {
-          router.push({ name: 'errorRoute' })
-        })
+          .get('/harbour/extras')
+          .then((response) => {
+            this.extraInfo = response.data
+          })
+          .catch((error) => {
+            router.push({name: 'errorRoute'})
+          })
     },
     getCountyInfo() {
       this.$http
-        .get('/counties')
-        .then((response) => {
-          this.countyInfo = response.data
-        })
-        .catch((error) => {
-          router.push({ name: 'errorRoute' })
-        })
+          .get('/counties')
+          .then((response) => {
+            this.countyInfo = response.data
+          })
+          .catch((error) => {
+            router.push({name: 'errorRoute'})
+          })
     },
+
+    sendHarbourSearchInfo() {
+      this.updateExtrasInSearchInfo()
+      this.$http.post("/harbours/search", this.searchInfo
+      ).then(response => {
+        this.harboursMainInfo = response.data
+
+      }).catch(error => {
+        router.push({name: 'errorRoute'})
+      })
+    },
+
+    updateExtrasInSearchInfo() {
+      this.searchInfo.extras = this.extraInfo
+    },
+
+
   },
   beforeMount() {
     this.getExtraInfo()
