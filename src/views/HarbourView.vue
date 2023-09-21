@@ -116,7 +116,7 @@
                 <button
                     @click="moveToHarboursPage"
                     type="button"
-                    class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
+                    class="btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
                 >
                   Tagasi sadamate juurde
                 </button>

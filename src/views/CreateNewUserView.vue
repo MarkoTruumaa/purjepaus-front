@@ -132,8 +132,8 @@
           </div>
           <div style="margin-top: 15px">
             <button @click="addNewUser" type="button" class="btn btn-success">Loo uus kasutaja</button>
-            <button @click="moveToProfileView" type="button"
-                    class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
+            <button @click="moveToLoginView" type="button"
+                    class="btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
               Tagasi
             </button>
           </div>
@@ -274,8 +274,8 @@ export default {
       this.resetMessages()
     },
 
-    moveToProfileView() {
-      router.push({name: 'profileRoute'})
+    moveToLoginView() {
+      router.push({name: 'loginRoute'})
     },
 
     resetMessages() {

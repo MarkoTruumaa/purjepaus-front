@@ -30,6 +30,14 @@
           <p>Sinu Purjepaus</p>
         </div>
       </div>
+      <div>
+        <div class="margin-top: 15px">
+          <button @click="" type="button"
+                  class="btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
+            Tagasi
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
