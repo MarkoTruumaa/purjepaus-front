@@ -10,3 +10,5 @@ export const USERNAME_ALREADY_EXISTS = 'Sellise nimega kasutaja on süsteemis ju
 export const NEW_USER_CREATED = 'Uus kasutaja on loodud'
 export const ROLE_NAME_NOT_SELECTED = 'Palun vali roll'
 export const NEW_HARBOUR_ERROR = 'Täida kõik nõutud väljad, vali maakond ja kapten'
+
+export const USER_PASSWORD_UPDATED = 'Parool on muudetud'
