@@ -3,13 +3,11 @@
     <div class="container p-4 glass-background">
       <div class="container text-center">
         <h1>Parooli muutmine</h1>
-        <div class="align-content-center">
-          <div class="row justify-content-center">
-            <div class="col col-4">
+        <div class="messages">
+            <div>
               <AlertDanger :alert-message="errorMessage"/>
               <AlertSuccess :alert-message="successMessage"/>
             </div>
-          </div>
         </div>
         <div class="container text-center">
           <div class="mb-3">
@@ -92,13 +90,8 @@ export default {
 
   methods: {
     mandatoryFieldsAreFilled() {
-      return this.userId > 0 &&
-          this.confirmOldPassword.length > 0 &&
+      return this.confirmOldPassword.length > 0 &&
           this.confirmNewPassword.length > 0 && this.newPassword.length > 0
-    },
-
-    differentOldPassword() {
-      return this.oldPassword !== this.confirmOldPassword
     },
 
     differentNewPassword() {
@@ -109,22 +102,26 @@ export default {
       if (!this.mandatoryFieldsAreFilled()) {
         this.errorMessage = USER_INFO_UPDATE_ERROR
       } else {
-        this.differentOldPassword() ? this.errorMessage = USER_OLD_PASSWORD_UPDATED_ERROR : this.differentNewPassword() ?
-            this.errorMessage = USER_NEW_PASSWORD_UPDATED_ERROR : this.updateUserPassword()
+        this.differentNewPassword() ? this.errorMessage = USER_NEW_PASSWORD_UPDATED_ERROR : this.checkOldPassword()
       }
 
     },
 
-    getOldPassword() {
+    checkOldPassword() {
       this.$http.get("/user/password", {
             params: {
               userId: this.userId = Number(sessionStorage.getItem('userId')),
+              password: this.confirmOldPassword
             }
           }
       ).then(response => {
-        this.oldPassword = response.data
+        this.updateUserPassword()
       }).catch(error => {
-        router.push({name: 'errorRoute'})
+        this.errorResponse = error.response.data
+        if (this.errorResponse.errorCode !== 444) {
+          router.push({ name: 'errorRoute' })
+        }
+        this.errorMessage = this.errorResponse.message
       })
     },
 
@@ -150,9 +147,6 @@ export default {
     }
   },
 
-  mounted() {
-    this.getOldPassword()
-  }
 }
 
 
@@ -164,6 +158,11 @@ export default {
   width: 500px;
   columns: auto;
   align-items: center;
+}
+
+.messages {
+  width: 500px;
+  margin: 0 auto;
 }
 
 .col {
