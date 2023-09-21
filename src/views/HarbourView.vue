@@ -1,17 +1,17 @@
 <template>
   <div>
-    <CaptainInfoModal ref="captainInfoModalRef" />
+    <CaptainInfoModal ref="captainInfoModalRef"/>
     <div class="container p-4 glass-background">
       <div class="row justify-content-center" style="background-color: transparent">
         <h1>{{ harbourDetailedInfo.harbourName }}</h1>
         <div class="col-4 mb-1">
-          <HarbourPicture :image-data-base64="getImageData" />
-          <br />
+          <HarbourPicture :image-data-base64="getImageData"/>
+          <br/>
           <div>
             <button
-              @click="openCaptainInfoModal"
-              type="button"
-              class="text-dark btn btn-outline-light shadow-sm rounded-0 mb-3"
+                @click="openCaptainInfoModal"
+                type="button"
+                class="text-dark btn btn-outline-light shadow-sm rounded-0 mb-3"
             >
               Sadamakapteni info
             </button>
@@ -22,7 +22,8 @@
             <li class="list-group-item bg-transparent border-0 rounded-0">
               <div class="ms-2 me-auto">
                 <div class="fw-bold">
-                  <font-awesome-icon :icon="['fas', 'location-dot']" />Aadress
+                  <font-awesome-icon :icon="['fas', 'location-dot']"/>
+                  Aadress
                 </div>
                 {{ harbourDetailedInfo.locationAddress }}
               </div>
@@ -30,7 +31,7 @@
             <li class="list-group-item bg-transparent border-0 rounded-0">
               <div class="ms-2 me-auto">
                 <div class="fw-bold">
-                  <font-awesome-icon :icon="['fas', 'map-location-dot']" />
+                  <font-awesome-icon :icon="['fas', 'map-location-dot']"/>
                   Koordinaadid
                 </div>
                 {{ harbourDetailedInfo.locationLongitude }},
@@ -40,7 +41,7 @@
             <li class="list-group-item bg-transparent border-0 rounded-0">
               <div class="ms-2 me-auto">
                 <div class="fw-bold">
-                  <font-awesome-icon :icon="['fas', 'arrow-down']" />
+                  <font-awesome-icon :icon="['fas', 'arrow-down']"/>
                   Sissesõidu väikseim sügavus
                 </div>
                 {{ harbourDetailedInfo.minDepth }} meetrit
@@ -49,7 +50,7 @@
             <li class="list-group-item bg-transparent border-0 rounded-0">
               <div class="ms-2 me-auto">
                 <div class="fw-bold">
-                  <font-awesome-icon :icon="['fas', 'arrows-left-right']" />
+                  <font-awesome-icon :icon="['fas', 'arrows-left-right']"/>
                   Sissesõidu väikseim laius
                 </div>
                 {{ harbourDetailedInfo.minWidth }} meetrit
@@ -58,7 +59,7 @@
             <li class="list-group-item bg-transparent border-0 rounded-0">
               <div class="ms-2 me-auto">
                 <div class="fw-bold">
-                  <font-awesome-icon :icon="['fas', 'anchor']" />
+                  <font-awesome-icon :icon="['fas', 'anchor']"/>
                   Kohtade arv sadamas
                 </div>
                 {{ harbourDetailedInfo.spots }}
@@ -83,7 +84,7 @@
             <li class="list-group-item bg-transparent border-0 rounded-0">
               <div class="ms-2 me-auto">
                 <div class="fw-bold">
-                  <font-awesome-icon :icon="['fas', 'phone']" />
+                  <font-awesome-icon :icon="['fas', 'phone']"/>
                   Kontakttelefon
                 </div>
                 {{ harbourDetailedInfo.phoneNumber }}
@@ -92,7 +93,7 @@
             <li class="list-group-item bg-transparent border-0 rounded-0">
               <div class="ms-2 me-auto">
                 <div class="fw-bold">
-                  <font-awesome-icon :icon="['fas', 'house']" />
+                  <font-awesome-icon :icon="['fas', 'house']"/>
                   <a :href="'https://' + harbourDetailedInfo.homepage" class="text-light">
                     {{ harbourDetailedInfo.homepage }}</a
                   >
@@ -103,139 +104,143 @@
               <div class="ms-2 me-auto">
                 <div class="fw-bold">Lisavõimalused</div>
                 <div v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
-                  <font-awesome-icon :icon="['fas', 'check']" />
+                  <font-awesome-icon :icon="['fas', 'check']"/>
                   {{ extra.extraName }}
                 </div>
               </div>
             </li>
           </ul>
-  <CaptainInfoModal ref="captainInfoModalRef"/>
-  <div class="container p-4 glass-background">
-    <div class="row justify-content-center" style="background-color: transparent">
-      <h1>{{ harbourDetailedInfo.harbourName }}</h1>
-      <div class="col-4 mb-1">
-        <HarbourPicture :picture-data-base64="getImageData"/>
-        <br/>
-        <div>
-          <button
-              @click="openCaptainInfoModal"
-              type="button"
-              class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3"
-          >
-            Sadamakapteni info
-          </button>
-        </div>
-      </div>
-      <div class="col-6">
-        <ul class="list-group mb-3 glass-background" style="background-color: transparent">
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'location-dot']"/>
-                Aadress
+          <CaptainInfoModal ref="captainInfoModalRef"/>
+          <div class="container p-4 glass-background">
+            <div class="row justify-content-center" style="background-color: transparent">
+              <h1>{{ harbourDetailedInfo.harbourName }}</h1>
+              <div class="col-4 mb-1">
+                <HarbourPicture :picture-data-base64="getImageData"/>
+                <br/>
+                <div>
+                  <button
+                      @click="openCaptainInfoModal"
+                      type="button"
+                      class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3"
+                  >
+                    Sadamakapteni info
+                  </button>
+                </div>
               </div>
-              {{ harbourDetailedInfo.locationAddress }}
-            </div>
-          </li>
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'map-location-dot']"/>
-                Koordinaadid
-              </div>
-              {{ harbourDetailedInfo.locationLongitude }},
-              {{ harbourDetailedInfo.locationLatitude }}
-            </div>
-          </li>
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'arrow-down']"/>
-                Sissesõidu väikseim sügavus
-              </div>
-              {{ harbourDetailedInfo.minDepth }} meetrit
-            </div>
-          </li>
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'arrows-left-right']"/>
-                Sissesõidu väikseim laius
-              </div>
-              {{ harbourDetailedInfo.minWidth }} meetrit
-            </div>
-          </li>
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'anchor']"/>
-                Kohtade arv sadamas
-              </div>
-              {{ harbourDetailedInfo.spots }}
-            </div>
-          </li>
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">
-                Navigatsiooniperioodi algus:
-                {{ harbourDetailedInfo.navigationStart }}
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">
-                Navigatsiooniperioodi lõpp:
-                {{ harbourDetailedInfo.navigationEnd }}
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'phone']"/>
-                Kontakttelefon
-              </div>
-              {{ harbourDetailedInfo.phoneNumber }}
-            </div>
-          </li>
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">
-                <font-awesome-icon :icon="['fas', 'house']"/>
-                <a :href="'https://' + harbourDetailedInfo.homepage" class="text-light">
-                  {{ harbourDetailedInfo.homepage }}</a
-                >
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item bg-transparent border-0 rounded-0">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Lisavõimalused</div>
-              <div v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
-                <font-awesome-icon :icon="['fas', 'check']"/>
-                {{ extra.extraName }}
-              </div>
-            </div>
-          </li>
-        </ul>
+              <div class="col-6">
+                <ul class="list-group mb-3 glass-background" style="background-color: transparent">
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">
+                        <font-awesome-icon :icon="['fas', 'location-dot']"/>
+                        Aadress
+                      </div>
+                      {{ harbourDetailedInfo.locationAddress }}
+                    </div>
+                  </li>
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">
+                        <font-awesome-icon :icon="['fas', 'map-location-dot']"/>
+                        Koordinaadid
+                      </div>
+                      {{ harbourDetailedInfo.locationLongitude }},
+                      {{ harbourDetailedInfo.locationLatitude }}
+                    </div>
+                  </li>
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">
+                        <font-awesome-icon :icon="['fas', 'arrow-down']"/>
+                        Sissesõidu väikseim sügavus
+                      </div>
+                      {{ harbourDetailedInfo.minDepth }} meetrit
+                    </div>
+                  </li>
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">
+                        <font-awesome-icon :icon="['fas', 'arrows-left-right']"/>
+                        Sissesõidu väikseim laius
+                      </div>
+                      {{ harbourDetailedInfo.minWidth }} meetrit
+                    </div>
+                  </li>
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">
+                        <font-awesome-icon :icon="['fas', 'anchor']"/>
+                        Kohtade arv sadamas
+                      </div>
+                      {{ harbourDetailedInfo.spots }}
+                    </div>
+                  </li>
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">
+                        Navigatsiooniperioodi algus:
+                        {{ harbourDetailedInfo.navigationStart }}
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">
+                        Navigatsiooniperioodi lõpp:
+                        {{ harbourDetailedInfo.navigationEnd }}
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">
+                        <font-awesome-icon :icon="['fas', 'phone']"/>
+                        Kontakttelefon
+                      </div>
+                      {{ harbourDetailedInfo.phoneNumber }}
+                    </div>
+                  </li>
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">
+                        <font-awesome-icon :icon="['fas', 'house']"/>
+                        <a :href="'https://' + harbourDetailedInfo.homepage" class="text-light">
+                          {{ harbourDetailedInfo.homepage }}</a
+                        >
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item bg-transparent border-0 rounded-0">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Lisavõimalused</div>
+                      <div v-for="extra in harbourDetailedInfo.extras" :key="extra.extraId">
+                        <font-awesome-icon :icon="['fas', 'check']"/>
+                        {{ extra.extraName }}
+                      </div>
+                    </div>
+                  </li>
+                </ul>
 
-        <div>
-          <button
-              @click="moveToHarboursPage"
-              type="button"
-              class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
-          >
-            Tagasi sadamate juurde
-          </button>
-          <button
-              v-if="isAdmin"
-              @click="moveToEditHarbourPage"
-              type="button"
-              class="btn btn-dark btn-outline-light text-white shadow-sm rounded-0 mb-3 m-2"
-          >
-            Muuda
-          </button>
+                <div>
+                  <button
+                      @click="moveToHarboursPage"
+                      type="button"
+                      class="text-light btn btn-outline-light shadow-sm rounded-0 mb-3 m-2"
+                  >
+                    Tagasi sadamate juurde
+                  </button>
+                  <button
+                      v-if="isAdmin"
+                      @click="moveToEditHarbourPage"
+                      type="button"
+                      class="btn btn-dark btn-outline-light text-white shadow-sm rounded-0 mb-3 m-2"
+                  >
+                    Muuda
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
