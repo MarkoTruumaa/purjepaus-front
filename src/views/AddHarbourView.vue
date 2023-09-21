@@ -1,6 +1,6 @@
 <template>
+  <AddExtrasModal ref="addExtrasModalRef" />
   <div class="container p-4 glass-background">
-    <AddExtrasModal ref="addExtrasModalRef" />
     <div class="container">
       <h1>Sadama lisamine</h1>
       <div class="col col-4">
@@ -131,7 +131,7 @@
               Sadama pildi lisamine
             </button>
             <div>
-              <HarbourPictureInput @event-emit-base64="setHarbourImageData"/>
+              <HarbourPictureInput @event-emit-base64="setHarbourImageData" />
             </div>
           </div>
         </div>
@@ -179,11 +179,11 @@ import AlertDanger from '@/components/AlertDanger.vue'
 import AlertSuccess from '@/components/AlertSuccess.vue'
 import { HARBOUR_LOCATION_ADDED, NEW_HARBOUR_ERROR } from '@/assets/script/AlertMessage'
 import { HARBOUR_NAME_UNAVAILABLE } from '@/assets/script/ErrorCode'
-import HarbourPictureInput from "@/components/image/HarbourPictureInput.vue";
+import HarbourPictureInput from '@/components/image/HarbourPictureInput.vue'
 
 export default {
   name: 'AddHarbourView',
-  components: {HarbourPictureInput, AlertSuccess, AlertDanger, AddExtrasModal },
+  components: { HarbourPictureInput, AlertSuccess, AlertDanger, AddExtrasModal },
   data() {
     return {
       selectedCaptainContactId: 0,

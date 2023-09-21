@@ -1,14 +1,14 @@
 <template>
-  <div class="container p-2 glass-background">
-    <div class="margin mt-4">
+  <div class="container glass-background">
+    <div class="mt-4">
       <h1>Meist</h1>
     </div>
-    <div class="align-content-center">
-      <div class="card">
+    <div class="row px-4 pb-4">
+      <div class="card col me-2">
         <div class="card-body">
           <p class="card-text">
-            Sina ju tead nagu meiegi, et merele minnes on kõige olulisem plaan. Millal minna,
-            kuidas ja kuhu välja jõuda.
+            Sina ju tead nagu meiegi, et merele minnes on kõige olulisem plaan. Millal minna, kuidas
+            ja kuhu välja jõuda.
           </p>
           <p>
             Teame ka seda, et meri nagu plaanidki võib kiiresti muutuda ning siis tuleb merelolijail
@@ -30,11 +30,46 @@
           <p>Sinu Purjepaus</p>
         </div>
       </div>
-      <div>
-        <div class="margin-top: 20px">
-          <button @click="moveToHomeView" type="button"
-                  class="btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
-            Tagasi
+      <div class="col ms-2 d-flex flex-column">
+        <div class="row glass-background mb-3">
+          <div class="margin mt-4">
+            <h3>Jäta meile tagasisidet</h3>
+          </div>
+          <form action="https://formspree.io/f/xzbljjde" method="POST">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label mb-3">Saada meile kiri</label>
+              <input
+                placeholder="sinu e-maili aadress"
+                type="email"
+                name="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                required
+              />
+              <div id="emailHelp" class="form-text">
+                Sisesta siia oma meiliaadress ja kiri ja pane sõnum teele :)
+              </div>
+            </div>
+            <div class="mb-3 input-group">
+              <textarea
+                name="message"
+                class="form-control"
+                placeholder="Sinu kiri meile"
+                aria-label="With textarea"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-light rounded-0 mb-3">Saada kiri</button>
+          </form>
+        </div>
+        <div class="d-flex flex-fill align-items-center justify-content-center">
+          <button
+            @click="moveToHomeView"
+            type="button"
+            class="btn btn-lg btn-outline-light shadow-sm rounded-0 mb-3"
+          >
+            Tagasi avalehele
           </button>
         </div>
       </div>
@@ -43,29 +78,16 @@
 </template>
 
 <script>
-import router from "@/router";
+import router from '@/router'
 
 export default {
   name: 'AboutView',
   methods: {
     moveToHomeView() {
-      router.push({name: 'homeRoute'})
-    }
-
-  }
+      router.push({ name: 'homeRoute' })
+    },
+  },
 }
 </script>
 
-<style scoped>
-.card {
-  top: 3px;
-  left: 37%;
-  width: 350px;
-}
-
-header {
-  top: 25px;
-  left: 20%;
-  width: 30px;
-}
-</style>
+<style scoped></style>
