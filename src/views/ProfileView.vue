@@ -4,26 +4,26 @@
     <div class="align-content-center">
       <div class="row justify-content-center">
         <div class="col col-4">
-          <AlertDanger :alert-message="errorMessage"/>
-          <AlertSuccess :alert-message="successMessage"/>
+          <AlertDanger :alert-message="errorMessage" />
+          <AlertSuccess :alert-message="successMessage" />
         </div>
       </div>
       <div class="card card-w-margin">
-        <ProfileInfo v-if="isView" :contact-info="contactInfo" ref="profileInfoRef"/>
+        <ProfileInfo v-if="isView" :contact-info="contactInfo" ref="profileInfoRef" />
         <ProfileInfoUpdate
-            @event-update-error-message="displayMessage"
-            @event-update-profile-view="displayProfileInfoComponent"
-            ref="profileInfoUpdateRef"
+          @event-update-error-message="displayMessage"
+          @event-update-profile-view="displayProfileInfoComponent"
+          ref="profileInfoUpdateRef"
         />
       </div>
     </div>
 
     <div class="text-center">
       <button
-          v-if="isView"
-          @click="displayProfileInfoUpdateComponent"
-          type="button"
-          class="btn btn-warning"
+        v-if="isView"
+        @click="displayProfileInfoUpdateComponent"
+        type="button"
+        class="btn btn-warning"
       >
         Muuda andmeid
       </button>
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div>
-        <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning">
+        <button v-if="!isView" @click="updateUserInfo" type="button" class="btn btn-warning mb-3">
           Uuenda
         </button>
       </div>
@@ -98,17 +98,17 @@ export default {
 
     getUserInfo() {
       this.$http
-          .get('/user', {
-            params: {
-              userId: sessionStorage.getItem('userId'),
-            },
-          })
-          .then((response) => {
-            this.contactInfo = response.data
-          })
-          .catch((error) => {
-            router.push({name: 'errorRoute'})
-          })
+        .get('/user', {
+          params: {
+            userId: sessionStorage.getItem('userId'),
+          },
+        })
+        .then((response) => {
+          this.contactInfo = response.data
+        })
+        .catch((error) => {
+          router.push({ name: 'errorRoute' })
+        })
     },
 
     displayCreateNewUserView() {
