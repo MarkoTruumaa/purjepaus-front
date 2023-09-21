@@ -1,7 +1,7 @@
 <template>
   <div class="container p-4 glass-background">
     <div class="container text-center">
-      <h1>Kõik sadamad</h1>
+      <h1>Sadamad</h1>
       <table class="table table-hover">
         <thead class="table-dark">
           <tr>
@@ -32,15 +32,6 @@
         </button>
         <br />
       </div>
-      <div>
-        <button
-          @click="moveToSearchHarbourPage"
-          type="button"
-          class="btn btn-secondary rounded-0 mb-3"
-        >
-          Sadamate otsingu lehele
-        </button>
-      </div>
     </div>
   </div>
 </template>
@@ -65,9 +56,6 @@ export default {
     },
     moveToAddHarbourPage() {
       router.push({ name: 'addHarbourRoute' })
-    },
-    moveToSearchHarbourPage() {
-      router.push({ name: 'searchRoute' })
     },
 
     checkUserRole() {

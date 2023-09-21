@@ -1,5 +1,5 @@
 <template>
-  <div class="container text-center">
+  <div class="container p-4 glass-background">
     <div class="row">
       <div class="col">
         <HarboursTable
@@ -8,6 +8,14 @@
           :harbours-main-info="harboursMainInfo"
         />
       </div>
+    </div>
+    <div class="mt-3">
+      <button
+          @click="moveToSearchHarbourPage"
+          type="button"
+          class="btn btn-secondary rounded-0 mb-3">
+        Sadamate otsingu lehele
+      </button>
     </div>
   </div>
 </template>
@@ -51,6 +59,9 @@ export default {
     openSelectedHarbourDetails(harbourId) {
       this.selectedHarbourId = harbourId
       this.showHarbourView = true
+    },
+    moveToSearchHarbourPage() {
+      router.push({ name: 'searchRoute' })
     },
   },
   beforeMount() {
