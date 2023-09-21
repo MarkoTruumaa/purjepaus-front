@@ -53,6 +53,10 @@
               Muuda parool
             </button>
           </div>
+          <button @click="back" type="button"
+                  class="btn btn-outline-light shadow-sm rounded-0 mb-3 m-2">
+            Tagasi
+          </button>
         </div>
       </div>
     </div>
@@ -113,6 +117,10 @@ export default {
       }).catch(error => {
         router.push({name: 'errorRoute'})
       })
+    },
+
+    back() {
+      router.push({name: 'profileRoute'})
     }
   }
 }
