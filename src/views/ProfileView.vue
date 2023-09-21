@@ -29,7 +29,7 @@
       </button>
       <div>
         <div class="mb-1">
-          <button v-if="isView" @click="" type="button" class="btn btn-danger">
+          <button v-if="isView" @click="displayChangePasswordView" type="button" class="btn btn-danger">
             Muuda parooli
           </button>
         </div>
@@ -90,6 +90,12 @@ export default {
   },
 
   methods: {
+
+    displayChangePasswordView() {
+      router.push({name: 'changePasswordRoute'})
+
+    },
+
     getUserInfo() {
       this.$http
           .get('/user', {
