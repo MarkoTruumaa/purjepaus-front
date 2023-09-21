@@ -130,13 +130,9 @@
             <button class="btn btn-secondary" type="button" id="inputGroupFileAddon03">
               Sadama pildi lisamine
             </button>
-            <input
-              type="file"
-              class="form-control"
-              id="inputGroupFile03"
-              aria-describedby="inputGroupFileAddon03"
-              aria-label="Upload"
-            />
+            <div>
+              <HarbourPictureInput @event-emit-base64="setHarbourImageData"/>
+            </div>
           </div>
         </div>
 
@@ -183,10 +179,11 @@ import AlertDanger from '@/components/AlertDanger.vue'
 import AlertSuccess from '@/components/AlertSuccess.vue'
 import { HARBOUR_LOCATION_ADDED, NEW_HARBOUR_ERROR } from '@/assets/script/AlertMessage'
 import { HARBOUR_NAME_UNAVAILABLE } from '@/assets/script/ErrorCode'
+import HarbourPictureInput from "@/components/image/HarbourPictureInput.vue";
 
 export default {
   name: 'AddHarbourView',
-  components: { AlertSuccess, AlertDanger, AddExtrasModal },
+  components: {HarbourPictureInput, AlertSuccess, AlertDanger, AddExtrasModal },
   data() {
     return {
       selectedCaptainContactId: 0,
@@ -337,6 +334,10 @@ export default {
       } else {
         router.push({ name: 'errorRoute' })
       }
+    },
+
+    setHarbourImageData(imageDataBase64) {
+      this.harbourDetailedInfo.pictures.pictureData = imageDataBase64
     },
   },
 
