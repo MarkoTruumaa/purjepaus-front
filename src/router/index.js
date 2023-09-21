@@ -10,6 +10,7 @@ import EditHarbourView from '@/views/EditHarbourView.vue'
 import AddHarbourView from '@/views/AddHarbourView.vue'
 import CreateNewUser from '@/views/CreateNewUserView.vue'
 import HarbourView from '@/views/HarbourView.vue'
+import ChangePasswordView from "@/views/ChangePasswordView.vue";
 
 const routes = [
   {
@@ -67,6 +68,11 @@ const routes = [
     path: '/new-user',
     name: 'createNewUserRoute',
     component: CreateNewUser,
+  },
+  {
+    path: '/user/password',
+    name: 'changePasswordRoute',
+    component: ChangePasswordView,
   },
 ]
 

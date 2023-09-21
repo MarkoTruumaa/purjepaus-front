@@ -7,7 +7,7 @@
       <div class="card">
         <div class="card-body">
           <p class="card-text">
-            Sina ju tead ja teame ka meie, et merele minnes on kõige olulisem plaan. Millal minna,
+            Sina ju tead nagu meiegi, et merele minnes on kõige olulisem plaan. Millal minna,
             kuidas ja kuhu välja jõuda.
           </p>
           <p>
