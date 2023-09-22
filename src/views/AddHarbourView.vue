@@ -1,27 +1,27 @@
 <template>
   <AddExtrasModal ref="addExtrasModalRef" />
   <div class="container p-4 glass-background">
-    <div class="container">
-      <h1>Sadama lisamine</h1>
-      <div class="col col-4">
-        <AlertDanger :alert-message="errorMessage" />
-        <AlertSuccess :alert-message="successMessage" />
-      </div>
-      <div>
+    <h1>Sadama lisamine</h1>
+    <div class="col col-4">
+      <AlertDanger :alert-message="errorMessage" />
+      <AlertSuccess :alert-message="successMessage" />
+    </div>
+    <div class="row">
+      <div class="col">
         <div class="input-group mb-3">
           <span class="input-group-text">Sadama nimi: </span>
           <input
-            v-model="harbourDetailedInfo.harbourName"
-            type="text"
-            class="form-control"
-            aria-describedby="basic-addon1"
+              v-model="harbourDetailedInfo.harbourName"
+              type="text"
+              class="form-control"
+              aria-describedby="basic-addon1"
           />
         </div>
         <div class="input-group mb-3">
           <select
-            v-model="selectedCountyName"
-            class="form-select mb-3"
-            aria-label="Default select example"
+              v-model="selectedCountyName"
+              class="form-select mb-3"
+              aria-label="Default select example"
           >
             <option>Kõik maakonnad</option>
             <option v-for="county in countyInfo" :value="county.countyName" :key="county.countyId">
@@ -32,56 +32,56 @@
         <div class="input-group mb-3">
           <span class="input-group-text">Sadama koordinaadid</span>
           <input
-            v-model="harbourDetailedInfo.locationLongitude"
-            type="number"
-            class="form-control"
-            placeholder="põhjapikkus"
-            step="0.000001"
+              v-model="harbourDetailedInfo.locationLongitude"
+              type="number"
+              class="form-control"
+              placeholder="põhjapikkus"
+              step="0.000001"
           />
           <input
-            v-model="harbourDetailedInfo.locationLatitude"
-            type="number"
-            class="form-control"
-            placeholder="lõunalaius"
-            step="0.000001"
+              v-model="harbourDetailedInfo.locationLatitude"
+              type="number"
+              class="form-control"
+              placeholder="lõunalaius"
+              step="0.000001"
           />
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="depth-input"
-            >Sissesõidu väikseim sügavus (meetrites):
+          >Sissesõidu väikseim sügavus (meetrites):
           </span>
           <input
-            v-model="harbourDetailedInfo.minDepth"
-            type="number"
-            step="0.1"
-            class="form-control"
-            aria-describedby="depth-input"
+              v-model="harbourDetailedInfo.minDepth"
+              type="number"
+              step="0.1"
+              class="form-control"
+              aria-describedby="depth-input"
           />
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1"
-            >Sissesõidu väikseim laius (meetrites):
+          >Sissesõidu väikseim laius (meetrites):
           </span>
           <input
-            v-model="harbourDetailedInfo.minWidth"
-            type="number"
-            step="0.1"
-            class="form-control"
-            aria-describedby="basic-addon1"
+              v-model="harbourDetailedInfo.minWidth"
+              type="number"
+              step="0.1"
+              class="form-control"
+              aria-describedby="basic-addon1"
           />
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text">Kapteni nimi: </span>
           <select
-            v-model="selectedCaptainContactId"
-            class="form-select"
-            aria-label="Default select example"
+              v-model="selectedCaptainContactId"
+              class="form-select"
+              aria-label="Default select example"
           >
             <option selected :value="0">Vali kapten</option>
             <option
-              v-for="captain in captainInfo"
-              :value="captain.contactId"
-              :key="captain.contactId"
+                v-for="captain in captainInfo"
+                :value="captain.contactId"
+                :key="captain.contactId"
             >
               {{ captain.contactFirstName }} {{ captain.contactLastName }}
             </option>
@@ -90,10 +90,10 @@
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">Kohtade arv: </span>
           <input
-            v-model="harbourDetailedInfo.spots"
-            type="number"
-            class="form-control"
-            aria-describedby="basic-addon1"
+              v-model="harbourDetailedInfo.spots"
+              type="number"
+              class="form-control"
+              aria-describedby="basic-addon1"
           />
         </div>
         <div>
@@ -110,13 +110,13 @@
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"
-              >Lisa navigatsiooniperioodi algus:
+            >Lisa navigatsiooniperioodi algus:
             </span>
             <input v-model="harbourDetailedInfo.navigationStart" type="date" class="form-control" />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"
-              >Lisa navigatsiooniperioodi lõpp:
+            >Lisa navigatsiooniperioodi lõpp:
             </span>
             <input v-model="harbourDetailedInfo.navigationEnd" type="date" class="form-control" />
           </div>
@@ -125,47 +125,49 @@
             <input v-model="harbourDetailedInfo.homepage" type="text" class="form-control" />
           </div>
         </div>
-        <div>
-          <div class="input-group mb-3">
-            <button class="btn btn-secondary" type="button" id="inputGroupFileAddon03">
-              Sadama pildi lisamine
-            </button>
-            <div>
-              <HarbourPictureInput @event-emit-base64="setHarbourImageData" />
-            </div>
+      </div>
+      <div class="col col-4">
+        <div class="input-group mb-3">
+          <button class="btn btn-secondary" type="button" id="inputGroupFileAddon03">
+            Sadama pildi lisamine
+          </button>
+          <div>
+            <HarbourPictureInput @event-emit-base64="setHarbourImageData" />
+          </div>
+          <div v-for="picture in harbourDetailedInfo.pictures" :key="picture.pictureId">
+            <HarbourPicture :image-data-base64="picture.pictureData" />
           </div>
         </div>
-
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <button
-                @click="openAddExtrasModal"
-                type="button"
-                class="btn btn-secondary text-light fw-bold shadow-sm rounded-0"
-              >
-                Lisa teenused
-              </button>
-            </div>
-            <div class="col">
-              <button
-                @click="addNewHarbour"
-                type="button"
-                class="btn btn-success text-light fw-bold shadow-sm rounded-0"
-              >
-                Lisa sadam
-              </button>
-            </div>
-            <div class="col">
-              <button
-                @click="moveToHarboursPage"
-                type="button"
-                class="btn btn-primary text-light fw-bold shadow-sm rounded-0"
-              >
-                Tagasi sadamate lehele
-              </button>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <button
+              @click="openAddExtrasModal"
+              type="button"
+              class="btn btn-secondary text-light fw-bold shadow-sm rounded-0"
+          >
+            Lisa teenused
+          </button>
+        </div>
+        <div class="col">
+          <button
+              @click="addNewHarbour"
+              type="button"
+              class="btn btn-success text-light fw-bold shadow-sm rounded-0"
+          >
+            Lisa sadam
+          </button>
+        </div>
+        <div class="col">
+          <button
+              @click="moveToHarboursPage"
+              type="button"
+              class="btn btn-primary text-light fw-bold shadow-sm rounded-0"
+          >
+            Tagasi sadamate lehele
+          </button>
         </div>
       </div>
     </div>
@@ -180,10 +182,11 @@ import AlertSuccess from '@/components/AlertSuccess.vue'
 import { HARBOUR_LOCATION_ADDED, NEW_HARBOUR_ERROR } from '@/assets/script/AlertMessage'
 import { HARBOUR_NAME_UNAVAILABLE } from '@/assets/script/ErrorCode'
 import HarbourPictureInput from '@/components/image/HarbourPictureInput.vue'
+import HarbourPicture from "@/components/image/HarbourPicture.vue";
 
 export default {
   name: 'AddHarbourView',
-  components: { HarbourPictureInput, AlertSuccess, AlertDanger, AddExtrasModal },
+  components: {HarbourPicture, HarbourPictureInput, AlertSuccess, AlertDanger, AddExtrasModal },
   data() {
     return {
       selectedCaptainContactId: 0,
@@ -337,7 +340,7 @@ export default {
     },
 
     setHarbourImageData(imageDataBase64) {
-      this.harbourDetailedInfo.pictures.pictureData = imageDataBase64
+      this.harbourDetailedInfo.pictures.forEach((picture) => picture.pictureData = imageDataBase64)
     },
   },
 

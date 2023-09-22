@@ -18,7 +18,7 @@
                 </label>
               </div>
               <div class="col">
-                <input v-model="confirmOldPassword" type="text" class="form-control" id="Vana parool">
+                <input v-model="confirmOldPassword" type="password" class="form-control" id="Vana parool">
               </div>
             </div>
           </div>
@@ -30,7 +30,7 @@
                 </label>
               </div>
               <div class="col">
-                <input v-model="newPassword" type="text" class="form-control" id="Uus parool">
+                <input v-model="newPassword" type="password" class="form-control" id="Uus parool">
               </div>
             </div>
           </div>
@@ -42,7 +42,7 @@
                 </label>
               </div>
               <div class="col">
-                <input v-model="confirmNewPassword" type="text" class="form-control" id="Kinnita uus parool">
+                <input v-model="confirmNewPassword" type="password" class="form-control" id="Kinnita uus parool">
               </div>
             </div>
           </div>
