@@ -151,13 +151,9 @@
               <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">
                 Sadama pildi lisamine
               </button>
-              <input
-                type="file"
-                class="form-control"
-                id="inputGroupFile03"
-                aria-describedby="inputGroupFileAddon03"
-                aria-label="Upload"
-              />
+              <div>
+                <HarbourPictureInput @event-emit-base64="setHarbourImageData"/>
+              </div>
             </div>
           </div>
         </div>
@@ -221,10 +217,11 @@ import AlertDanger from '@/components/AlertDanger.vue'
 import DeleteHarbourModal from '@/components/modal/DeleteHarbourModal.vue'
 import { HARBOUR_LOCATION_UPDATED, HARBOUR_LOCATION_ERROR } from '@/assets/script/AlertMessage'
 import { useRoute } from 'vue-router'
+import HarbourPictureInput from "@/components/image/HarbourPictureInput.vue";
 
 export default {
   name: 'EditHarbourView',
-  components: { AlertSuccess, AlertDanger, DeleteHarbourModal },
+  components: {HarbourPictureInput, AlertSuccess, AlertDanger, DeleteHarbourModal },
 
   data() {
     return {
