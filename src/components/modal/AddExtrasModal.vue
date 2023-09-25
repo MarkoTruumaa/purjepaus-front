@@ -5,7 +5,7 @@
         <h4>Teenuste lisamine</h4>
       </template>
       <template #body>
-        <div v-for="extra in extraInfo" class="col form-check">
+        <div v-for="extra in extraInfo" :key="extra.extraId" class="col form-check">
           <input v-model="extra.isAvailable" class="form-check-input " type="checkbox" :checked="extra.isAvailable">
           <label class="form-check-label" for="flexCheckDefault">
             {{ extra.extraName }}

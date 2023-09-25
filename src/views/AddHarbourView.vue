@@ -89,12 +89,7 @@
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">Kohtade arv: </span>
-          <input
-              v-model="harbourDetailedInfo.spots"
-              type="number"
-              class="form-control"
-              aria-describedby="basic-addon1"
-          />
+          <input v-model="harbourDetailedInfo.spots" type="number" class="form-control" aria-describedby="basic-addon1"/>
         </div>
         <div>
           <div>
@@ -143,11 +138,8 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <button
-              @click="openAddExtrasModal"
-              type="button"
-              class="btn btn-secondary text-light fw-bold shadow-sm rounded-0"
-          >
+          <button @click="openAddExtrasModal" type="button"
+              class="btn btn-secondary text-light fw-bold shadow-sm rounded-0">
             Lisa teenused
           </button>
         </div>
